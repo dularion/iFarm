@@ -8,20 +8,8 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button large full icon-left>
-    <ion-icon class="ifarmicon-cow"></ion-icon>
-    Tiere
-  </button>
-  <button ion-button large full icon-left>
-    <ion-icon name="map"></ion-icon>
-    Flächen
-  </button>
-  <button ion-button large full icon-left>
-    <ion-icon class="ifarmicon-tractor"></ion-icon>
-    Fahrzeuge
-  </button>
-  <button ion-button large full icon-left outline>
-    <ion-icon name="person"></ion-icon>
-    Mein Profil
+  <button ion-button large full icon-left *ngFor="let page of pages" (click)="openPage(page)">
+    <ion-icon class="{{ page.icon }}"></ion-icon>
+    {{ page.title }}
   </button>
 </ion-content>
