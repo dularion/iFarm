@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {AnimalDetailPage} from '../animal-detail/animal-detail';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'animal-list',
@@ -9,11 +10,11 @@ import {AnimalDetailPage} from '../animal-detail/animal-detail';
 export class AnimalsPage {
   selectedItem: any;
   icons: string[];
-  items: Array<{title: string, note: string, icon: string, dateOfBirth: Date}>;
+  items: any;
   type: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.type = 'all';
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+    this.type = '';
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -22,14 +23,10 @@ export class AnimalsPage {
     'american-football', 'boat', 'bluetooth', 'build'];
 
     this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: '#' + Math.floor(Math.random()*90000) + 10000,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)],
-        dateOfBirth: new Date()
-      });
-    }
+  }
+
+  ionViewDidLoad(){
+    this.http.get('assets/animals.json').subscribe(data => this.items = data);
   }
 
   itemTapped(event, item) {

@@ -11,7 +11,7 @@
 
   <div padding>
     <ion-segment [(ngModel)]="type">
-      <ion-segment-button value="all">
+      <ion-segment-button value="">
         Alle
       </ion-segment-button>
       <ion-segment-button value="females">
@@ -31,8 +31,8 @@
       <ion-thumbnail item-start>
         <img src="assets/imgs/cow_image.png">
       </ion-thumbnail>
-      <h2>{{item.title}}</h2>
-      <p>{{ item.note }} • {{ item.dateOfBirth | date:'dd.MM.yyyy'}}</p>
+      <h2>{{item.name}}</h2>
+      <p>{{ item.gender }} • {{ item.dateOfBirth | date:'dd.MM.yyyy'}}</p>
       <button ion-button clear item-end>View</button>
     </ion-item>
   </ion-list>

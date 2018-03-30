@@ -12,6 +12,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {AnimalsPage} from '../pages/animals/animals';
 import {AnimalDetailPage} from '../pages/animal-detail/animal-detail';
 import {PhotoModalPage} from '../pages/photo-modal/photo-modal';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {PhotoModalPage} from '../pages/photo-modal/photo-modal';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
