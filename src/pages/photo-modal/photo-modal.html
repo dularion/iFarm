@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        Abbrechen
+      </button>
+    </ion-buttons>
+    <ion-title>Neues Bild</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <ion-icon role="img" name="camera" (click)="openNotImplemented()"></ion-icon>
+        <div>Kamera</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <ion-icon role="img" name="images" (click)="openNotImplemented()"></ion-icon>
+        <div>Galerie</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
