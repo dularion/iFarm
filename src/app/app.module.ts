@@ -13,6 +13,7 @@ import {AnimalsPage} from '../pages/animals/animals';
 import {AnimalDetailPage} from '../pages/animal-detail/animal-detail';
 import {PhotoModalPage} from '../pages/photo-modal/photo-modal';
 import {HttpClientModule} from '@angular/common/http';
+import {IFarmEvents} from '../pages/events/events';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {HttpClientModule} from '@angular/common/http';
     AnimalsPage,
     ListPage,
     AnimalDetailPage,
-    PhotoModalPage
+    PhotoModalPage,
+    IFarmEvents
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import {HttpClientModule} from '@angular/common/http';
     AnimalsPage,
     ListPage,
     AnimalDetailPage,
-    PhotoModalPage
+    PhotoModalPage,
+    IFarmEvents
   ],
   providers: [
     Camera,
