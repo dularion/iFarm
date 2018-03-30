@@ -9,18 +9,30 @@
 
 <ion-content>
 
-  <ion-list>
-    <ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-thumbnail item-start>
-        <img src="assets/imgs/cow_image.png">
-      </ion-thumbnail>
-      <h2>{{item.title}}</h2>
-      <p>{{ item.note }} • 1988</p>
-      <button ion-button clear item-end>View</button>
-    </ion-item>
-  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>
+        <ion-thumbnail item-start>
+          <img src="assets/imgs/cow_image.png" (click)="changeImage()">
+        </ion-thumbnail>
+      </ion-col>
+      <ion-col col-8>
+        <ion-item>
+          <ion-input placeholder="Nr" type="text" value=""></ion-input>
+        </ion-item>
 
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+        <ion-item>
+          <ion-label>Geschlecht</ion-label>
+          <ion-select [(ngModel)]="gaming">
+            <ion-option value="female">Weiblich</ion-option>
+            <ion-option value="male">Männlich</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>This column will take 6 columns</ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
