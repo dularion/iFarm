@@ -1,3 +1,23 @@
-page-list {
+animal-detail {
+ .events{
+   ion-input, ion-datetime{
+     background: #ececec;
+     padding-left: 10px;
+   }
 
+   h3{
+     padding: 10px 0px 0;
+     margin: 25px 10px 0;
+     border-top: 3px solid map-get($colors, primary);
+   }
+   .add-new-event{
+     float: right;
+   }
+   ion-row{
+     border-bottom: 1px solid #d6d5d5;
+     ion-col{
+       padding: 10px 6px;
+     }
+   }
+ }
 }

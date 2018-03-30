@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {ModalController} from 'ionic-angular';
+import {ModalController, NavParams} from 'ionic-angular';
 import {PhotoModalPage} from '../photo-modal/photo-modal';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'animal-detail',
@@ -8,9 +9,14 @@ import {PhotoModalPage} from '../photo-modal/photo-modal';
 })
 export class AnimalDetailPage {
   selectedItem: any;
+  animals: any;
 
-  constructor(public modalCtrl: ModalController) {
+  constructor(public modalCtrl: ModalController, public navParams: NavParams, private http: HttpClient) {
+    this.selectedItem = navParams.get('item');
+  }
 
+  ionViewDidLoad(){
+    this.http.get('assets/animals.json').subscribe(data => this.animals = data);
   }
 
 
