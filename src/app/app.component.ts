@@ -4,8 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { AnimalsPage } from '../pages/animals/animals';
+import {IFarmProvider} from './ifarm.app.provider';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,20 +12,16 @@ import { AnimalsPage } from '../pages/animals/animals';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = AnimalsPage;
+  rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any, icon: string}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+              private ifarmAppProvider: IFarmProvider) {
+
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Tiere', component: AnimalsPage, icon: 'ifarmicon-cow'},
-      { title: 'Flächen', component: AnimalsPage, icon: 'ifarmicon-map' },
-      { title: 'Fahrzeuge', component: ListPage, icon: 'ifarmicon-tractor' },
-      { title: 'Mein Profil', component: ListPage, icon: 'ifarmicon-cogs' }
-    ];
+    this.pages = this.ifarmAppProvider.getPages();
 
   }
 

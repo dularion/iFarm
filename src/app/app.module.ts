@@ -14,6 +14,7 @@ import {AnimalDetailPage} from '../pages/animal-detail/animal-detail';
 import {PhotoModalPage} from '../pages/photo-modal/photo-modal';
 import {HttpClientModule} from '@angular/common/http';
 import {IFarmEvents} from '../pages/events/events';
+import {IFarmProvider} from './ifarm.app.provider';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {IFarmEvents} from '../pages/events/events';
     Camera,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    IFarmProvider
   ]
 })
 export class AppModule {}
