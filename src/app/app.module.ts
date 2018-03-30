@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import {ErrorHandler, LOCALE_ID, NgModule} from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
@@ -8,12 +8,16 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {AnimalsPage} from '../pages/animals/animals';
+import {AnimalDetailPage} from '../pages/animal-detail/animal-detail';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    AnimalsPage,
+    ListPage,
+    AnimalDetailPage
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    AnimalsPage,
+    ListPage,
+    AnimalDetailPage
   ],
   providers: [
     StatusBar,

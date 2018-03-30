@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Tiere</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div padding>
+    <ion-segment [(ngModel)]="type">
+      <ion-segment-button value="all">
+        Alle
+      </ion-segment-button>
+      <ion-segment-button value="females">
+        Kühe
+      </ion-segment-button>
+      <ion-segment-button value="males">
+        Bullen
+      </ion-segment-button>
+      <ion-segment-button value="babies">
+        Kälber
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/cow_image.png">
+      </ion-thumbnail>
+      <h2>{{item.title}}</h2>
+      <p>{{ item.note }} • {{ item.dateOfBirth | date:'dd.MM.yyyy'}}</p>
+      <button ion-button clear item-end>View</button>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </div>
+</ion-content>
