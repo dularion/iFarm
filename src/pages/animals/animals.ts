@@ -10,19 +10,11 @@ import {HttpClient} from '@angular/common/http';
 export class AnimalsPage {
   selectedItem: any;
   icons: string[];
-  items: any;
+  items: any = [];
   type: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+  constructor(public navCtrl: NavController, private http: HttpClient) {
     this.type = '';
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
-
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
-
-    this.items = [];
   }
 
   ionViewDidLoad(){
