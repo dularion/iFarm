@@ -3,7 +3,11 @@
     "name": "#123123123",
     "gender": "female",
     "dateOfBirth": "2012-04-23T18:25:43.511Z",
-    "type": ""
+    "type": "",
+    "events": [
+      {"dateCreated": "2012-04-23T18:25:43.511Z", "name": "Besamung", "description": "..."},
+      {"dateCreated": "2012-04-22T18:25:43.511Z", "name": "Abbluten", "description": "..."}
+    ]
   },
   {
     "name": "#12311233",
