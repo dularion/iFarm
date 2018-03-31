@@ -35,7 +35,7 @@
         <img src="assets/imgs/area-{{item.type}}_image.png">
       </ion-thumbnail>
       <h2>{{item.name}}</h2>
-      <p>{{ item.type }} • {{ item.nr }} • {{ item.size }}</p>
+      <p>{{ 'AREAS.TYPES.' + item.type | translate }} • {{ item.nr }} • {{ item.size }}</p>
       <button ion-button clear item-end>View</button>
     </ion-item>
   </ion-list>
