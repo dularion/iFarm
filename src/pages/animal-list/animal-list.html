@@ -38,7 +38,7 @@
         <img src="assets/imgs/animal-{{getTypeForImage(item)}}_image.png">
       </ion-thumbnail>
       <h2>{{item.name}}</h2>
-      <p>{{ 'ANIMALS.GENDERS.' + item.gender | translate }} • {{ item.dateOfBirth | date:'dd.MM.yyyy'}}</p>
+      <p>{{ 'ANIMALS.GENDERS.' + item.gender | translate }} • *{{ item.dateOfBirth | date:'dd.MM.yyyy'}}</p>
       <button ion-button clear item-end>View</button>
     </ion-item>
   </ion-list>
