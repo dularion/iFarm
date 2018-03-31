@@ -16,9 +16,14 @@ export class AnimalProvider {
   }
 
 
-  getTypeForImage(item) {
+  isAdult(item) {
     let twentyMonthsAgo = moment().add(-20, 'M');
-    if(moment(item.dateOfBirth).isAfter(twentyMonthsAgo)){
+    return moment(item.dateOfBirth).isBefore(twentyMonthsAgo);
+  }
+
+
+  getTypeForImage(item) {
+    if(!this.isAdult(item)){
       return 'baby';
     }
 
