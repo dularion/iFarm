@@ -62,4 +62,14 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page ? page.component : HomePage);
   }
+
+  signOut(){
+    let _this = this;
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      _this.nav.setRoot(WelcomePage);
+    }).catch(function(error) {
+      // An error happened.
+    });
+  }
 }

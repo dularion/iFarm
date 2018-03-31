@@ -4,6 +4,7 @@ import { IonicPage, NavController, ToastController } from 'ionic-angular';
 
 import { User } from '../../providers/providers';
 import {HomePage} from '../home/home';
+import * as firebase from 'firebase';
 
 @IonicPage()
 @Component({
@@ -16,7 +17,7 @@ export class LoginPage {
   // sure to add it to the type
   account: { email: string, password: string } = {
     email: 'test@example.com',
-    password: 'test'
+    password: 'Test1234'
   };
 
   // Our translated text strings
@@ -34,17 +35,29 @@ export class LoginPage {
 
   // Attempt to login in through our User service
   doLogin() {
-    this.user.login(this.account).subscribe((resp) => {
-      this.navCtrl.push(HomePage);
-    }, (err) => {
-      this.navCtrl.push(HomePage);
-      // Unable to log in
-      let toast = this.toastCtrl.create({
-        message: this.loginErrorString,
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
+
+    firebase.auth().signInWithEmailAndPassword(this.account.email, this.account.password)
+      .then(function () {
+        this.navCtrl.setRoot(HomePage);
+      })
+      .catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
     });
+
+    // this.user.login(this.account).subscribe((resp) => {
+    //   this.navCtrl.push(HomePage);
+    // }, (err) => {
+    //   this.navCtrl.push(HomePage);
+    //   // Unable to log in
+    //   let toast = this.toastCtrl.create({
+    //     message: this.loginErrorString,
+    //     duration: 3000,
+    //     position: 'top'
+    //   });
+    //   toast.present();
+    // });
   }
 }

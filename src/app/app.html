@@ -15,6 +15,10 @@
         <ion-icon class="{{ p.icon }}" item-start></ion-icon>
         {{ p.name + '.TITLE.P' | translate }}
       </button>
+      <button menuClose ion-item (click)="signOut()">
+        <ion-icon name="power" item-start></ion-icon>
+        Abmelden
+      </button>
     </ion-list>
   </ion-content>
 
