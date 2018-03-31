@@ -60,6 +60,11 @@
     </ion-select>
   </ion-item>
 
+  <ion-item *ngIf="selectedItem.gender == 'female' && isAdult()">
+    <ion-label>Anzahl Kälber:</ion-label>
+    <ion-input type="number" [(ngModel)]="selectedItem.childrenCount"></ion-input>
+  </ion-item>
+
   <hr>
 
   <ifarm-events [item]="selectedItem"></ifarm-events>

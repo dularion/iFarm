@@ -39,4 +39,8 @@ export class AnimalDetailPage {
   getTypeForImage(item) {
     return this.animalProvider.getTypeForImage(item);
   }
+
+  isAdult() {
+    return this.animalProvider.isAdult(this.selectedItem);
+  }
 }
