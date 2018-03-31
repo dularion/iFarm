@@ -4,6 +4,12 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>{{ selectedItem.name }}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="save()">
+        <ion-icon color="secondary" name="checkmark-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -13,7 +19,7 @@
     <ion-row>
       <ion-col col-4>
         <ion-thumbnail item-start>
-          <img src="assets/imgs/cow_image.png" (click)="changeImage()">
+          <img src="assets/imgs/animal-{{getTypeForImage(selectedItem)}}_image.png" (click)="changeImage()">
         </ion-thumbnail>
       </ion-col>
       <ion-col col-8>
