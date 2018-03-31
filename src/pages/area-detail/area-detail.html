@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ selectedItem.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label floating>Name:</ion-label>
+    <ion-input type="text" [(ngModel)]="selectedItem.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Flicknummer:</ion-label>
+    <ion-input type="text" [(ngModel)]="selectedItem.nr"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Art</ion-label>
+    <ion-select [(ngModel)]="selectedItem.type">
+      <ion-option value="pasture">Grünland</ion-option>
+      <ion-option value="field">Ackerland</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Größe:</ion-label>
+    <ion-input type="text" [(ngModel)]="selectedItem.size"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Fruchfolge:</ion-label>
+    <ion-input type="text" [(ngModel)]="selectedItem.nextCrop"></ion-input>
+  </ion-item>
+
+  <hr>
+
+  <ifarm-events [item]="selectedItem"></ifarm-events>
+
+</ion-content>

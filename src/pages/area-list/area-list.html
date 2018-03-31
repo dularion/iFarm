@@ -20,10 +20,10 @@
       <ion-segment-button value="">
         Alle
       </ion-segment-button>
-      <ion-segment-button value="females">
+      <ion-segment-button value="pasture">
         Grünland
       </ion-segment-button>
-      <ion-segment-button value="males">
+      <ion-segment-button value="field">
         Ackerland
       </ion-segment-button>
     </ion-segment>
@@ -35,7 +35,7 @@
         <img src="assets/imgs/map_image.png">
       </ion-thumbnail>
       <h2>{{item.name}}</h2>
-      <p>{{ item.gender }} • {{ item.dateOfBirth | date:'dd.MM.yyyy'}}</p>
+      <p>{{ item.type }} • {{ item.nr }} • {{ item.size }}</p>
       <button ion-button clear item-end>View</button>
     </ion-item>
   </ion-list>

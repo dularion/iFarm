@@ -5,8 +5,8 @@ ifarm-events{
   }
 
   h3{
-    padding: 10px 0px 0;
-    margin: 25px 10px 0;
+    padding-top: 10px;
+    margin-top: 25px;
     border-top: 3px solid map-get($colors, primary);
   }
   .add-new-event{
@@ -14,7 +14,7 @@ ifarm-events{
   }
   ion-row{
     border-bottom: 1px solid #d6d5d5;
-    ion-col{
+    ion-col.col{
       padding: 10px 6px;
     }
   }

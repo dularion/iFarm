@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {AnimalDetailPage} from '../animal-detail/animal-detail';
 import {HttpClient} from '@angular/common/http';
+import {AreaDetailPage} from '../area-detail/area-detail';
 
 @Component({
   selector: 'area-list',
@@ -23,7 +23,7 @@ export class AreaListPage {
 
   itemTapped(event, item) {
     // That's right, we're pushing to ourselves!
-    this.navCtrl.push(AnimalDetailPage, {
+    this.navCtrl.push(AreaDetailPage, {
       item: item
     });
   }
