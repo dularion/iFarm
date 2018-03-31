@@ -14,11 +14,12 @@ import {AnimalDetailPage} from '../pages/animal-detail/animal-detail';
 import {PhotoModalPage} from '../pages/photo-modal/photo-modal';
 import {HttpClientModule} from '@angular/common/http';
 import {IFarmEvents} from '../pages/events/events';
-import {IFarmProvider} from './ifarm.app.provider';
 import {AreaListPage} from '../pages/area-list/area-list';
 import {AreaDetailPage} from '../pages/area-detail/area-detail';
 import {VehicleListPage} from '../pages/vehicle-list/vehicle-list';
 import {VehicleDetailPage} from '../pages/vehicle-detail/vehicle-detail';
+import { AnimalProvider } from '../providers/animal/animal';
+import { PageProvider } from '../providers/page/page';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import {VehicleDetailPage} from '../pages/vehicle-detail/vehicle-detail';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    IFarmProvider
+    AnimalProvider,
+    PageProvider
   ]
 })
 export class AppModule {}

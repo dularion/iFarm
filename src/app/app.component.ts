@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import {IFarmProvider} from './ifarm.app.provider';
+import {PageProvider} from '../providers/page/page';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,11 +17,11 @@ export class MyApp {
   pages: Array<{title: string, component: any, icon: string}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
-              private ifarmAppProvider: IFarmProvider) {
+              private pageProvider: PageProvider) {
 
     this.initializeApp();
 
-    this.pages = this.ifarmAppProvider.getPages();
+    this.pages = this.pageProvider.getPages();
 
   }
 

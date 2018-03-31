@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {IFarmProvider} from '../../app/ifarm.app.provider';
+import {PageProvider} from '../../providers/page/page';
 
 @Component({
   selector: 'page-home',
@@ -9,8 +9,8 @@ import {IFarmProvider} from '../../app/ifarm.app.provider';
 export class HomePage {
   pages:any;
 
-  constructor(public navCtrl: NavController, private ifarmAppProvider: IFarmProvider) {
-    this.pages = this.ifarmAppProvider.getPages();
+  constructor(public navCtrl: NavController, private pageProvider: PageProvider) {
+    this.pages = this.pageProvider.getPages();
   }
 
   openPage(page) {
