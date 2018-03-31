@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {AreaDetailPage} from '../area-detail/area-detail';
 import {HttpClient} from '@angular/common/http';
+import {VehicleDetailPage} from '../vehicle-detail/vehicle-detail';
 
 /**
  * Generated class for the VehicleListPage page.
@@ -24,12 +24,12 @@ export class VehicleListPage {
   }
 
   ionViewDidLoad(){
-    this.http.get('assets/areas.json').subscribe(data => this.items = data);
+    this.http.get('assets/vehicles.json').subscribe(data => this.items = data);
   }
 
   itemTapped(event, item) {
     // That's right, we're pushing to ourselves!
-    this.navCtrl.push(AreaDetailPage, {
+    this.navCtrl.push(VehicleDetailPage, {
       item: item
     });
   }

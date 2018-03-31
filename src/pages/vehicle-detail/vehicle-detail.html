@@ -7,12 +7,35 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>VehicleDetail</ion-title>
+    <ion-title>{{selectedItem.licencePlate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>
+        <ion-thumbnail item-start>
+          <img src="assets/imgs/vehicle_image.png" (click)="changeImage()">
+        </ion-thumbnail>
+      </ion-col>
+      <ion-col col-8>
+        <ion-item>
+          <ion-label floating>Nummernschild</ion-label>
+          <ion-input type="text" [(ngModel)]="selectedItem.licencePlate"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
+  <ion-item>
+    <ion-label floating>Letzter TÜV:</ion-label>
+    <ion-datetime displayFormat="DD.MM.YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="selectedItem.lastCheckup"></ion-datetime>
+  </ion-item>
+
+  <hr>
+
+  <ifarm-events [item]="selectedItem"></ifarm-events>
 </ion-content>

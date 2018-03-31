@@ -21,10 +21,13 @@
         Alle
       </ion-segment-button>
       <ion-segment-button value="pasture">
-        Grünland
+        Anhänger
       </ion-segment-button>
       <ion-segment-button value="field">
-        Ackerland
+        Traktoren
+      </ion-segment-button>
+      <ion-segment-button value="..">
+        ??
       </ion-segment-button>
     </ion-segment>
   </div>
@@ -34,8 +37,8 @@
       <ion-thumbnail item-start>
         <img src="assets/imgs/vehicle_image.png">
       </ion-thumbnail>
-      <h2>{{item.name}}</h2>
-      <p>{{ item.type }} • {{ item.nr }} • {{ item.size }}</p>
+      <h2>{{item.licencePlate}}</h2>
+      <p>{{ item.type }} • TÜV: {{ item.lastCheckup | date:'dd.MM.yyyy'}} </p>
       <button ion-button clear item-end>View</button>
     </ion-item>
   </ion-list>

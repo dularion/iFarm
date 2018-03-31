@@ -1,0 +1,31 @@
+[
+  {
+    "licencePlate": "FD AZ 123",
+    "type": "tractor",
+    "fotoSrc": "",
+    "lastCheckup": "2012-04-23T18:25:43.511Z",
+    "events": [
+      {"dateCreated": "2012-04-23T18:25:43.511Z", "name": "Reperatur", "description": "..."}
+    ]
+  },
+  {
+    "licencePlate": "FD HU 578",
+    "type": "tractor",
+    "fotoSrc": "",
+    "lastCheckup": "2012-04-23T18:25:43.511Z",
+    "events": [
+      {"dateCreated": "2012-04-23T18:25:43.511Z", "name": "Wartung", "description": "..."},
+      {"dateCreated": "2012-04-22T18:25:43.511Z", "name": "Inspektion", "description": "..."}
+    ]
+  },
+  {
+    "licencePlate": "FD KL 555",
+    "type": "trailer",
+    "fotoSrc": "",
+    "lastCheckup": "2012-04-23T18:25:43.511Z",
+    "events": [
+      {"dateCreated": "2012-04-23T18:25:43.511Z", "name": "Reperatur", "description": "..."}
+    ]
+  }
+
+]
