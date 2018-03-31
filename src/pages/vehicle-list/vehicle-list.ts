@@ -34,4 +34,9 @@ export class VehicleListPage {
     });
   }
 
+  addNewItem() {
+    this.navCtrl.push(VehicleDetailPage, {
+      isNew: true
+    });
+  }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavParams} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 
 @Component({
   selector: 'area-detail',
@@ -8,7 +8,15 @@ import {NavParams} from 'ionic-angular';
 export class AreaDetailPage {
   selectedItem: any;
 
-  constructor(public navParams: NavParams) {
-    this.selectedItem = navParams.get('item');
+  constructor(public navParams: NavParams, public navCtrl: NavController) {
+    if(navParams.get('isNew')){
+      this.selectedItem = {}
+    }else{
+      this.selectedItem = navParams.get('item');
+    }
+  }
+
+  save(){
+    this.navCtrl.pop();
   }
 }

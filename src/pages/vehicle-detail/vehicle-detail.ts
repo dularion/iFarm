@@ -16,7 +16,15 @@ export class VehicleDetailPage {
   selectedItem: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.selectedItem = navParams.get('item');
+    if(navParams.get('isNew')){
+      this.selectedItem = {}
+    }else{
+      this.selectedItem = navParams.get('item');
+    }
+  }
+
+  save(){
+    this.navCtrl.pop();
   }
 
   ionViewDidLoad() {

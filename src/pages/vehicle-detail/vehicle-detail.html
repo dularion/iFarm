@@ -7,8 +7,20 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
     <ion-title>{{selectedItem.licencePlate}}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="save()">
+        <ion-icon color="secondary" name="checkmark-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
+
+
 
 </ion-header>
 

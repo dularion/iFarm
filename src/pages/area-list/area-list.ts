@@ -26,4 +26,10 @@ export class AreaListPage {
       item: item
     });
   }
+
+  addNewItem() {
+    this.navCtrl.push(AreaDetailPage, {
+      isNew: true
+    });
+  }
 }
