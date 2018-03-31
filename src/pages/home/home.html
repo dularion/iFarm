@@ -10,6 +10,6 @@
 <ion-content padding>
   <button class="home-button" ion-button large block icon-left *ngFor="let page of pages" (click)="openPage(page)" round>
     <ion-icon class="{{ page.icon }}"></ion-icon>
-    {{ page.title }}
+    {{ page.name + '.TITLE.P' | translate }}
   </button>
 </ion-content>

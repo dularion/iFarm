@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {HomePage} from '../../pages/home/home';
 import {AnimalListPage} from '../../pages/animal-list/animal-list';
 import {AreaListPage} from '../../pages/area-list/area-list';
 import {VehicleListPage} from '../../pages/vehicle-list/vehicle-list';
@@ -19,13 +18,12 @@ export class PageProvider {
     console.log('Hello PageProvider Provider');
   }
 
-  getPages (): Array<{title: string, component: any, icon: string}> {
+  getPages (): Array<{component: any, icon: string, name: string}> {
     return [
-      { title: 'Home', component: HomePage, icon: 'ion-ios-home'},
-      { title: 'Tiere', component: AnimalListPage, icon: 'ifarmicon-cow'},
-      { title: 'Flächen', component: AreaListPage, icon: 'ifarmicon-map' },
-      { title: 'Fahrzeuge', component: VehicleListPage, icon: 'ifarmicon-tractor' },
-      { title: 'Einstellungen', component: ListPage, icon: 'ifarmicon-cogs' }
+      { name: 'ANIMALS', component: AnimalListPage, icon: 'ifarmicon-cow'},
+      { name: 'AREAS', component: AreaListPage, icon: 'ifarmicon-map' },
+      { name: 'VEHICLES', component: VehicleListPage, icon: 'ifarmicon-tractor' },
+      { name: 'SETTINGS', component: ListPage, icon: 'ifarmicon-cogs' }
     ];
   }
 
