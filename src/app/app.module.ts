@@ -12,7 +12,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {AnimalListPage} from '../pages/animal-list/animal-list';
 import {AnimalDetailPage} from '../pages/animal-detail/animal-detail';
 import {PhotoModalPage} from '../pages/photo-modal/photo-modal';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {IFarmEvents} from '../pages/events/events';
 import {AreaListPage} from '../pages/area-list/area-list';
 import {AreaDetailPage} from '../pages/area-detail/area-detail';
@@ -20,6 +20,13 @@ import {VehicleListPage} from '../pages/vehicle-list/vehicle-list';
 import {VehicleDetailPage} from '../pages/vehicle-detail/vehicle-detail';
 import { AnimalProvider } from '../providers/animal/animal';
 import { PageProvider } from '../providers/page/page';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -38,7 +45,14 @@ import { PageProvider } from '../providers/page/page';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
