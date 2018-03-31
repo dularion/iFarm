@@ -5,9 +5,9 @@ import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'animal-list',
-  templateUrl: 'animals.html'
+  templateUrl: 'animal-list.html'
 })
-export class AnimalsPage {
+export class AnimalListPage {
   selectedItem: any;
   icons: string[];
   items: any = [];

@@ -9,7 +9,7 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {AnimalsPage} from '../pages/animals/animals';
+import {AnimalListPage} from '../pages/animal-list/animal-list';
 import {AnimalDetailPage} from '../pages/animal-detail/animal-detail';
 import {PhotoModalPage} from '../pages/photo-modal/photo-modal';
 import {HttpClientModule} from '@angular/common/http';
@@ -20,7 +20,7 @@ import {IFarmProvider} from './ifarm.app.provider';
   declarations: [
     MyApp,
     HomePage,
-    AnimalsPage,
+    AnimalListPage,
     ListPage,
     AnimalDetailPage,
     PhotoModalPage,
@@ -35,7 +35,7 @@ import {IFarmProvider} from './ifarm.app.provider';
   entryComponents: [
     MyApp,
     HomePage,
-    AnimalsPage,
+    AnimalListPage,
     ListPage,
     AnimalDetailPage,
     PhotoModalPage,
