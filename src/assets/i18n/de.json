@@ -5,6 +5,10 @@
     "TITLE": {
       "P": "Fahrzeuge",
       "S": "Fahrzeug"
+    },
+    "TYPES": {
+      "tractor": "Traktor",
+      "trailer": "Anhänger"
     }
   },
 
@@ -12,6 +16,10 @@
     "TITLE": {
       "P": "Tiere",
       "S": "Tier"
+    },
+    "GENDERS": {
+      "female": "Kuh (w)",
+      "male": "Bulle (m)"
     }
   },
 
