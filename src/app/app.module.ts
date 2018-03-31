@@ -17,6 +17,8 @@ import {IFarmEvents} from '../pages/events/events';
 import {IFarmProvider} from './ifarm.app.provider';
 import {AreaListPage} from '../pages/area-list/area-list';
 import {AreaDetailPage} from '../pages/area-detail/area-detail';
+import {VehicleListPage} from '../pages/vehicle-list/vehicle-list';
+import {VehicleDetailPage} from '../pages/vehicle-detail/vehicle-detail';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import {AreaDetailPage} from '../pages/area-detail/area-detail';
     PhotoModalPage,
     IFarmEvents,
     AreaListPage,
-    AreaDetailPage
+    AreaDetailPage,
+    VehicleListPage,
+    VehicleDetailPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,9 @@ import {AreaDetailPage} from '../pages/area-detail/area-detail';
     PhotoModalPage,
     IFarmEvents,
     AreaListPage,
-    AreaDetailPage
+    AreaDetailPage,
+    VehicleListPage,
+    VehicleDetailPage
   ],
   providers: [
     Camera,

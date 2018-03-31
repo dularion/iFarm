@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Fahrzeuge</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div padding>
+    <ion-segment [(ngModel)]="type">
+      <ion-segment-button value="">
+        Alle
+      </ion-segment-button>
+      <ion-segment-button value="pasture">
+        Grünland
+      </ion-segment-button>
+      <ion-segment-button value="field">
+        Ackerland
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/vehicle_image.png">
+      </ion-thumbnail>
+      <h2>{{item.name}}</h2>
+      <p>{{ item.type }} • {{ item.nr }} • {{ item.size }}</p>
+      <button ion-button clear item-end>View</button>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </div>
+</ion-content>
