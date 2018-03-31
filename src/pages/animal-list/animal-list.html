@@ -35,7 +35,7 @@
   <ion-list>
     <ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-thumbnail item-start>
-        <img src="assets/imgs/cow_image.png">
+        <img src="assets/imgs/animal-{{getTypeForImage(item)}}_image.png">
       </ion-thumbnail>
       <h2>{{item.name}}</h2>
       <p>{{ item.gender }} • {{ item.dateOfBirth | date:'dd.MM.yyyy'}}</p>

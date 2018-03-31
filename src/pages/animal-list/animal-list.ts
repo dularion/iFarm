@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {AnimalDetailPage} from '../animal-detail/animal-detail';
 import {HttpClient} from '@angular/common/http';
+import moment from 'moment';
 
 @Component({
   selector: 'animal-list',
@@ -26,5 +27,14 @@ export class AnimalListPage {
     this.navCtrl.push(AnimalDetailPage, {
       item: item
     });
+  }
+
+  getTypeForImage(item) {
+    let twentyMonthsAgo = moment().add(-20, 'M');
+    if(moment(item.dateOfBirth).isAfter(twentyMonthsAgo)){
+      return 'baby';
+    }
+
+    return item.gender;
   }
 }
