@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import {PageProvider} from '../providers/page/page';
+import * as firebase from "firebase";
 
 @Component({
   templateUrl: 'app.html'
@@ -32,6 +33,16 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
+    let firebaseConfig:any = {
+      apiKey: "AIzaSyDeWl3mDIXyQIv9BpzcsFgujtws9fks4qY",
+      authDomain: "ifarm-b1d40.firebaseapp.com",
+      databaseURL: "https://ifarm-b1d40.firebaseio.com",
+      projectId: "ifarm-b1d40",
+      storageBucket: "",
+      messagingSenderId: "230846736298"
+    };
+    firebase.initializeApp(firebaseConfig);
   }
 
   openPage(page) {
