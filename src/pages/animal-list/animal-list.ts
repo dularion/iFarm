@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {AnimalDetailPage} from '../animal-detail/animal-detail';
 import {HttpClient} from '@angular/common/http';
-import moment from 'moment';
+import {AnimalProvider} from '../../providers/animal/animal';
 
 @Component({
   selector: 'animal-list',
@@ -14,7 +14,7 @@ export class AnimalListPage {
   items: any = [];
   type: string;
 
-  constructor(public navCtrl: NavController, private http: HttpClient) {
+  constructor(public navCtrl: NavController, private http: HttpClient, public animalProvider: AnimalProvider) {
     this.type = '';
   }
 
@@ -29,12 +29,13 @@ export class AnimalListPage {
     });
   }
 
-  getTypeForImage(item) {
-    let twentyMonthsAgo = moment().add(-20, 'M');
-    if(moment(item.dateOfBirth).isAfter(twentyMonthsAgo)){
-      return 'baby';
-    }
+  addNewItem() {
+    this.navCtrl.push(AnimalDetailPage, {
+      isNew: true
+    });
+  }
 
-    return item.gender;
+  getTypeForImage(item) {
+    return this.animalProvider.getTypeForImage(item);
   }
 }
