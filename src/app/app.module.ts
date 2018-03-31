@@ -23,6 +23,8 @@ import { PageProvider } from '../providers/page/page';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {WelcomePage} from '../pages/welcome/welcome';
+import {Api} from '../providers/api/api';
+import {User} from '../providers/user/user';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -77,7 +79,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AnimalProvider,
-    PageProvider
+    PageProvider,
+    Api,
+    User
   ]
 })
 export class AppModule {}
