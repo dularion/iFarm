@@ -9,7 +9,6 @@ import {AreaDetailPage} from '../area-detail/area-detail';
 })
 export class AreaListPage {
   selectedItem: any;
-  icons: string[];
   items: any = [];
   type: string;
 
