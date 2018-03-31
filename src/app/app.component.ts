@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import {PageProvider} from '../providers/page/page';
 import * as firebase from "firebase";
 import {TranslateService} from '@ngx-translate/core';
+import {WelcomePage} from '../pages/welcome/welcome';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,7 +15,7 @@ import {TranslateService} from '@ngx-translate/core';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = WelcomePage;
 
   pages: any;
 

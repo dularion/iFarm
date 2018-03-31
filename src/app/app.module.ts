@@ -22,6 +22,7 @@ import { AnimalProvider } from '../providers/animal/animal';
 import { PageProvider } from '../providers/page/page';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {WelcomePage} from '../pages/welcome/welcome';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -40,7 +41,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AreaListPage,
     AreaDetailPage,
     VehicleListPage,
-    VehicleDetailPage
+    VehicleDetailPage,
+    WelcomePage
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AreaListPage,
     AreaDetailPage,
     VehicleListPage,
-    VehicleDetailPage
+    VehicleDetailPage,
+    WelcomePage
   ],
   providers: [
     Camera,
