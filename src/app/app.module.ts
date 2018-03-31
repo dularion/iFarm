@@ -15,6 +15,7 @@ import {PhotoModalPage} from '../pages/photo-modal/photo-modal';
 import {HttpClientModule} from '@angular/common/http';
 import {IFarmEvents} from '../pages/events/events';
 import {IFarmProvider} from './ifarm.app.provider';
+import {AreaListPage} from '../pages/area-list/area-list';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {IFarmProvider} from './ifarm.app.provider';
     ListPage,
     AnimalDetailPage,
     PhotoModalPage,
-    IFarmEvents
+    IFarmEvents,
+    AreaListPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import {IFarmProvider} from './ifarm.app.provider';
     ListPage,
     AnimalDetailPage,
     PhotoModalPage,
-    IFarmEvents
+    IFarmEvents,
+    AreaListPage
   ],
   providers: [
     Camera,

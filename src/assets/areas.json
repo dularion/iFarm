@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Grünland 1",
+    "type": "pasture",
+    "nr": "123123",
+    "size": "50m2",
+    "nextCrop": "",
+    "events": [
+      {"dateCreated": "2012-04-23T18:25:43.511Z", "name": "Düngung", "description": "..."},
+      {"dateCreated": "2012-04-22T18:25:43.511Z", "name": "Saat", "description": "..."}
+    ]
+  },
+  {
+    "name": "Grünland 2",
+    "type": "pasture",
+    "nr": "42123",
+    "size": "20m2",
+    "nextCrop": "",
+    "events": [
+      {"dateCreated": "2012-04-23T18:25:43.511Z", "name": "Düngung", "description": "..."}
+    ]
+  },
+  {
+    "name": "Acker 1",
+    "type": "field",
+    "nr": "1233",
+    "size": "50m2",
+    "nextCrop": "",
+    "events": [
+      {"dateCreated": "2012-04-23T18:25:43.511Z", "name": "Düngung", "description": "..."},
+      {"dateCreated": "2012-04-22T18:25:43.511Z", "name": "Saat", "description": "..."}
+    ]
+  }
+]
