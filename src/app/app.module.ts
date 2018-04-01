@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {ErrorHandler, NgModule} from '@angular/core';
+import {ErrorHandler, Injectable, Injector, NgModule} from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
 
@@ -25,10 +25,37 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {WelcomePage} from '../pages/welcome/welcome';
 import {Api} from '../providers/api/api';
 import {User} from '../providers/user/user';
+import {Pro} from '@ionic/pro';
+import {WelcomePageModule} from '../pages/welcome/welcome.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+Pro.init('dce29fb0', {
+  appVersion: '0.0.2'
+});
+
+@Injectable()
+export class MyErrorHandler implements ErrorHandler {
+  ionicErrorHandler: IonicErrorHandler;
+
+  constructor(injector: Injector) {
+    try {
+      this.ionicErrorHandler = injector.get(IonicErrorHandler);
+    } catch(e) {
+      // Unable to get the IonicErrorHandler provider, ensure
+      // IonicErrorHandler has been added to the providers list below
+    }
+  }
+
+  handleError(err: any): void {
+    Pro.monitoring.handleNewError(err);
+    // Remove this if you want to disable Ionic's auto exception handling
+    // in development mode.
+    this.ionicErrorHandler && this.ionicErrorHandler.handleError(err);
+  }
 }
 
 @NgModule({
@@ -43,10 +70,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     AreaListPage,
     AreaDetailPage,
     VehicleListPage,
-    VehicleDetailPage,
-    WelcomePage
+    VehicleDetailPage
   ],
   imports: [
+    WelcomePageModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
@@ -70,8 +97,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AreaListPage,
     AreaDetailPage,
     VehicleListPage,
-    VehicleDetailPage,
-    WelcomePage
+    VehicleDetailPage
   ],
   providers: [
     Camera,
@@ -81,7 +107,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     AnimalProvider,
     PageProvider,
     Api,
-    User
+    User,
+    IonicErrorHandler,
+    [{ provide: ErrorHandler, useClass: MyErrorHandler }]
   ]
 })
 export class AppModule {}
