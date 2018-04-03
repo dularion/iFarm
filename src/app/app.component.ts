@@ -6,6 +6,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import {PageProvider} from '../providers/page/page';
 import * as firebase from "firebase";
+import 'firebase/auth';
+import 'firebase/firestore';
+import 'firebase/database';
+import 'firebase/messaging';
+import 'firebase/functions';
+
+
 import {TranslateService} from '@ngx-translate/core';
 import {WelcomePage} from '../pages/welcome/welcome';
 
