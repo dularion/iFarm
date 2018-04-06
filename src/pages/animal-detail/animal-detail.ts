@@ -58,10 +58,10 @@ export class AnimalDetailPage {
   }
 
   getTypeForImage() {
-    return this.animalProvider.getTypeForImage(this.form);
+    return this.animalProvider.getTypeForImage(this.form.getRawValue());
   }
 
   isAdult() {
-    return this.animalProvider.isAdult(this.form);
+    return this.animalProvider.isAdult(this.form.getRawValue());
   }
 }
