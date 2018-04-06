@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{ selectedItem.name }}</ion-title>
+    <ion-title>{{ form.name }}</ion-title>
 
     <ion-buttons end>
       <button ion-button icon-only (click)="save()">
@@ -14,59 +14,63 @@
 </ion-header>
 
 <ion-content padding>
+  <form [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          <ion-thumbnail item-start>
+            <img src="assets/imgs/animal-{{getTypeForImage()}}_image.png" (click)="changeImage()">
+          </ion-thumbnail>
+        </ion-col>
+        <ion-col col-8>
+          <ion-item>
+            <ion-input placeholder="Nr *" type="text" formControlName="name"></ion-input>
+          </ion-item>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col col-4>
-        <ion-thumbnail item-start>
-          <img src="assets/imgs/animal-{{getTypeForImage(selectedItem)}}_image.png" (click)="changeImage()">
-        </ion-thumbnail>
-      </ion-col>
-      <ion-col col-8>
-        <ion-item>
-          <ion-input placeholder="Nr" type="text" [(ngModel)]="selectedItem.name"></ion-input>
-        </ion-item>
+          <ion-item>
+            <ion-label floating>Geschlecht *</ion-label>
+            <ion-select formControlName="gender">
+              <ion-option value="female">Weiblich</ion-option>
+              <ion-option value="male">Männlich</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-        <ion-item>
-          <ion-label floating>Geschlecht</ion-label>
-          <ion-select [(ngModel)]="selectedItem.gender">
-            <ion-option value="female">Weiblich</ion-option>
-            <ion-option value="male">Männlich</ion-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-item>
+      <ion-label>Geboren am *:</ion-label>
+      <ion-datetime displayFormat="DD.MM.YYYY" pickerFormat="DD MM YYYY" formControlName="dateOfBirth"></ion-datetime>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Geboren am:</ion-label>
-    <ion-datetime displayFormat="DD.MM.YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="selectedItem.dateOfBirth"></ion-datetime>
-  </ion-item>
+    <ion-item>
+      <ion-label>Art:</ion-label>
+      <ion-input type="text" formControlName="type"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Art:</ion-label>
-    <ion-input type="text" [(ngModel)]="selectedItem.type"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label>Rasse:</ion-label>
+      <ion-input type="text" formControlName="race"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Rasse:</ion-label>
-    <ion-input type="text" [(ngModel)]="selectedItem.race"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label>Mutter:</ion-label>
+      <ion-select formControlName="mother">
+        <ion-option *ngFor="let animal of animals" [value]="animal.name">{{ animal.name }}</ion-option>
+      </ion-select>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Mutter:</ion-label>
-    <ion-select [(ngModel)]="selectedItem.mother">
-      <ion-option *ngFor="let animal of animals" [value]="animal.name">{{ animal.name }}</ion-option>
-    </ion-select>
-  </ion-item>
+    <ion-item *ngIf="form.gender == 'female' && isAdult()">
+      <ion-label>Anzahl Kälber:</ion-label>
+      <ion-input type="number" formControlName="childrenCount"></ion-input>
+    </ion-item>
 
-  <ion-item *ngIf="selectedItem.gender == 'female' && isAdult()">
-    <ion-label>Anzahl Kälber:</ion-label>
-    <ion-input type="number" [(ngModel)]="selectedItem.childrenCount"></ion-input>
-  </ion-item>
+    <ifarm-events [item]="form"></ifarm-events>
+  </form>
 
-  <hr>
 
-  <ifarm-events [item]="selectedItem"></ifarm-events>
+    <hr>
+
+
 
 </ion-content>
