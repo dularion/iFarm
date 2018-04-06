@@ -36,12 +36,13 @@ export class Api {
 
   query(collection: string): Promise<Array<any>>{
     return new Promise<Array<any>>((resolve, reject) => {
+
       this.db.collection(collection).get().then(function(querySnapshot) {
-        console.log(querySnapshot);
-        let result = _.map(querySnapshot, function (doc) {
+        let result = [];
+        querySnapshot.forEach(function(doc) {
           let data = doc.data();
           data.id = doc.id;
-          return data;
+          result.push(data);
         });
 
         resolve(result);
