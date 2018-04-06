@@ -11,7 +11,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-title>{{selectedItem.licencePlate}}</ion-title>
+    <ion-title>{{form.licencePlate}}</ion-title>
 
     <ion-buttons end>
       <button ion-button icon-only (click)="save()">
@@ -26,28 +26,31 @@
 
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col col-4>
-        <ion-thumbnail item-start>
-          <img src="assets/imgs/vehicle_image.png" (click)="changeImage()">
-        </ion-thumbnail>
-      </ion-col>
-      <ion-col col-8>
-        <ion-item>
-          <ion-label floating>Nummernschild</ion-label>
-          <ion-input type="text" [(ngModel)]="selectedItem.licencePlate"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <form [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          <ion-thumbnail item-start>
+            <img src="assets/imgs/vehicle_image.png" (click)="changeImage()">
+          </ion-thumbnail>
+        </ion-col>
+        <ion-col col-8>
+          <ion-item>
+            <ion-label floating>Nummernschild</ion-label>
+            <ion-input type="text" formControlName="licencePlate"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-  <ion-item>
-    <ion-label floating>Letzter TÜV:</ion-label>
-    <ion-datetime displayFormat="DD.MM.YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="selectedItem.lastCheckup"></ion-datetime>
-  </ion-item>
+    <ion-item>
+      <ion-label floating>Letzter TÜV:</ion-label>
+      <ion-datetime displayFormat="DD.MM.YYYY" pickerFormat="DD MM YYYY" formControlName="lastCheckup"></ion-datetime>
+    </ion-item>
 
-  <hr>
+    <hr>
 
-  <ifarm-events [item]="selectedItem"></ifarm-events>
+    <ifarm-events [item]="form"></ifarm-events>
+  </form>
+
 </ion-content>
