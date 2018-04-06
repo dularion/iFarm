@@ -22,7 +22,7 @@ export class AnimalListPage {
     this.type = '';
   }
 
-  ionViewDidLoad(){
+  ionViewWillEnter(){
     this.api.query('animals').then(data => {
         this.items = data;
         this.page.isLoading = false;

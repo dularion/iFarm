@@ -29,7 +29,7 @@ export class VehicleListPage {
     this.type = '';
   }
 
-  ionViewDidLoad(){
+  ionViewWillEnter(){
     this.api.query('vehicles').then(data => {
         this.items = data;
         this.page.isLoading = false;

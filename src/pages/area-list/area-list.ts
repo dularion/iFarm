@@ -20,7 +20,7 @@ export class AreaListPage {
     this.type = '';
   }
 
-  ionViewDidLoad(){
+  ionViewWillEnter() {
     this.api.query('areas').then(data => {
         this.items = data;
         this.page.isLoading = false;
