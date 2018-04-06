@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import {AnimalDetailPage} from '../animal-detail/animal-detail';
 import {HttpClient} from '@angular/common/http';
 import {AnimalProvider} from '../../providers/animal/animal';
+import {Api} from '../../providers/api/api';
 
 @Component({
   selector: 'animal-list',
@@ -13,13 +14,20 @@ export class AnimalListPage {
   icons: string[];
   items: any = [];
   type: string;
+  page:{isLoading: boolean} = {
+    isLoading: true
+  };
 
-  constructor(public navCtrl: NavController, private http: HttpClient, public animalProvider: AnimalProvider) {
+  constructor(public navCtrl: NavController, private http: HttpClient, public animalProvider: AnimalProvider, private api: Api) {
     this.type = '';
   }
 
   ionViewDidLoad(){
-    this.http.get('assets/animals.json').subscribe(data => this.items = data);
+    this.api.query('animals').then(data => {
+        this.items = data;
+        this.page.isLoading = false;
+      }
+    );
   }
 
   itemTapped(event, item) {

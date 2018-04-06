@@ -32,6 +32,10 @@
     </ion-segment>
   </div>
 
+  <div class="spinner-container" *ngIf="page.isLoading">
+    <ion-spinner style="text-align: center;"></ion-spinner>
+  </div>
+
   <ion-list>
     <ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-thumbnail item-start>

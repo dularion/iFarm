@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {HttpClient} from '@angular/common/http';
 import {AreaDetailPage} from '../area-detail/area-detail';
+import {Api} from '../../providers/api/api';
 
 @Component({
   selector: 'area-list',
@@ -11,13 +12,20 @@ export class AreaListPage {
   selectedItem: any;
   items: any = [];
   type: string;
+  page:{isLoading: boolean} = {
+    isLoading: true
+  };
 
-  constructor(public navCtrl: NavController, private http: HttpClient) {
+  constructor(public navCtrl: NavController, private http: HttpClient, private api: Api) {
     this.type = '';
   }
 
   ionViewDidLoad(){
-    this.http.get('assets/areas.json').subscribe(data => this.items = data);
+    this.api.query('areas').then(data => {
+        this.items = data;
+        this.page.isLoading = false;
+      }
+    );
   }
 
   itemTapped(event, item) {
