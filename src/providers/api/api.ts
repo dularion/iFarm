@@ -51,8 +51,9 @@ export class Api {
     });
   }
 
-  post(endpoint: string, body: any, reqOpts?: any) {
-    return this.http.post(this.url + '/' + endpoint, body, reqOpts);
+  post(collection: string, body: any) {
+    let dbRef = this.db.collection(collection);
+    return dbRef.doc().set(body);
   }
 
   put(endpoint: string, body: any, reqOpts?: any) {
