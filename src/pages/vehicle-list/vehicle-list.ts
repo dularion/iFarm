@@ -21,29 +21,20 @@ export class VehicleListPage {
   selectedItem: any;
   items: any = [];
   type: string;
+  page:{isLoading: boolean} = {
+    isLoading: true
+  };
 
   constructor(public navCtrl: NavController, private http: HttpClient, private api: Api) {
     this.type = '';
   }
 
   ionViewDidLoad(){
-    this.http.get('assets/vehicles.json').subscribe(data => this.items = data);
-    this.api.query('vehicles').then((result) => {
-     console.log(result);
-    });
-
-
-    // db.collection("cities").where("capital", "==", true)
-    //   .get()
-    //   .then(function(querySnapshot) {
-    //     querySnapshot.forEach(function(doc) {
-    //       // doc.data() is never undefined for query doc snapshots
-    //       console.log(doc.id, " => ", doc.data());
-    //     });
-    //   })
-    //   .catch(function(error) {
-    //     console.log("Error getting documents: ", error);
-    //   });
+    this.api.query('vehicles').then(data => {
+        this.items = data;
+        this.page.isLoading = false;
+      }
+    );
   }
 
   itemTapped(event, item) {
