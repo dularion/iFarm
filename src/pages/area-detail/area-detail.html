@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{ selectedItem.name }}</ion-title>
+    <ion-title>{{ form.name }}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="save()">
         <ion-icon color="secondary" name="checkmark-circle"></ion-icon>
@@ -13,37 +13,38 @@
 </ion-header>
 
 <ion-content padding>
+  <form [formGroup]="form">
 
-  <ion-item>
-    <ion-label floating>Name:</ion-label>
-    <ion-input type="text" [(ngModel)]="selectedItem.name"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label floating>Name:</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label floating>Flicknummer:</ion-label>
-    <ion-input type="text" [(ngModel)]="selectedItem.nr"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label floating>Flicknummer:</ion-label>
+      <ion-input type="text" formControlName="nr"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label floating>Art</ion-label>
-    <ion-select [(ngModel)]="selectedItem.type">
-      <ion-option value="pasture">Grünland</ion-option>
-      <ion-option value="field">Ackerland</ion-option>
-    </ion-select>
-  </ion-item>
+    <ion-item>
+      <ion-label floating>Art</ion-label>
+      <ion-select formControlName="type">
+        <ion-option value="pasture">Grünland</ion-option>
+        <ion-option value="field">Ackerland</ion-option>
+      </ion-select>
+    </ion-item>
 
-  <ion-item>
-    <ion-label floating>Größe:</ion-label>
-    <ion-input type="text" [(ngModel)]="selectedItem.size"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label floating>Größe:</ion-label>
+      <ion-input type="text" formControlName="size"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label floating>Fruchfolge:</ion-label>
-    <ion-input type="text" [(ngModel)]="selectedItem.nextCrop"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label floating>Fruchfolge:</ion-label>
+      <ion-input type="text" formControlName="nextCrop"></ion-input>
+    </ion-item>
 
-  <hr>
+    <hr>
 
-  <ifarm-events [item]="selectedItem"></ifarm-events>
-
+    <ifarm-events [item]="form"></ifarm-events>
+  </form>
 </ion-content>
