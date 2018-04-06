@@ -51,9 +51,14 @@ export class Api {
     });
   }
 
-  post(collection: string, body: any) {
+  post(collection: string, body: any, id: string) {
     let dbRef = this.db.collection(collection);
-    return dbRef.doc().set(body);
+    if(id){
+      return dbRef.doc(id).set(body);
+    }
+    else{
+      return dbRef.doc().set(body);
+    }
   }
 
   put(endpoint: string, body: any, reqOpts?: any) {

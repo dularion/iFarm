@@ -13,20 +13,21 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class AnimalDetailPage {
   form: FormGroup;
   animals: any;
+  existingDoc: any;
 
   constructor(public modalCtrl: ModalController, public navParams: NavParams, private http: HttpClient,
               public navCtrl: NavController, public animalProvider: AnimalProvider, private api: Api,
               public fb: FormBuilder, public alertCtrl: AlertController) {
-    let existingDoc = navParams.get('item') || {};
+    this.existingDoc = navParams.get('item') || {};
 
     this.form = fb.group({
-      name: [existingDoc.name, Validators.required],
-      gender: [existingDoc.gender, Validators.required],
-      dateOfBirth: [existingDoc.dateOfBirth, Validators.required],
-      type: existingDoc.type,
-      race: existingDoc.race,
-      mother: existingDoc.mother,
-      childrenCount: existingDoc.childrenCount,
+      name: [this.existingDoc.name, Validators.required],
+      gender: [this.existingDoc.gender, Validators.required],
+      dateOfBirth: [this.existingDoc.dateOfBirth, Validators.required],
+      type: this.existingDoc.type,
+      race: this.existingDoc.race,
+      mother: this.existingDoc.mother,
+      childrenCount: this.existingDoc.childrenCount,
     });
   }
 
@@ -52,7 +53,7 @@ export class AnimalDetailPage {
       alert.present();
       return;
     }
-    this.api.post('animals', this.form.getRawValue()).then(function(){
+    this.api.post('animals', this.form.getRawValue(), _this.existingDoc.id).then(function(){
       _this.navCtrl.pop();
     });
   }

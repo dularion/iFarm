@@ -9,17 +9,18 @@ import {Api} from '../../providers/api/api';
 })
 export class AreaDetailPage {
   form: FormGroup;
+  existingDoc: any;
 
   constructor(public navParams: NavParams, public navCtrl: NavController, public fb: FormBuilder,
               public alertCtrl: AlertController, private api: Api) {
-    let existingDoc = navParams.get('item') || {};
+    this.existingDoc = navParams.get('item') || {};
 
     this.form = fb.group({
-      name: [existingDoc.name, Validators.required],
-      nr: [existingDoc.nr, Validators.required],
-      type: [existingDoc.type, Validators.required],
-      size: existingDoc.size,
-      nextCrop: existingDoc.nextCrop
+      name: [this.existingDoc.name, Validators.required],
+      nr: [this.existingDoc.nr, Validators.required],
+      type: [this.existingDoc.type, Validators.required],
+      size: this.existingDoc.size,
+      nextCrop: this.existingDoc.nextCrop
     });
   }
 
@@ -34,7 +35,7 @@ export class AreaDetailPage {
       alert.present();
       return;
     }
-    this.api.post('areas', this.form.getRawValue()).then(function(){
+    this.api.post('areas', this.form.getRawValue(), this.existingDoc.id).then(function(){
       _this.navCtrl.pop();
     });
   }
