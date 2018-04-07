@@ -27,4 +27,8 @@ export class DateProvider {
     return moment(value).subtract(12, 'h').toDate();
   }
 
+  public static twentyMonthsAgo(): moment.Moment {
+    return moment().add(-20, 'M');
+  }
+
 }

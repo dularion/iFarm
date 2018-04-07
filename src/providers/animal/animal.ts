@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import moment from 'moment';
+import {DateProvider} from '../date/date';
 
 /*
   Generated class for the AnimalProvider provider.
@@ -17,10 +18,9 @@ export class AnimalProvider {
 
 
   isAdult(item) {
-    let twentyMonthsAgo = moment().add(-20, 'M');
+    let twentyMonthsAgo = DateProvider.twentyMonthsAgo();
     return moment(item.dateOfBirth).isBefore(twentyMonthsAgo);
   }
-
 
   getTypeForImage(item) {
     if(!this.isAdult(item)){
