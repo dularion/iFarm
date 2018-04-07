@@ -22,7 +22,6 @@ import { AnimalProvider } from '../providers/animal/animal';
 import { PageProvider } from '../providers/page/page';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {WelcomePage} from '../pages/welcome/welcome';
 import {Api} from '../providers/api/api';
 import {User} from '../providers/user/user';
 import {Pro} from '@ionic/pro';
