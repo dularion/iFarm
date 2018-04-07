@@ -27,6 +27,7 @@ import {Api} from '../providers/api/api';
 import {User} from '../providers/user/user';
 import {Pro} from '@ionic/pro';
 import {WelcomePageModule} from '../pages/welcome/welcome.module';
+import { DateProvider } from '../providers/date/date';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -70,7 +71,7 @@ export class MyErrorHandler implements ErrorHandler {
     AreaListPage,
     AreaDetailPage,
     VehicleListPage,
-    VehicleDetailPage
+    VehicleDetailPage,
   ],
   imports: [
     WelcomePageModule,
@@ -109,7 +110,8 @@ export class MyErrorHandler implements ErrorHandler {
     Api,
     User,
     IonicErrorHandler,
-    [{ provide: ErrorHandler, useClass: MyErrorHandler }]
+    [{ provide: ErrorHandler, useClass: MyErrorHandler }],
+    DateProvider
   ]
 })
 export class AppModule {}
