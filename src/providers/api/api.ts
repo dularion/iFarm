@@ -46,7 +46,9 @@ export class Api {
 
       if(filters){
         filters.forEach(function (filter:FirebaseFilter) {
-          query = dbRef.where(filter.fieldPath, filter.opStr, filter.value);
+          if(filter.value){
+            query = dbRef.where(filter.fieldPath, filter.opStr, filter.value);
+          }
         })
       }
 
