@@ -16,14 +16,14 @@
 <ion-content>
 
   <div padding>
-    <ion-segment [(ngModel)]="type">
+    <ion-segment [(ngModel)]="segmentSelection" (ionChange)="filterChanged($event)">
       <ion-segment-button value="">
         Alle
       </ion-segment-button>
-      <ion-segment-button value="females">
+      <ion-segment-button value="female">
         Kühe
       </ion-segment-button>
-      <ion-segment-button value="males">
+      <ion-segment-button value="male">
         Bullen
       </ion-segment-button>
       <ion-segment-button value="babies">
