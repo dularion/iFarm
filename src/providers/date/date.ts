@@ -24,7 +24,7 @@ export class DateProvider {
   }
 
   public static convertDateTimeToDate(value:string): Date {
-    return moment(value).subtract(12, 'h').toDate();
+    return moment(value).startOf('day').add(12, 'h').toDate();
   }
 
   public static twentyMonthsAgo(): moment.Moment {
