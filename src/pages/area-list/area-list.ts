@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import {HttpClient} from '@angular/common/http';
 import {AreaDetailPage} from '../area-detail/area-detail';
 import {Api} from '../../providers/api/api';
+import {FirebaseFilter} from '../../types/firebase-filter';
 
 @Component({
   selector: 'area-list',
@@ -11,17 +12,22 @@ import {Api} from '../../providers/api/api';
 export class AreaListPage {
   selectedItem: any;
   items: any = [];
-  type: string;
-  page:{isLoading: boolean} = {
-    isLoading: true
+  segmentSelection: string;
+  page:{isLoading: boolean, filter:Array<FirebaseFilter>} = {
+    isLoading: true,
+    filter: []
   };
 
   constructor(public navCtrl: NavController, private http: HttpClient, private api: Api) {
-    this.type = '';
+    this.segmentSelection = '';
   }
 
   ionViewWillEnter() {
-    this.api.query('areas').then(data => {
+    this.loadData();
+  }
+
+  private loadData() {
+    this.api.query('areas', this.page.filter).then(data => {
         this.items = data;
         this.page.isLoading = false;
       }
@@ -39,5 +45,11 @@ export class AreaListPage {
     this.navCtrl.push(AreaDetailPage, {
       isNew: true
     });
+  }
+
+  filterChanged() {
+    this.page.filter = [{fieldPath: 'type', opStr: '==', value: this.segmentSelection}];
+
+    this.loadData();
   }
 }

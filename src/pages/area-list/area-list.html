@@ -16,7 +16,7 @@
 <ion-content>
 
   <div padding>
-    <ion-segment [(ngModel)]="type">
+    <ion-segment [(ngModel)]="segmentSelection" (ionChange)="filterChanged($event)">
       <ion-segment-button value="">
         Alle
       </ion-segment-button>
