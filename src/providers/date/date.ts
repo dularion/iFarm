@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import moment from 'moment';
+import _ from 'lodash';
 
 /*
   Generated class for the DateProvider provider.
@@ -19,8 +20,8 @@ export class DateProvider {
     return date ? date.toISOString() : '';
   }
 
-  public static isKeyValuePairDate(key, value): boolean {
-    return (key.indexOf('date') > -1 && moment(value).isValid());
+  public static isKeyValuePairDateString(key, value): boolean {
+    return (key.indexOf('date') > -1 && _.isString(value) && moment(value).isValid());
   }
 
   public static convertDateTimeToDate(value:string): Date {
