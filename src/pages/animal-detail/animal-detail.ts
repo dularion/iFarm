@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {AnimalProvider} from '../../providers/animal/animal';
 import {Api} from '../../providers/api/api';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DateProvider} from '../../providers/date/date';
 
 @Component({
   selector: 'animal-detail',
@@ -23,7 +24,7 @@ export class AnimalDetailPage {
     this.form = fb.group({
       name: [this.existingDoc.name, Validators.required],
       gender: [this.existingDoc.gender, Validators.required],
-      dateOfBirth: [this.existingDoc.dateOfBirth, Validators.required],
+      dateOfBirth: [DateProvider.getIsoStringFromDate(this.existingDoc.dateOfBirth), Validators.required],
       type: this.existingDoc.type,
       race: this.existingDoc.race,
       mother: this.existingDoc.mother,
@@ -53,7 +54,7 @@ export class AnimalDetailPage {
       alert.present();
       return;
     }
-    this.api.post('animals', this.form.getRawValue(), _this.existingDoc.id).then(function(){
+    this.api.post('animals', this.form.getRawValue(), this.existingDoc.id).then(function(){
       _this.navCtrl.pop();
     });
   }
