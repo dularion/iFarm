@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import * as firebase from "firebase";
 import * as _ from 'lodash';
 import {DateProvider} from '../date/date';
+import {FirebaseFilter} from '../../types/firebase-filter';
+
+
 
 /**
  * Api is a generic REST Api handler. Set your API url first.
@@ -35,14 +38,14 @@ export class Api {
   }
 
 
-  query(collection: string, filters?:Array<{fieldPath: string, opStr: string, value: any}>): Promise<Array<any>>{
+  query(collection: string, filters?:Array<FirebaseFilter>): Promise<Array<any>>{
     return new Promise<Array<any>>((resolve, reject) => {
 
       let dbRef = this.db.collection(collection);
       let query = dbRef;
 
       if(filters){
-        filters.forEach(function (filter) {
+        filters.forEach(function (filter:FirebaseFilter) {
           query = dbRef.where(filter.fieldPath, filter.opStr, filter.value);
         })
       }

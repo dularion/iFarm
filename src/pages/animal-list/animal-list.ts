@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {AnimalProvider} from '../../providers/animal/animal';
 import {Api} from '../../providers/api/api';
 import {DateProvider} from '../../providers/date/date';
+import {FirebaseFilter} from '../../types/firebase-filter';
 
 @Component({
   selector: 'animal-list',
@@ -15,7 +16,7 @@ export class AnimalListPage {
   icons: string[];
   items: any = [];
   segmentSelection: string;
-  page:{isLoading: boolean, filter:Array<{fieldPath: string, opStr: string, value: any}>} = {
+  page:{isLoading: boolean, filter:Array<FirebaseFilter>} = {
     isLoading: true,
     filter: []
   };
