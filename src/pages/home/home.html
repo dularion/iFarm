@@ -8,8 +8,10 @@
 </ion-header>
 
 <ion-content padding>
-  <button class="home-button" ion-button large block icon-left *ngFor="let page of pages" (click)="openPage(page)" round>
-    <ion-icon class="{{ page.icon }}"></ion-icon>
+  <a class="home-button home-button-{{page.name}}" *ngFor="let page of pages" (click)="openPage(page)">
+    <span class="home-button-label">
+      <ion-icon class="{{ page.icon }}"></ion-icon>
     {{ page.name + '.TITLE.P' | translate }}
-  </button>
+    </span>
+  </a>
 </ion-content>

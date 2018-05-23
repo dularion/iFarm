@@ -1,5 +1,42 @@
 page-home {
-  button.home-button{
+  .home-button{
     margin-bottom: 20px;
+    display: block;
+    text-align: center;
+    height: 140px;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    border: 1px solid #cacaca;
+
+    .home-button-label{
+      display: block;
+      background: rgb(255, 255, 255);
+      padding: 5px 10px;
+      position: absolute;
+      bottom: 7px;
+      left: 0;
+      color: #656565;
+      width: 70%;
+      text-align: left;
+      font-size: 20px;
+      box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.58);
+    }
+
+    &.home-button-ANIMALS{
+      background-image: url("../assets/imgs/home-button-cows.jpg");
+    }
+
+    &.home-button-AREAS{
+      background-image: url("../assets/imgs/home-button-areas.jpg");
+    }
+
+    &.home-button-VEHICLES{
+      background-image: url("../assets/imgs/home-button-vehicles.jpg");
+    }
+
+    &.home-button-SETTINGS{
+      background-image: url("../assets/imgs/home-button-settings.jpg");
+    }
   }
 }
