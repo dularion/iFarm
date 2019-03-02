@@ -1,6 +1,14 @@
 page-home {
+
+  .home-button-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+  }
+
   .home-button{
-    margin-bottom: 20px;
+    flex: 1 1 290px;
+    margin: 0 10px 20px;
     display: block;
     text-align: center;
     height: 140px;
