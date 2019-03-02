@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {HttpClient} from '@angular/common/http';
 import {VehicleDetailPage} from '../vehicle-detail/vehicle-detail';
-import * as firebase from "firebase";
 import {Api} from '../../providers/api/api';
 
 
@@ -25,7 +23,7 @@ export class VehicleListPage {
     isLoading: true
   };
 
-  constructor(public navCtrl: NavController, private http: HttpClient, private api: Api) {
+  constructor(public navCtrl: NavController, private api: Api) {
     this.type = '';
   }
 

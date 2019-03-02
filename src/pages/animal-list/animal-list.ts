@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import {AnimalDetailPage} from '../animal-detail/animal-detail';
-import {HttpClient} from '@angular/common/http';
 import {AnimalProvider} from '../../providers/animal/animal';
 import {Api} from '../../providers/api/api';
 import {DateProvider} from '../../providers/date/date';
@@ -21,7 +20,7 @@ export class AnimalListPage {
     filter: []
   };
 
-  constructor(public navCtrl: NavController, private http: HttpClient, public animalProvider: AnimalProvider,
+  constructor(public navCtrl: NavController, public animalProvider: AnimalProvider,
               private api: Api) {
     this.segmentSelection = '';
   }

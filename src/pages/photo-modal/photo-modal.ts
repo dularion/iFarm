@@ -42,8 +42,10 @@ export class PhotoModalPage {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
       let base64Image = 'data:image/jpeg;base64,' + imageData;
+      console.log('%c base64Image', 'color: deeppink; font-weight: bold; text-shadow: 0 0 5px deeppink;', base64Image);
     }, (err) => {
       // Handle error
+      console.error(err);
     });
 
 

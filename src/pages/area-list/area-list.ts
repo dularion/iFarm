@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {HttpClient} from '@angular/common/http';
 import {AreaDetailPage} from '../area-detail/area-detail';
 import {Api} from '../../providers/api/api';
 import {FirebaseFilter} from '../../types/firebase-filter';
@@ -18,7 +17,7 @@ export class AreaListPage {
     filter: []
   };
 
-  constructor(public navCtrl: NavController, private http: HttpClient, private api: Api) {
+  constructor(public navCtrl: NavController, private api: Api) {
     this.segmentSelection = '';
   }
 
