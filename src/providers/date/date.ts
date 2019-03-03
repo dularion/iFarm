@@ -32,4 +32,8 @@ export class DateProvider {
     return moment().add(-20, 'M');
   }
 
+  public static monthsAgo(months): moment.Moment {
+    return moment().add((months * -1), 'M');
+  }
+
 }

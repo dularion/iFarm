@@ -1,9 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import * as firebase from "firebase";
 import * as _ from 'lodash';
 import {DateProvider} from '../date/date';
 import {FirebaseFilter} from '../../types/firebase-filter';
+import * as firebase from 'firebase/app';
+import OrderByDirection = firebase.firestore.OrderByDirection;
 
 
 
@@ -38,7 +39,7 @@ export class Api {
   }
 
 
-  query(collection: string, filters?:Array<FirebaseFilter>): Promise<Array<any>>{
+  query(collection: string, filters?:Array<FirebaseFilter>, orderBy?: string, orderByDirection?: OrderByDirection): Promise<Array<any>>{
     return new Promise<Array<any>>((resolve, reject) => {
 
       let dbRef = this.db.collection(collection);
@@ -52,8 +53,11 @@ export class Api {
         })
       }
 
-      query.get()
-        .then(function(querySnapshot) {
+      if(orderBy){
+        query = query.orderBy(orderBy, orderByDirection)
+      }
+
+      query.get().then(function(querySnapshot) {
         let result = [];
         querySnapshot.forEach(function(doc) {
           let data = doc.data();

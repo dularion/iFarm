@@ -4,12 +4,6 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>{{ form.value.name }}</ion-title>
-
-    <ion-buttons end>
-      <button ion-button icon-only (click)="save()">
-        <ion-icon color="secondary" name="checkmark-circle"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -52,7 +46,7 @@
     <ion-item>
       <ion-label>Mutter:</ion-label>
       <ion-select formControlName="mother">
-        <ion-option *ngFor="let animal of animals" [value]="animal.name">{{ animal.name }}</ion-option>
+        <ion-option *ngFor="let animal of adultFemales" [value]="animal.name">{{ animal.name }}</ion-option>
       </ion-select>
     </ion-item>
 
@@ -68,5 +62,15 @@
     <hr>
 
 
+  <ion-footer>
+    <ion-toolbar>
+      <ion-buttons end>
+        <button ion-button icon-end color="secondary" (click)="save()">
+          Speichern
+          <ion-icon name="checkmark-circle"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>
 
 </ion-content>

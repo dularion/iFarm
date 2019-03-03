@@ -30,7 +30,7 @@ export class AnimalListPage {
   }
 
   private loadData() {
-    this.api.query('animals', this.page.filter).then(data => {
+    this.api.query('animals', this.page.filter, 'dateCreated', 'desc').then(data => {
         this.items = data;
         this.page.isLoading = false;
       }

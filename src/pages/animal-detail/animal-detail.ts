@@ -14,7 +14,7 @@ import _ from 'lodash';
 export class AnimalDetailPage {
   form: FormGroup;
   profileForm: FormGroup;
-  animals: any;
+  adultFemales: any;
   existingDoc: any;
   isNew: boolean;
 
@@ -39,8 +39,12 @@ export class AnimalDetailPage {
   }
 
   ionViewDidLoad(){
-    this.api.query('animals', [{fieldPath: 'gender', opStr: '==', value: 'female'}]).then(data => {
-          this.animals = data;
+    let filter = [
+      {fieldPath: 'gender', opStr: '==', value: 'female'},
+      {fieldPath: 'dateOfBirth', opStr: '>=', value: DateProvider.monthsAgo(AnimalProvider.femaleAdulthoodThreshhold).toDate()}
+    ];
+    this.api.query('animals', filter).then(data => {
+          this.adultFemales = data;
         }
     );
   }
@@ -63,12 +67,52 @@ export class AnimalDetailPage {
       alert.present();
       return;
     }
-    let formValues = this.form.getRawValue();
+
+    if(this.isNew){
+      _this.showFirstTimeSaveDialog().then(() => {
+        _this.persistFormDate();
+      });
+    }else{
+      _this.persistFormDate();
+    }
+
+  }
+
+  private persistFormDate(){
+    let _this = this;
+    let formValues = _this.form.getRawValue();
     formValues = _.pickBy(formValues, _.identity);  //remove all undefined values
+    formValues.dateCreated = new Date();
 
     this.api.post('animals', formValues, this.existingDoc.id).then(function(){
       _this.navCtrl.pop();
     });
+  }
+
+  private showFirstTimeSaveDialog(){
+    let promise = new Promise((resolve, reject) => {
+      const confirm = this.alertCtrl.create({
+        title: 'Sind Sie Sicher?',
+        message: 'Nach der Erstellung, sind einige Werte nicht mehr änderbar, wie Geschlecht, die Rasse und das Geburtsdatum.',
+        buttons: [
+          {
+            text: 'Abbrechen',
+            handler: () => {
+              reject();
+            }
+          },
+          {
+            text: 'Fortfahren',
+            handler: () => {
+              resolve();
+            }
+          }
+        ]
+      });
+      confirm.present();
+    });
+
+    return promise;
   }
 
   getTypeForImage() {
