@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 import {AlertController, ModalController, NavController, NavParams} from 'ionic-angular';
 import {PhotoModalPage} from '../photo-modal/photo-modal';
-import {HttpClient} from '@angular/common/http';
 import {AnimalProvider} from '../../providers/animal/animal';
 import {Api} from '../../providers/api/api';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {DateProvider} from '../../providers/date/date';
+import _ from 'lodash';
 
 @Component({
   selector: 'animal-detail',
@@ -13,27 +13,36 @@ import {DateProvider} from '../../providers/date/date';
 })
 export class AnimalDetailPage {
   form: FormGroup;
+  profileForm: FormGroup;
   animals: any;
   existingDoc: any;
+  isNew: boolean;
 
-  constructor(public modalCtrl: ModalController, public navParams: NavParams, private http: HttpClient,
+  constructor(public modalCtrl: ModalController, public navParams: NavParams,
               public navCtrl: NavController, public animalProvider: AnimalProvider, private api: Api,
               public fb: FormBuilder, public alertCtrl: AlertController) {
-    this.existingDoc = navParams.get('item') || {};
 
-    this.form = fb.group({
-      name: [this.existingDoc.name, Validators.required],
-      gender: [this.existingDoc.gender, Validators.required],
-      dateOfBirth: [DateProvider.getIsoStringFromDate(this.existingDoc.dateOfBirth), Validators.required],
-      type: this.existingDoc.type,
-      race: this.existingDoc.race,
-      mother: this.existingDoc.mother,
-      childrenCount: this.existingDoc.childrenCount,
+    let defaultValues = {
+      name: 'DE'
+    };
+    this.existingDoc = navParams.get('item') || defaultValues;
+
+    this.isNew = (!this.existingDoc.id);
+    this.form = new FormGroup({
+      name: new FormControl({value: this.existingDoc.name, disabled: false}, [Validators.required]),
+      gender: new FormControl({value: this.existingDoc.gender, disabled: !this.isNew}, [Validators.required]),
+      dateOfBirth: new FormControl({value: DateProvider.getIsoStringFromDate(this.existingDoc.dateOfBirth), disabled: !this.isNew}, [Validators.required]),
+      race: new FormControl({value: this.existingDoc.race, disabled: !this.isNew}, [Validators.required]),
+      mother: new FormControl({value: this.existingDoc.mother, disabled: false}),
+      childrenCount: new FormControl({value: this.existingDoc.childrenCount, disabled: false})
     });
   }
 
   ionViewDidLoad(){
-    this.http.get('assets/animals.json').subscribe(data => this.animals = data);
+    this.api.query('animals', [{fieldPath: 'gender', opStr: '==', value: 'female'}]).then(data => {
+          this.animals = data;
+        }
+    );
   }
 
 
@@ -54,7 +63,10 @@ export class AnimalDetailPage {
       alert.present();
       return;
     }
-    this.api.post('animals', this.form.getRawValue(), this.existingDoc.id).then(function(){
+    let formValues = this.form.getRawValue();
+    formValues = _.pickBy(formValues, _.identity);  //remove all undefined values
+
+    this.api.post('animals', formValues, this.existingDoc.id).then(function(){
       _this.navCtrl.pop();
     });
   }
