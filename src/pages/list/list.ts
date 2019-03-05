@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {TranslateService} from "@ngx-translate/core";
+import {StorageProvider} from "../../providers/storage/storage";
 
 @Component({
   selector: 'page-list',
@@ -16,6 +17,7 @@ export class ListPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              private storageProvider: StorageProvider,
               public translate: TranslateService) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
@@ -32,17 +34,14 @@ export class ListPage {
         icon: this.icons[Math.floor(Math.random() * this.icons.length)]
       });
     }
-    console.log('translate', translate);
     this.currentLang = translate.currentLang.toLocaleUpperCase();
   }
 
   selectLanguage(lang) {
-    console.log('ha',lang);
     lang = lang.toLocaleLowerCase();
     this.translate.setDefaultLang(lang);
     this.translate.use(lang);
-    console.log('translate', this.translate);
-
+    this.storageProvider.setValueInStorage(this.storageProvider.DEFAULT_LANGUAGE_KEY, lang);
   }
 
   itemTapped(event, item) {
@@ -56,6 +55,4 @@ export class ListPage {
     this.showLanguageSettings = !this.showLanguageSettings;
   }
 
-  ionViewDidLoad() {
-  }
 }

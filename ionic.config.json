@@ -1,8 +1,8 @@
 {
   "name": "iFarm",
-  "app_id": "dce29fb0",
-  "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "type": "ionic-angular",
+  "id": "dce29fb0"
 }
