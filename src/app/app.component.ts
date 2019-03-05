@@ -37,8 +37,8 @@ export class MyApp {
   }
 
   initializeTranslation() {
-    this.translate.setDefaultLang('de');
-    this.translate.use('de');
+    this.translate.setDefaultLang('en');
+    this.translate.use('en');
 
     this.translate.get(['BACK_BUTTON_TEXT']).subscribe(values => {
       this.config.set('ios', 'backButtonText', values.BACK_BUTTON_TEXT);
