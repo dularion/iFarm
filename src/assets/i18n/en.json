@@ -44,6 +44,7 @@
   "PASSWORD": "Password",
   "EMAIL": "Email",
   "LOGIN": "Log in",
+  "SIGN_OUT": "Sign out",
   "SIGNUP": "Register",
   "CANCEL_BUTTON": "Close",
 
@@ -93,5 +94,8 @@
 
   "SEARCH_TITLE": "Search",
   "SEARCH_PLACEHOLDER": "Search in the article list, e.g. \"Donald Duck\"",
-  "LANGUAGE": "Language"
+  "LANGUAGES": {
+    "DE": "German",
+    "EN": "English"
+  }
 }

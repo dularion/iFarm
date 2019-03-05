@@ -17,7 +17,21 @@
       </div>
     </button>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+
+  <ion-list>
+    <button ion-item (click)="toggleSelectLanguage()">
+      <ion-icon name="globe" item-start></ion-icon>
+      {{'SETTINGS_OPTION_LANGUAGE' | translate}}
+    </button>
+    <ion-list radio-group *ngIf="showLanguageSettings">
+
+      <ion-item *ngFor="let lang of availableLanguages">
+        <ion-label (click)="selectLanguage(lang)">{{ 'LANGUAGES.' + lang | translate }}</ion-label>
+        <ion-radio (click)="selectLanguage(lang)"
+                   [checked]="lang === currentLang"
+                   [value]="lang"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+  </ion-list>
 </ion-content>
