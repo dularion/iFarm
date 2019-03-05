@@ -20,6 +20,12 @@
     "GENDERS": {
       "female": "Cow (w)",
       "male": "Bull (m)"
+    },
+    "MENU": {
+      "ALL": "All",
+      "CALVES": "Calves",
+      "COW": "Cows",
+      "BULL": "Bulls"
     }
   },
 
