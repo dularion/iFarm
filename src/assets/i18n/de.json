@@ -20,6 +20,12 @@
     "GENDERS": {
       "female": "Kuh (w)",
       "male": "Bulle (m)"
+    },
+    "MENU": {
+      "ALL": "Alle",
+      "CALVES": "Kälber",
+      "COW": "Kühe",
+      "BULL": "Bullen"
     }
   },
 
@@ -44,6 +50,7 @@
   "PASSWORD": "Passwort",
   "EMAIL": "Email",
   "LOGIN": "Anmelden",
+  "SIGN_OUT": "Anmelden",
   "SIGNUP": "Registrieren",
   "CANCEL_BUTTON": "Schließen",
 
@@ -71,6 +78,7 @@
   "SETTINGS_OPTION2": "Option 2",
   "SETTINGS_OPTION3": "Option 3",
   "SETTINGS_OPTION4": "Option 4",
+  "SETTINGS_OPTION_LANGUAGE": "Sprache",
 
   "SETTINGS_PAGE_PROFILE": "Profil ändern",
 
@@ -91,5 +99,9 @@
   "CARDS_TITLE": "Social",
 
   "SEARCH_TITLE": "Suche",
-  "SEARCH_PLACEHOLDER": "Suche in der Artikel-Liste, z.B. \"Donald Duck\""
+  "SEARCH_PLACEHOLDER": "Suche in der Artikel-Liste, z.B. \"Donald Duck\"",
+  "LANGUAGES": {
+    "DE": "Deutsche",
+    "EN": "Englisch"
+  }
 }

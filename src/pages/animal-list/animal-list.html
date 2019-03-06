@@ -18,16 +18,16 @@
   <div padding>
     <ion-segment [(ngModel)]="segmentSelection" (ionChange)="filterChanged($event)">
       <ion-segment-button value="">
-        Alle
+       {{'ANIMALS.MENU.ALL' | translate}}
       </ion-segment-button>
       <ion-segment-button value="female">
-        Kühe
+        {{'ANIMALS.MENU.COW' | translate}}
       </ion-segment-button>
       <ion-segment-button value="male">
-        Bullen
+        {{'ANIMALS.MENU.BULL' | translate}}
       </ion-segment-button>
       <ion-segment-button value="babies">
-        Kälber
+        {{'ANIMALS.MENU.CALVES' | translate}}
       </ion-segment-button>
     </ion-segment>
   </div>

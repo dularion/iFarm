@@ -1,0 +1,107 @@
+{
+  "BACK_BUTTON_TEXT": "Back",
+
+  "VEHICLES": {
+    "TITLE": {
+      "P": "Vehicles",
+      "S": "Vehicle"
+    },
+    "TYPES": {
+      "tractor": "Traktor",
+      "trailer": "Pendant"
+    }
+  },
+
+  "ANIMALS": {
+    "TITLE": {
+      "P": "Animals",
+      "S": "Animal"
+    },
+    "GENDERS": {
+      "female": "Cow (w)",
+      "male": "Bull (m)"
+    },
+    "MENU": {
+      "ALL": "All",
+      "CALVES": "Calves",
+      "COW": "Cows",
+      "BULL": "Bulls"
+    }
+  },
+
+  "AREAS": {
+    "TITLE": {
+      "P": "Surfaces",
+      "S": "Surface"
+    },
+    "TYPES": {
+      "pasture": "Grassland",
+      "field": "Farmland"
+    }
+  },
+
+  "SETTINGS": {
+    "TITLE": {
+      "P": "Settings"
+    }
+  },
+
+  "NAME": "Name",
+  "PASSWORD": "Password",
+  "EMAIL": "Email",
+  "LOGIN": "Log in",
+  "SIGN_OUT": "Sign out",
+  "SIGNUP": "Register",
+  "CANCEL_BUTTON": "Close",
+
+  "TAB1_TITLE": "Items",
+  "TAB2_TITLE": "Search",
+  "TAB3_TITLE": "Attitude",
+
+  "MAP_TITLE": "Map",
+
+  "TUTORIAL_SLIDE1_TITLE": "Hello Ionic Super Starter App",
+  "TUTORIAL_SLIDE1_DESCRIPTION": "The <b> Ionic Super Starter App </ b> is an extensive starter app with many ready-made pages and best practices.",
+
+  "TUTORIAL_SLIDE2_TITLE": "How to use the Super Starter app",
+  "TUTORIAL_SLIDE2_DESCRIPTION": "Use and edit the functions and pages you need and delete the rest. Choose from a variety of layouts, such as login, sign up, tabs and a tutorial page.",
+
+  "TUTORIAL_SLIDE3_TITLE": "Here we go",
+  "TUTORIAL_SLIDE3_DESCRIPTION": "You need help? Check out the README file for more information.",
+
+  "TUTORIAL_CONTINUE_BUTTON": "Continue",
+
+  "WELCOME_INTRO": "With iFarm you can easily see the animals, areas and vehicles.",
+
+  "SETTINGS_TITLE": "Settings",
+  "SETTINGS_OPTION1": "Option 1",
+  "SETTINGS_OPTION2": "Option 2",
+  "SETTINGS_OPTION3": "Option 3",
+  "SETTINGS_OPTION4": "Option 4",
+  "SETTINGS_OPTION_LANGUAGE": "Language",
+
+  "SETTINGS_PAGE_PROFILE": "Change profile",
+
+  "WELCOME_TITLE": "Welcome",
+
+  "LOGIN_TITLE": "Log in",
+  "LOGIN_ERROR": "Error logging in, please review your information and try again.",
+  "LOGIN_BUTTON": "Log in",
+  "SIGNUP_TITLE": "Register",
+  "SIGNUP_ERROR": "Error registering, please check your information and try again.",
+  "SIGNUP_BUTTON": "Register",
+
+  "LIST_MASTER_TITLE": "Article",
+
+  "ITEM_CREATE_TITLE": "New article",
+  "ITEM_CREATE_CHOOSE_IMAGE": "Add article",
+
+  "CARDS_TITLE": "Social",
+
+  "SEARCH_TITLE": "Search",
+  "SEARCH_PLACEHOLDER": "Search in the article list, e.g. \"Donald Duck\"",
+  "LANGUAGES": {
+    "DE": "German",
+    "EN": "English"
+  }
+}

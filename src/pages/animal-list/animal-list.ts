@@ -30,11 +30,19 @@ export class AnimalListPage {
   }
 
   private loadData() {
-    this.api.query('animals', this.page.filter, 'dateCreated', 'desc').then(data => {
-        this.items = data;
-        this.page.isLoading = false;
-      }
-    );
+    if(this.segmentSelection == 'babies'){
+      this.api.query('animals', this.page.filter, 'dateOfBirth', 'desc').then(data => {
+          this.items = data;
+          this.page.isLoading = false;
+        }
+      );
+    } else {
+      this.api.query('animals', this.page.filter, 'dateCreated', 'desc').then(data => {
+          this.items = data;
+          this.page.isLoading = false;
+        }
+      );
+    }
   }
 
   itemTapped(event, item) {

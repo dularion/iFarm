@@ -27,6 +27,8 @@ import {User} from '../providers/user/user';
 import {Pro} from '@ionic/pro';
 import {WelcomePageModule} from '../pages/welcome/welcome.module';
 import { DateProvider } from '../providers/date/date';
+import {IonicStorageModule} from "@ionic/storage";
+import { StorageProvider } from '../providers/storage/storage';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -83,6 +85,10 @@ export class MyErrorHandler implements ErrorHandler {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
+    }),
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+      driverOrder: ['indexeddb', 'sqlite', 'websql']
     })
   ],
   bootstrap: [IonicApp],
@@ -110,7 +116,8 @@ export class MyErrorHandler implements ErrorHandler {
     User,
     IonicErrorHandler,
     [{ provide: ErrorHandler, useClass: MyErrorHandler }],
-    DateProvider
+    DateProvider,
+    StorageProvider
   ]
 })
 export class AppModule {}
