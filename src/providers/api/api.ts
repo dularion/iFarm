@@ -5,6 +5,7 @@ import {DateProvider} from '../date/date';
 import {FirebaseFilter} from '../../types/firebase-filter';
 import * as firebase from 'firebase/app';
 import OrderByDirection = firebase.firestore.OrderByDirection;
+import {AnimalProvider} from "../animal/animal";
 
 
 
@@ -48,7 +49,7 @@ export class Api {
       if(filters){
         filters.forEach(function (filter:FirebaseFilter) {
           if(filter.value){
-            query = dbRef.where(filter.fieldPath, filter.opStr, filter.value);
+            query = query.where(filter.fieldPath, filter.opStr, filter.value);
           }
         })
       }

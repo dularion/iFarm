@@ -6,6 +6,7 @@ import {Api} from '../../providers/api/api';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {DateProvider} from '../../providers/date/date';
 import _ from 'lodash';
+import * as firebase from "firebase/app";
 
 @Component({
   selector: 'animal-detail',
@@ -41,9 +42,9 @@ export class AnimalDetailPage {
   ionViewDidLoad(){
     let filter = [
       {fieldPath: 'gender', opStr: '==', value: 'female'},
-      {fieldPath: 'dateOfBirth', opStr: '>=', value: DateProvider.monthsAgo(AnimalProvider.femaleAdulthoodThreshhold).toDate()}
+      {fieldPath: 'dateOfBirth', opStr: '<=', value: DateProvider.monthsAgo(AnimalProvider.femaleAdulthoodThreshhold).toDate()}
     ];
-    this.api.query('animals', filter).then(data => {
+    this.api.query('animals', filter, 'dateOfBirth', 'desc').then(data => {
           this.adultFemales = data;
         }
     );
