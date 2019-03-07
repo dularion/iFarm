@@ -115,5 +115,13 @@
     "DE": "German",
     "EN": "English"
   },
-  "SAVE": "Save"
+  "SAVE": "Save",
+  "DOTS_MENU": {
+   "SAVE_RECORD": "Save",
+   "EDIT_RECORD": "Edit",
+   "CREATE_NEW": "Create new",
+   "CREATE_NEW_EVENT": "Add event",
+   "CREATE_NEW_NOTIFICATION": "Add notification",
+   "DELETE_RECORD": "Delete"
+  }
 }

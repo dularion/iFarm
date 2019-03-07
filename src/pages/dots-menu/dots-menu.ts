@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
 
 /**
  * Generated class for the DotsMenuPage page.
@@ -19,13 +20,16 @@ export class DotsMenuPage {
   icon = 'save';
 
   constructor(public navCtrl: NavController,
+              public dotsMenuProvider: DotsMenuProvider,
               public navParams: NavParams,
               public viewCtrl: ViewController) {
+    this.menuItems = dotsMenuProvider.setupCurrentMenu(this.navParams.data);
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DotsMenuPage', this.navParams);
-    this.menuItems = this.navParams.data;
+    console.log('MENU', this.menuItems);
   }
 
   close(item) {

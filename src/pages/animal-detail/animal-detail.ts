@@ -8,6 +8,7 @@ import {DateProvider} from '../../providers/date/date';
 import _ from 'lodash';
 import * as firebase from "firebase/app";
 import {DotsMenuPage} from "../dots-menu/dots-menu";
+import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
 
 @Component({
   selector: 'animal-detail',
@@ -19,10 +20,12 @@ export class AnimalDetailPage {
   adultFemales: any;
   existingDoc: any;
   isNew: boolean;
+  menu;
 
   constructor(public modalCtrl: ModalController,
               public navParams: NavParams,
               public navCtrl: NavController,
+              public dotsMenuProvider: DotsMenuProvider,
               public animalProvider: AnimalProvider,
               private api: Api,
               public popoverCtrl: PopoverController,
@@ -43,6 +46,7 @@ export class AnimalDetailPage {
       mother: new FormControl({value: this.existingDoc.mother, disabled: false}),
       childrenCount: new FormControl({value: this.existingDoc.childrenCount, disabled: false})
     });
+    this.initDotsMenuItems();
   }
 
   ionViewDidLoad(){
@@ -131,7 +135,7 @@ export class AnimalDetailPage {
   }
 
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(DotsMenuPage, ['save', 'edit', 'event', 'notification']);
+    let popover = this.popoverCtrl.create(DotsMenuPage, this.menu);
     popover.present({
       ev: myEvent
     });
@@ -141,4 +145,13 @@ export class AnimalDetailPage {
   doAnimalAction(item){
     console.log('ITEM', item);
   };
+
+  initDotsMenuItems() {
+    this.menu = [
+      this.dotsMenuProvider.SAVE,
+      this.dotsMenuProvider.CREATE_NEW_EVENT,
+      this.dotsMenuProvider.CREATE_NEW_NOTIFICATION,
+      this.dotsMenuProvider.DELETE_RECORD,
+    ];
+  }
 }
