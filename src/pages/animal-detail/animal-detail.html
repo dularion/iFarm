@@ -4,6 +4,11 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>{{ form.value.name }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -19,7 +24,8 @@
         <ion-col col-8>
           <ion-item>
             <ion-label floating>{{"ANIMALS.FORM.NUMBER" | translate}} *</ion-label>
-            <ion-input [placeholder]="('ANIMALS.FORM.NUMBER' | translate) + ' *'" type="text" formControlName="name"></ion-input>
+            <ion-input [placeholder]="('ANIMALS.FORM.NUMBER' | translate) + ' *'" type="text"
+                       formControlName="name"></ion-input>
           </ion-item>
 
           <ion-item>
@@ -59,7 +65,7 @@
   </form>
 
 
-    <hr>
+  <hr>
 
 
   <ion-footer>

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AlertController, ModalController, NavController, NavParams} from 'ionic-angular';
+import {AlertController, ModalController, NavController, NavParams, PopoverController} from 'ionic-angular';
 import {PhotoModalPage} from '../photo-modal/photo-modal';
 import {AnimalProvider} from '../../providers/animal/animal';
 import {Api} from '../../providers/api/api';
@@ -7,6 +7,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {DateProvider} from '../../providers/date/date';
 import _ from 'lodash';
 import * as firebase from "firebase/app";
+import {DotsMenuPage} from "../dots-menu/dots-menu";
 
 @Component({
   selector: 'animal-detail',
@@ -19,9 +20,14 @@ export class AnimalDetailPage {
   existingDoc: any;
   isNew: boolean;
 
-  constructor(public modalCtrl: ModalController, public navParams: NavParams,
-              public navCtrl: NavController, public animalProvider: AnimalProvider, private api: Api,
-              public fb: FormBuilder, public alertCtrl: AlertController) {
+  constructor(public modalCtrl: ModalController,
+              public navParams: NavParams,
+              public navCtrl: NavController,
+              public animalProvider: AnimalProvider,
+              private api: Api,
+              public popoverCtrl: PopoverController,
+              public fb: FormBuilder,
+              public alertCtrl: AlertController) {
 
     let defaultValues = {
       name: 'DE'
@@ -123,4 +129,16 @@ export class AnimalDetailPage {
   isAdult() {
     return this.animalProvider.isAdult(this.form.getRawValue());
   }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(DotsMenuPage, ['save', 'edit', 'event', 'notification']);
+    popover.present({
+      ev: myEvent
+    });
+    popover.onDidDismiss(this.doAnimalAction);
+  }
+
+  doAnimalAction(item){
+    console.log('ITEM', item);
+  };
 }
