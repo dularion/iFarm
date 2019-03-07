@@ -26,6 +26,17 @@
       "CALVES": "Calves",
       "COW": "Cows",
       "BULL": "Bulls"
+    },
+    "FORM": {
+      "NUMBER": "Nr",
+      "GENDER": "Gender",
+      "F": "Female",
+      "M": "Male",
+      "BIRTH_DATE":"Born on the",
+      "RACE": "Race",
+      "MOM": "Mother",
+      "COUNT": "Number of calves"
+
     }
   },
 
@@ -103,5 +114,6 @@
   "LANGUAGES": {
     "DE": "German",
     "EN": "English"
-  }
+  },
+  "SAVE": "Save"
 }
