@@ -1,0 +1,17 @@
+
+<ion-content >
+  <ion-list>
+    <button ion-item *ngFor="let item of menuItems" (click)="close(item)">
+      <ion-icon name="save"></ion-icon>
+      {{item}}
+
+    </button>
+  </ion-list>
+
+    <!--<button ion-item (click)="close()">Save</button>-->
+    <!--<button ion-item (click)="close()">Add new</button>-->
+    <!--<button ion-item (click)="close()">Delete</button>-->
+    <!--<button ion-item (click)="close()">New Notification</button>-->
+    <!--<button ion-item (click)="close()">New Event</button>-->
+
+</ion-content>

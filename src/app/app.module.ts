@@ -29,6 +29,7 @@ import {WelcomePageModule} from '../pages/welcome/welcome.module';
 import { DateProvider } from '../providers/date/date';
 import {IonicStorageModule} from "@ionic/storage";
 import { StorageProvider } from '../providers/storage/storage';
+import {DotsMenuPageModule} from "../pages/dots-menu/dots-menu.module";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -89,7 +90,8 @@ export class MyErrorHandler implements ErrorHandler {
     IonicStorageModule.forRoot({
       name: '__mydb',
       driverOrder: ['indexeddb', 'sqlite', 'websql']
-    })
+    }),
+    DotsMenuPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
