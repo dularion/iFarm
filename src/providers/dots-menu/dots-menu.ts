@@ -13,12 +13,12 @@ export class DotsMenuProvider {
 
 
   // constants for menu items
-  public SAVE = 'SAVE_RECORD';
-  public EDIT = 'EDIT_RECORD';
-  public CREATE_NEW = 'CREATE_NEW';
-  public CREATE_NEW_EVENT = 'CREATE_NEW_EVENT';
-  public CREATE_NEW_NOTIFICATION = 'CREATE_NEW_NOTIFICATION';
-  public DELETE_RECORD = 'DELETE_RECORD';
+  public SAVE = 'DOTS_MENU.SAVE_RECORD';
+  public EDIT = 'DOTS_MENU.EDIT_RECORD';
+  public CREATE_NEW = 'DOTS_MENU.CREATE_NEW';
+  public CREATE_NEW_EVENT = 'DOTS_MENU.CREATE_NEW_EVENT';
+  public CREATE_NEW_NOTIFICATION = 'DOTS_MENU.CREATE_NEW_NOTIFICATION';
+  public DELETE_RECORD = 'DOTS_MENU.DELETE_RECORD';
 
   private menuObjects = {};
 

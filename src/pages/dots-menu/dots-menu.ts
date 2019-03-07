@@ -9,7 +9,6 @@ import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-dots-menu',
   templateUrl: 'dots-menu.html',

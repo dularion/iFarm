@@ -3,7 +3,7 @@
   <ion-list>
     <button ion-item *ngFor="let item of menuItems" (click)="close(item)">
       <ion-icon [name]="item.icon"></ion-icon>
-      {{ 'DOTS_MENU.SAVE_RECORD' | translate }}
+      {{ item.name | translate }}
 
     </button>
   </ion-list>
