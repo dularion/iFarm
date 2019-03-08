@@ -67,9 +67,7 @@ export class AnimalListPage {
 
     if(this.segmentSelection == 'babies'){
       this.page.filter.push({fieldPath: 'dateOfBirth', opStr: '>=', value: DateProvider.twentyMonthsAgo().toDate()});
-    }
-
-    else{
+    } else{
       this.page.filter.push({fieldPath: 'gender', opStr: '==', value: this.segmentSelection});
     }
 

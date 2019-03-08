@@ -87,8 +87,8 @@ export class Api {
     }
   }
 
-  put(endpoint: string, body: any, reqOpts?: any) {
-    return this.http.put(this.url + '/' + endpoint, body, reqOpts);
+  update(table, item) {
+    return this.db.collection(table).doc(item.id).update(item);
   }
 
   delete(table, item) {

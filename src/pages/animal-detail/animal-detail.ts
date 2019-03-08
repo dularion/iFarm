@@ -146,12 +146,21 @@ export class AnimalDetailPage {
       if (item.name == this.dotsMenuProvider.DELETE_RECORD) {
         this.deleteRecord();
       }
+      if (item.name == this.dotsMenuProvider.SAVE && !this.isNew) {
+        this.updateRecord();
+      }
     });
     popover.present({
       ev: myEvent
     });
   }
 
+
+  updateRecord() {
+    this.api.update('animals', this.form.value).then((resp)=>{
+      this.navCtrl.pop();
+    });
+  }
 
   deleteRecord() {
     this.api.delete('animals', this.existingDoc).then((resp)=>{
