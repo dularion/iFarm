@@ -15,7 +15,6 @@ import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
 })
 export class AnimalDetailPage {
   form: FormGroup;
-  profileForm: FormGroup;
   adultFemales: any;
   existingDoc: any;
   isNew: boolean;
@@ -35,40 +34,48 @@ export class AnimalDetailPage {
       name: 'DE'
     };
     this.existingDoc = navParams.get('item') || defaultValues;
+    this.isNew = !this.existingDoc.id;
 
-    this.isNew = (!this.existingDoc.id);
-    this.form = new FormGroup({
-      name: new FormControl({value: this.existingDoc.name, disabled: false}, [Validators.required]),
-      gender: new FormControl({value: this.existingDoc.gender, disabled: !this.isNew}, [Validators.required]),
-      dateOfBirth: new FormControl({value: DateProvider.getIsoStringFromDate(this.existingDoc.dateOfBirth), disabled: !this.isNew}, [Validators.required]),
-      race: new FormControl({value: this.existingDoc.race, disabled: !this.isNew}, [Validators.required]),
-      mother: new FormControl({value: this.existingDoc.mother, disabled: false}),
-      childrenCount: new FormControl({value: this.existingDoc.childrenCount, disabled: false})
-    });
+    this.form = this.createForm();
     this.initDotsMenuItems();
   }
 
-  ionViewDidLoad(){
+  ionViewDidLoad() {
     let filter = [
       {fieldPath: 'gender', opStr: '==', value: 'female'},
-      {fieldPath: 'dateOfBirth', opStr: '<=', value: DateProvider.monthsAgo(AnimalProvider.femaleAdulthoodThreshhold).toDate()}
+      {
+        fieldPath: 'dateOfBirth',
+        opStr: '<=',
+        value: DateProvider.monthsAgo(AnimalProvider.femaleAdulthoodThreshhold).toDate()
+      }
     ];
     this.api.query('animals', filter, 'dateOfBirth', 'desc').then(data => {
-          this.adultFemales = data;
-        }
+        this.adultFemales = data;
+      }
     );
   }
 
+  createForm() {
+    return this.fb.group({
+      name: new FormControl(this.existingDoc.name || 'DE', [Validators.required]),
+      gender: new FormControl({value: this.existingDoc.gender || 'female', disabled: false}, [Validators.required]),
+      dateOfBirth: new FormControl(DateProvider.getIsoStringFromDate(this.existingDoc.dateOfBirth), [Validators.required]),
+      race: new FormControl(this.existingDoc.race || '', [Validators.required]),
+      mother: new FormControl(this.existingDoc.mother || ''),
+      childrenCount: new FormControl(this.existingDoc.childrenCount || 0),
+      id: new FormControl(this.existingDoc.id || null)
+    });
+  }
 
-  changeImage(){
+  changeImage() {
     let modal = this.modalCtrl.create(PhotoModalPage);
     modal.present();
   }
 
 
-  save(){
+  save() {
     let _this = this;
-    if(_this.form.status == 'INVALID'){
+    if (_this.form.status == 'INVALID') {
       let alert = this.alertCtrl.create({
         title: 'Formular nicht vollständig',
         subTitle: 'Bitte überprüfen Sie die Pflichtangaben (markiert mit *)',
@@ -78,28 +85,28 @@ export class AnimalDetailPage {
       return;
     }
 
-    if(this.isNew){
+    if (this.isNew) {
       _this.showFirstTimeSaveDialog().then(() => {
         _this.persistFormDate();
       });
-    }else{
+    } else {
       _this.persistFormDate();
     }
 
   }
 
-  private persistFormDate(){
+  private persistFormDate() {
     let _this = this;
     let formValues = _this.form.getRawValue();
     formValues = _.pickBy(formValues, _.identity);  //remove all undefined values
     formValues.dateCreated = new Date();
 
-    this.api.post('animals', formValues, this.existingDoc.id).then(function(){
+    this.api.post('animals', formValues, this.existingDoc.id).then(function () {
       _this.navCtrl.pop();
     });
   }
 
-  private showFirstTimeSaveDialog(){
+  private showFirstTimeSaveDialog() {
     let promise = new Promise((resolve, reject) => {
       const confirm = this.alertCtrl.create({
         title: 'Sind Sie Sicher?',
@@ -135,15 +142,22 @@ export class AnimalDetailPage {
 
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(DotsMenuPage, this.menu);
+    popover.onDidDismiss((item) => {
+      if (item.name == this.dotsMenuProvider.DELETE_RECORD) {
+        this.deleteRecord();
+      }
+    });
     popover.present({
       ev: myEvent
     });
-    popover.onDidDismiss(this.doAnimalAction);
   }
 
-  doAnimalAction(item){
-    console.log('ITEM', item);
-  };
+
+  deleteRecord() {
+    this.api.delete('animals', this.existingDoc).then((resp)=>{
+      this.navCtrl.pop();
+    });
+  }
 
   initDotsMenuItems() {
     this.menu = [

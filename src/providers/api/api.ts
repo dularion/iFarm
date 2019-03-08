@@ -91,8 +91,8 @@ export class Api {
     return this.http.put(this.url + '/' + endpoint, body, reqOpts);
   }
 
-  delete(endpoint: string, reqOpts?: any) {
-    return this.http.delete(this.url + '/' + endpoint, reqOpts);
+  delete(table, item) {
+    return this.db.collection(table).doc(item.id).delete();
   }
 
   patch(endpoint: string, body: any, reqOpts?: any) {
