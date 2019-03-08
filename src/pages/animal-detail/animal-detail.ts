@@ -6,7 +6,6 @@ import {Api} from '../../providers/api/api';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {DateProvider} from '../../providers/date/date';
 import _ from 'lodash';
-import * as firebase from "firebase/app";
 import {DotsMenuPage} from "../dots-menu/dots-menu";
 import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
 

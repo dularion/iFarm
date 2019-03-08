@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {NavController, NavParams, ViewController} from 'ionic-angular';
 import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
 
-/**
- * Generated class for the DotsMenuPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-dots-menu',
@@ -16,7 +10,6 @@ import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
 export class DotsMenuPage {
 
   menuItems = [];
-  icon = 'save';
 
   constructor(public navCtrl: NavController,
               public dotsMenuProvider: DotsMenuProvider,
@@ -26,10 +19,7 @@ export class DotsMenuPage {
 
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DotsMenuPage', this.navParams);
-    console.log('MENU', this.menuItems);
-  }
+  ionViewDidLoad() {  }
 
   close(item) {
     this.viewCtrl.dismiss(item);

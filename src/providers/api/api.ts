@@ -5,7 +5,6 @@ import {DateProvider} from '../date/date';
 import {FirebaseFilter} from '../../types/firebase-filter';
 import * as firebase from 'firebase/app';
 import OrderByDirection = firebase.firestore.OrderByDirection;
-import {AnimalProvider} from "../animal/animal";
 
 
 
