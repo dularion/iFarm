@@ -157,7 +157,9 @@ export class AnimalDetailPage {
 
 
   updateRecord() {
-    this.api.update('animals', this.form.value).then((resp)=>{
+    let animal = this.form.getRawValue();
+    animal.dateOfBirth = new Date(animal.dateOfBirth);
+    this.api.update('animals', animal).then((resp)=>{
       this.navCtrl.pop();
     });
   }

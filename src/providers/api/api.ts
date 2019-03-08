@@ -88,7 +88,9 @@ export class Api {
   }
 
   update(table, item) {
-    return this.db.collection(table).doc(item.id).update(item);
+    let id = item.id;
+    delete item.id;
+    return this.db.collection(table).doc(id).update(item);
   }
 
   delete(table, item) {
