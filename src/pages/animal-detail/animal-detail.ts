@@ -151,7 +151,7 @@ export class AnimalDetailPage {
         this.updateRecord();
       }
       if (item.name == this.dotsMenuProvider.CREATE_NEW_EVENT && !this.isNew) {
-        this.navCtrl.push(EventPage,{table:'animals', entryId: this.existingDoc.id});
+        this.navCtrl.push(EventPage,{table:'animals', entry: this.existingDoc});
       }
     });
     popover.present({
