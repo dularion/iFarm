@@ -8,6 +8,7 @@ import {DateProvider} from '../../providers/date/date';
 import _ from 'lodash';
 import {DotsMenuPage} from "../dots-menu/dots-menu";
 import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
+import {EventPage} from "../event/event";
 
 @Component({
   selector: 'animal-detail',
@@ -148,6 +149,9 @@ export class AnimalDetailPage {
       }
       if (item.name == this.dotsMenuProvider.SAVE && !this.isNew) {
         this.updateRecord();
+      }
+      if (item.name == this.dotsMenuProvider.CREATE_NEW_EVENT && !this.isNew) {
+        this.navCtrl.push(EventPage,{table:'animals', entryId: this.existingDoc.id});
       }
     });
     popover.present({
