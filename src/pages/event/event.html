@@ -13,22 +13,51 @@
 </ion-header>
 
 <ion-content padding>
-  <form [formGroup]="form">
+  <form [formGroup]="eventForm">
     <ion-grid>
       <ion-row>
         <ion-col col-4>
-          <ion-thumbnail item-start>
-            <img src="assets/imgs/animal-{{getTypeForImage()}}_image.png" (click)="changeImage()">
+          <ion-thumbnail item-start *ngIf="table">
+            <img [src]="getEventImage()">
+          </ion-thumbnail>
+          <ion-thumbnail item-start *ngIf="!table">
+            <div class="no-img-container">
+              NONE
+            </div>
           </ion-thumbnail>
         </ion-col>
         <ion-col col-8>
           <ion-item>
-            <ion-label floating>{{"ANIMALS.FORM.NUMBER" | translate}} *</ion-label>
-            <ion-input [placeholder]="('ANIMALS.FORM.NUMBER' | translate) + ' *'" type="text"
-                       formControlName="name"></ion-input>
+            <ion-label floating [ngClass]="{'error-input': eventForm.get('title').invalid && eventForm.get('title').touched}">
+              {{"EVENTS.FORM.TITLE" | translate}} *
+            </ion-label>
+            <ion-input [placeholder]="('EVENTS.FORM.TITLE' | translate) + ' *'" type="text"
+                       formControlName="title"
+                       [ngClass]="{'error-input': eventForm.get('title').invalid && eventForm.get('title').touched}"></ion-input>
           </ion-item>
 
-
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label floating
+                       [ngClass]="{'error-input': eventForm.get('eventDate').invalid && eventForm.get('eventDate').touched}">
+              {{"EVENTS.FORM.DATE" | translate}} *
+            </ion-label>
+            <ion-datetime displayFormat="YYYY-MM-DD HH:mm"
+                          [ngClass]="{'error-input': eventForm.get('eventDate').invalid && eventForm.get('eventDate').touched}"
+                          max="2030-12-31" [min]="getToday()"
+                          formControlName="eventDate"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label floating>{{"EVENTS.FORM.DESCRIPTION" | translate}}</ion-label>
+            <ion-textarea rows="6" formControlName="description"></ion-textarea>
+          </ion-item>
         </ion-col>
       </ion-row>
     </ion-grid>

@@ -50,7 +50,7 @@ export class AnimalDetailPage {
         value: DateProvider.monthsAgo(AnimalProvider.femaleAdulthoodThreshhold).toDate()
       }
     ];
-    this.api.query('animals', filter, 'dateOfBirth', 'desc').then(data => {
+    this.api.query(AnimalProvider.ANIMAL_TABLE_NAME, filter, 'dateOfBirth', 'desc').then(data => {
         this.adultFemales = data;
       }
     );
@@ -102,7 +102,7 @@ export class AnimalDetailPage {
     formValues = _.pickBy(formValues, _.identity);  //remove all undefined values
     formValues.dateCreated = new Date();
 
-    this.api.post('animals', formValues, this.existingDoc.id).then(function () {
+    this.api.post(AnimalProvider.ANIMAL_TABLE_NAME, formValues, this.existingDoc.id).then(function () {
       _this.navCtrl.pop();
     });
   }
@@ -151,7 +151,7 @@ export class AnimalDetailPage {
         this.updateRecord();
       }
       if (item.name == this.dotsMenuProvider.CREATE_NEW_EVENT && !this.isNew) {
-        this.navCtrl.push(EventPage,{table:'animals', entry: this.existingDoc});
+        this.navCtrl.push(EventPage,{table: AnimalProvider.ANIMAL_TABLE_NAME, entry: this.existingDoc});
       }
     });
     popover.present({
@@ -163,13 +163,13 @@ export class AnimalDetailPage {
   updateRecord() {
     let animal = this.form.getRawValue();
     animal.dateOfBirth = new Date(animal.dateOfBirth);
-    this.api.update('animals', animal).then((resp)=>{
+    this.api.update(AnimalProvider.ANIMAL_TABLE_NAME, animal).then((resp)=>{
       this.navCtrl.pop();
     });
   }
 
   deleteRecord() {
-    this.api.delete('animals', this.existingDoc).then((resp)=>{
+    this.api.delete(AnimalProvider.ANIMAL_TABLE_NAME, this.existingDoc).then((resp)=>{
       this.navCtrl.pop();
     });
   }

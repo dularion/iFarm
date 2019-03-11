@@ -60,6 +60,11 @@
   "EVENTS": {
     "TITLE": {
       "P": "Ereignisse"
+    },
+    "FORM": {
+      "TITLE": "Title",
+      "DATE": "Date",
+      "DESCRIPTION": "DESCRIPTION"
     }
   },
 
