@@ -57,6 +57,12 @@
     }
   },
 
+  "EVENTS": {
+    "TITLE": {
+      "P": "Ereignisse"
+    }
+  },
+
   "NAME": "Name",
   "PASSWORD": "Passwort",
   "EMAIL": "Email",

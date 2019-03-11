@@ -13,7 +13,6 @@ import {AnimalListPage} from '../pages/animal-list/animal-list';
 import {AnimalDetailPage} from '../pages/animal-detail/animal-detail';
 import {PhotoModalPage} from '../pages/photo-modal/photo-modal';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {IFarmEvents} from '../pages/events/events';
 import {AreaListPage} from '../pages/area-list/area-list';
 import {AreaDetailPage} from '../pages/area-detail/area-detail';
 import {VehicleListPage} from '../pages/vehicle-list/vehicle-list';
@@ -31,6 +30,9 @@ import {IonicStorageModule} from "@ionic/storage";
 import { StorageProvider } from '../providers/storage/storage';
 import { DotsMenuProvider } from '../providers/dots-menu/dots-menu';
 import {DotsMenuPage} from "../pages/dots-menu/dots-menu";
+import {EventPageModule} from "../pages/event/event.module";
+import {EventPage} from "../pages/event/event";
+import {EventListPage} from "../pages/event/event-list/event-list";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -70,7 +72,6 @@ export class MyErrorHandler implements ErrorHandler {
     ListPage,
     AnimalDetailPage,
     PhotoModalPage,
-    IFarmEvents,
     AreaListPage,
     AreaDetailPage,
     VehicleListPage,
@@ -92,7 +93,9 @@ export class MyErrorHandler implements ErrorHandler {
     IonicStorageModule.forRoot({
       name: '__mydb',
       driverOrder: ['indexeddb', 'sqlite', 'websql']
-    })
+    }),
+    EventPageModule
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -102,11 +105,12 @@ export class MyErrorHandler implements ErrorHandler {
     ListPage,
     AnimalDetailPage,
     PhotoModalPage,
-    IFarmEvents,
     AreaListPage,
     AreaDetailPage,
     VehicleListPage,
     VehicleDetailPage,
+    EventPage,
+    EventListPage,
     DotsMenuPage
   ],
   providers: [
