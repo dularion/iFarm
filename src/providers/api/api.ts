@@ -48,7 +48,7 @@ export class Api {
       if(filters){
         filters.forEach(function (filter:FirebaseFilter) {
           if(filter.value){
-            query = dbRef.where(filter.fieldPath, filter.opStr, filter.value);
+            query = query.where(filter.fieldPath, filter.opStr, filter.value);
           }
         })
       }
@@ -87,12 +87,14 @@ export class Api {
     }
   }
 
-  put(endpoint: string, body: any, reqOpts?: any) {
-    return this.http.put(this.url + '/' + endpoint, body, reqOpts);
+  update(table, item) {
+    let id = item.id;
+    delete item.id;
+    return this.db.collection(table).doc(id).update(item);
   }
 
-  delete(endpoint: string, reqOpts?: any) {
-    return this.http.delete(this.url + '/' + endpoint, reqOpts);
+  delete(table, item) {
+    return this.db.collection(table).doc(item.id).delete();
   }
 
   patch(endpoint: string, body: any, reqOpts?: any) {

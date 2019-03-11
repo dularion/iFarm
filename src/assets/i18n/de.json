@@ -26,6 +26,17 @@
       "CALVES": "Kälber",
       "COW": "Kühe",
       "BULL": "Bullen"
+    },
+    "FORM": {
+      "NUMBER": "Nr",
+      "GENDER": "Geschlecht",
+      "F": "Weiblich",
+      "M": "Männlich",
+      "BIRTH_DATE":"Geboren am",
+      "RACE": "Rasse",
+      "MOM": "Mutter",
+      "COUNT": "Anzahl Kälber"
+
     }
   },
 
@@ -103,5 +114,14 @@
   "LANGUAGES": {
     "DE": "Deutsche",
     "EN": "Englisch"
+  },
+  "SAVE": "Speichern",
+  "DOTS_MENU": {
+    "SAVE_RECORD": "Speichern",
+    "EDIT_RECORD": "bearbeiten",
+    "CREATE_NEW": "Erstelle neu",
+    "CREATE_NEW_EVENT": "Ereignis hinzufügen",
+    "CREATE_NEW_NOTIFICATION": "Benachrichtigung hinzufügen",
+    "DELETE_RECORD": "Löschen"
   }
 }

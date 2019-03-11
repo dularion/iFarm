@@ -4,6 +4,11 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>{{ form.value.name }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -18,15 +23,16 @@
         </ion-col>
         <ion-col col-8>
           <ion-item>
-            <ion-label floating>Nr *</ion-label>
-            <ion-input placeholder="Nr *" type="text" formControlName="name"></ion-input>
+            <ion-label floating>{{"ANIMALS.FORM.NUMBER" | translate}} *</ion-label>
+            <ion-input [placeholder]="('ANIMALS.FORM.NUMBER' | translate) + ' *'" type="text"
+                       formControlName="name"></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-label floating>Geschlecht *</ion-label>
+            <ion-label floating>{{"ANIMALS.FORM.GENDER" | translate}} *</ion-label>
             <ion-select formControlName="gender">
-              <ion-option value="female">Weiblich</ion-option>
-              <ion-option value="male">Männlich</ion-option>
+              <ion-option value="female">{{"ANIMALS.FORM.F" | translate}}</ion-option>
+              <ion-option value="male">{{"ANIMALS.FORM.M" | translate}}</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -34,24 +40,24 @@
     </ion-grid>
 
     <ion-item>
-      <ion-label>Geboren am *:</ion-label>
+      <ion-label>{{"ANIMALS.FORM.BIRTH_DATE" | translate}} *:</ion-label>
       <ion-datetime displayFormat="DD.MM.YYYY" pickerFormat="DD MM YYYY" formControlName="dateOfBirth"></ion-datetime>
     </ion-item>
 
     <ion-item>
-      <ion-label>Rasse *:</ion-label>
+      <ion-label>{{"ANIMALS.FORM.RACE" | translate}} *:</ion-label>
       <ion-input type="text" formControlName="race"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Mutter:</ion-label>
+      <ion-label>{{"ANIMALS.FORM.MOM" | translate}}:</ion-label>
       <ion-select formControlName="mother">
         <ion-option *ngFor="let animal of adultFemales" [value]="animal.name">{{ animal.name }}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item *ngIf="form.gender == 'female' && isAdult()">
-      <ion-label>Anzahl Kälber:</ion-label>
+      <ion-label>{{"ANIMALS.FORM.COUNT" | translate}}:</ion-label>
       <ion-input type="number" formControlName="childrenCount"></ion-input>
     </ion-item>
 
@@ -59,14 +65,14 @@
   </form>
 
 
-    <hr>
+  <hr>
 
 
   <ion-footer>
     <ion-toolbar>
       <ion-buttons end>
         <button ion-button icon-end color="secondary" (click)="save()">
-          Speichern
+          {{"SAVE" | translate}}
           <ion-icon name="checkmark-circle"></ion-icon>
         </button>
       </ion-buttons>

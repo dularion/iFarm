@@ -29,6 +29,8 @@ import {WelcomePageModule} from '../pages/welcome/welcome.module';
 import { DateProvider } from '../providers/date/date';
 import {IonicStorageModule} from "@ionic/storage";
 import { StorageProvider } from '../providers/storage/storage';
+import { DotsMenuProvider } from '../providers/dots-menu/dots-menu';
+import {DotsMenuPage} from "../pages/dots-menu/dots-menu";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -73,6 +75,7 @@ export class MyErrorHandler implements ErrorHandler {
     AreaDetailPage,
     VehicleListPage,
     VehicleDetailPage,
+    DotsMenuPage
   ],
   imports: [
     WelcomePageModule,
@@ -103,7 +106,8 @@ export class MyErrorHandler implements ErrorHandler {
     AreaListPage,
     AreaDetailPage,
     VehicleListPage,
-    VehicleDetailPage
+    VehicleDetailPage,
+    DotsMenuPage
   ],
   providers: [
     Camera,
@@ -117,7 +121,8 @@ export class MyErrorHandler implements ErrorHandler {
     IonicErrorHandler,
     [{ provide: ErrorHandler, useClass: MyErrorHandler }],
     DateProvider,
-    StorageProvider
+    StorageProvider,
+    DotsMenuProvider
   ]
 })
 export class AppModule {}
