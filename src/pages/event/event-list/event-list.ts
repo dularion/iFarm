@@ -3,12 +3,6 @@ import {NavController} from 'ionic-angular';
 import {EventProvider} from "../../../providers/event/event";
 import {EventPage} from "../event";
 
-/**
- * Generated class for the EventListPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-event-list',
@@ -42,6 +36,6 @@ export class EventListPage {
     this.eventProvider.getAllRecords(this.segmentSelection).then((resp) => {
       this.events = resp;
       this.isLoading = false;
-    })
+    });
   }
 }

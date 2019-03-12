@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, PopoverController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, PopoverController, ToastController} from 'ionic-angular';
 import {DotsMenuPage} from "../dots-menu/dots-menu";
 import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
 import {AnimalProvider} from "../../providers/animal/animal";
@@ -30,6 +30,7 @@ export class EventPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              private toastCtrl: ToastController,
               public dotsMenuProvider: DotsMenuProvider,
               public animalProvider: AnimalProvider,
               public eventProvider: EventProvider,
@@ -37,7 +38,7 @@ export class EventPage {
               public popoverCtrl: PopoverController,
               public fb: FormBuilder,) {
 
-    this.isNew = !this.navParams.data.entry.id;
+    this.isNew = !this.navParams.data.entry.entryId;
     // if (this.isNew) {
     //   this.presentAlert();
     // }
@@ -86,13 +87,19 @@ export class EventPage {
   }
 
   updateRecord() {
-
+    if (this.eventForm.valid) {
+      let item = this.eventForm.value;
+      item.id = this.eventEntity.id;
+      this.eventProvider.updateEvent(EventProvider.EVENT_TABLE_NAME, item).then((resp) => {
+        this.presentToast();
+      })
+    }
   }
 
   saveRecord() {
     if (this.eventForm.valid) {
       this.eventProvider.save(EventProvider.EVENT_TABLE_NAME, this.eventForm.value).then((resp) => {
-        console.log('doc created', resp);
+        this.presentToast();
       })
     }
     console.log('FORM', this.eventForm.value);
@@ -141,8 +148,22 @@ export class EventPage {
   }
 
   getToday() {
-
     return moment().format('YYYY-MM-DD');
+  }
+
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Event was added successfully',
+      duration: 2000,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      this.navCtrl.pop();
+      this.navCtrl.push(EventListPage);
+    });
+
+    toast.present();
   }
 
 }
