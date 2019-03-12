@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, PopoverController} from 'ionic-angular';
 import {DotsMenuPage} from "../dots-menu/dots-menu";
 import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
 import {AnimalProvider} from "../../providers/animal/animal";
-import {Api} from "../../providers/api/api";
 import moment from 'moment';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormControl, Validators} from "@angular/forms";
+import {AlertController} from "ionic-angular";
+import {EventListPage} from "./event-list/event-list";
 
 /**
  * Generated class for the EventPage page.
@@ -30,12 +31,15 @@ export class EventPage {
               public navParams: NavParams,
               public dotsMenuProvider: DotsMenuProvider,
               public animalProvider: AnimalProvider,
-              private api: Api,
+              private alertCtrl: AlertController,
               public popoverCtrl: PopoverController,
               public fb: FormBuilder,) {
 
-    this.isNew = !this.navParams.data.table && !this.navParams.data.entry;
-    if(this.navParams.data.entry){
+    this.isNew = this.navParams.data.table && this.navParams.data.entry;
+    // if (this.isNew) {
+    //   this.presentAlert();
+    // }
+    if (this.navParams.data.entry) {
       this.eventEntity = this.navParams.data.entry;
     }
     this.table = this.navParams.data.table;
@@ -45,6 +49,20 @@ export class EventPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventPage', this.navParams.data, this.isNew);
+  }
+
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'No entity',
+      subTitle: 'No entity to create event!',
+      buttons: [{
+        text: 'Go to list',
+        handler: () => {
+            this.navCtrl.push(EventListPage);
+        }
+      }]
+    });
+    alert.present();
   }
 
   presentPopover(myEvent) {
@@ -65,34 +83,34 @@ export class EventPage {
     });
   }
 
-  updateRecord(){
+  updateRecord() {
 
   }
 
-  saveRecord(){
-    console.log('FORM', this.eventForm);
+  saveRecord() {
+    console.log('FORM', this.eventForm.value);
   }
 
-  deleteRecord(){
+  deleteRecord() {
 
   }
 
-  createForm(){
+  createForm() {
     return this.fb.group({
       entryId: new FormControl(''),
-      title: new FormControl('',[Validators.required, Validators.minLength(5)]),
-      eventDate: new FormControl(new Date(new Date().getTime() + (-(new Date().getTimezoneOffset()* 1000))), [Validators.required, this.validateDate]),
+      title: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      eventDate: new FormControl(new Date(), [Validators.required, this.validateDate]),
       description: new FormControl('',),
 
     });
   }
 
-  validateDate(control: AbstractControl){
-    // console.log('control.value', control.value, new Date());
-    // console.log('DIFF', (new Date(control.value).getTime()) - new Date().getTime());
-    // console.log('<', new Date(control.value).getTime(), new Date().getTime());
-    if ((new Date(control.value).getTime()) - new Date().getTime() < new Date().getTime() + (-(new Date().getTimezoneOffset()* 1000))) {
-      return { invalidDate: true };
+  validateDate(control: AbstractControl) {
+    let offsetMilisec = new Date().getTimezoneOffset()*60000;
+    let timeWithOffset = new Date(control.value).getTime() + offsetMilisec;
+    let now = new Date().getTime();
+    if (timeWithOffset < now) {
+      return {invalidDate: true};
     }
     return null;
   }
@@ -104,12 +122,12 @@ export class EventPage {
     ];
   }
 
-  getEventImage(){
-    if(this.table == AnimalProvider.ANIMAL_TABLE_NAME){
-      return "assets/imgs/animal-"+this.animalProvider.getTypeForImage(this.eventEntity)+"_image.png";
-    }else if(this.table == 'areas'){
+  getEventImage() {
+    if (this.table == AnimalProvider.ANIMAL_TABLE_NAME) {
+      return "assets/imgs/animal-" + this.animalProvider.getTypeForImage(this.eventEntity) + "_image.png";
+    } else if (this.table == 'areas') {
 
-    }else if(this.table == 'vehicles') {
+    } else if (this.table == 'vehicles') {
 
     }
   }
