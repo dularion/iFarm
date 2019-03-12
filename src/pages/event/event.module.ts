@@ -5,6 +5,7 @@ import {EventListPage} from "./event-list/event-list";
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from "@angular/common/http";
 import {HttpLoaderFactory} from "../../app/app.module";
+import {EventProvider} from "../../providers/event/event";
 
 @NgModule({
   declarations: [
@@ -25,5 +26,8 @@ import {HttpLoaderFactory} from "../../app/app.module";
       }
     }),
   ],
+  providers:[
+    EventProvider
+  ]
 })
 export class EventPageModule {}

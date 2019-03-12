@@ -7,6 +7,7 @@ import moment from 'moment';
 import {AbstractControl, FormBuilder, FormControl, Validators} from "@angular/forms";
 import {AlertController} from "ionic-angular";
 import {EventListPage} from "./event-list/event-list";
+import {EventProvider} from "../../providers/event/event";
 
 /**
  * Generated class for the EventPage page.
@@ -31,11 +32,12 @@ export class EventPage {
               public navParams: NavParams,
               public dotsMenuProvider: DotsMenuProvider,
               public animalProvider: AnimalProvider,
+              public eventProvider: EventProvider,
               private alertCtrl: AlertController,
               public popoverCtrl: PopoverController,
               public fb: FormBuilder,) {
 
-    this.isNew = this.navParams.data.table && this.navParams.data.entry;
+    this.isNew = !this.navParams.data.entry.id;
     // if (this.isNew) {
     //   this.presentAlert();
     // }
@@ -58,7 +60,7 @@ export class EventPage {
       buttons: [{
         text: 'Go to list',
         handler: () => {
-            this.navCtrl.push(EventListPage);
+          this.navCtrl.push(EventListPage);
         }
       }]
     });
@@ -88,6 +90,11 @@ export class EventPage {
   }
 
   saveRecord() {
+    if (this.eventForm.valid) {
+      this.eventProvider.save(EventProvider.EVENT_TABLE_NAME, this.eventForm.value).then((resp) => {
+        console.log('doc created', resp);
+      })
+    }
     console.log('FORM', this.eventForm.value);
   }
 
@@ -97,16 +104,17 @@ export class EventPage {
 
   createForm() {
     return this.fb.group({
-      entryId: new FormControl(''),
-      title: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      eventDate: new FormControl(new Date(), [Validators.required, this.validateDate]),
-      description: new FormControl('',),
-
+      dateCreated: new FormControl(this.eventEntity.dateCreated || new Date(), [Validators.required]),
+      entryId: new FormControl(this.eventEntity.id, [Validators.required]),
+      title: new FormControl(this.eventEntity.title || '', [Validators.required, Validators.minLength(5)]),
+      eventDate: new FormControl(this.eventEntity.eventDate || new Date(), [Validators.required, this.validateDate]),
+      description: new FormControl(this.eventEntity.description || ''),
+      table: new FormControl(this.eventEntity.table || this.table, [Validators.required])
     });
   }
 
   validateDate(control: AbstractControl) {
-    let offsetMilisec = new Date().getTimezoneOffset()*60000;
+    let offsetMilisec = new Date().getTimezoneOffset() * 60000;
     let timeWithOffset = new Date(control.value).getTime() + offsetMilisec;
     let now = new Date().getTime();
     if (timeWithOffset < now) {

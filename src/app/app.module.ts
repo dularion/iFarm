@@ -33,6 +33,7 @@ import {DotsMenuPage} from "../pages/dots-menu/dots-menu";
 import {EventPageModule} from "../pages/event/event.module";
 import {EventPage} from "../pages/event/event";
 import {EventListPage} from "../pages/event/event-list/event-list";
+import { EventProvider } from '../providers/event/event';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -126,7 +127,8 @@ export class MyErrorHandler implements ErrorHandler {
     [{ provide: ErrorHandler, useClass: MyErrorHandler }],
     DateProvider,
     StorageProvider,
-    DotsMenuProvider
+    DotsMenuProvider,
+    EventProvider
   ]
 })
 export class AppModule {}
