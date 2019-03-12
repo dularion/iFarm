@@ -24,4 +24,8 @@ export class EventProvider {
   updateEvent(table, item){
     return this.api.update(table, item);
   }
+
+  deleteEvent(table, item){
+    return this.api.delete(table, item);
+  }
 }

@@ -102,11 +102,12 @@ export class EventPage {
         this.presentToast();
       })
     }
-    console.log('FORM', this.eventForm.value);
   }
 
   deleteRecord() {
-
+    this.eventProvider.deleteEvent(EventProvider.EVENT_TABLE_NAME, this.eventEntity).then((resp) => {
+      this.navCtrl.pop();
+    })
   }
 
   createForm() {
