@@ -65,7 +65,8 @@
       "TITLE": "Title",
       "DATE": "Date",
       "DESCRIPTION": "Description"
-    }
+    },
+    "NO_EVENTS": "No events"
   },
 
   "NAME": "Name",

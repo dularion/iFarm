@@ -28,4 +28,9 @@ export class EventProvider {
   deleteEvent(table, item){
     return this.api.delete(table, item);
   }
+
+  getEventsByEntity(id){
+    return this.api.query(EventProvider.EVENT_TABLE_NAME,
+      [{fieldPath: 'entryId', opStr: '==', value: id}], 'dateCreated', 'desc');
+  }
 }
