@@ -66,14 +66,22 @@
 
 
   <ion-footer>
-    <ion-toolbar>
-      <ion-buttons end>
-        <button ion-button icon-end color="secondary" (click)="save()">
-          {{"SAVE" | translate}}
-          <ion-icon name="checkmark-circle"></ion-icon>
+    <!--<ion-toolbar>-->
+      <!--<ion-buttons start>-->
+        <button ion-button class="btns-width-50">
+          {{"ANIMALS.TITLE.S" | translate}}
         </button>
-      </ion-buttons>
-    </ion-toolbar>
+      <!--</ion-buttons>-->
+      <!--<ion-buttons end>-->
+        <button ion-button color="light"
+                [disabled]="isNew"
+                [navPush]="entityPage"
+                [navParams]="entityPageParams"
+                class="btns-width-50">
+          {{"EVENTS.TITLE.P" | translate}}
+        </button>
+      <!--</ion-buttons>-->
+    <!--</ion-toolbar>-->
   </ion-footer>
 
 </ion-content>

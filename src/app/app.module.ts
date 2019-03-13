@@ -34,6 +34,7 @@ import {EventPageModule} from "../pages/event/event.module";
 import {EventPage} from "../pages/event/event";
 import {EventListPage} from "../pages/event/event-list/event-list";
 import { EventProvider } from '../providers/event/event';
+import {EntityEventsPage} from "../pages/event/entity-events/entity-events";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -112,7 +113,8 @@ export class MyErrorHandler implements ErrorHandler {
     VehicleDetailPage,
     EventPage,
     EventListPage,
-    DotsMenuPage
+    DotsMenuPage,
+    EntityEventsPage
   ],
   providers: [
     Camera,
