@@ -46,8 +46,15 @@
       "S": "Fläche"
     },
     "TYPES": {
-      "pasture": "Grünland",
-      "field": "Ackerland"
+      "PASTURE": "Grünland",
+      "FIELD": "Ackerland"
+    },
+    "FORM": {
+      "NAME": "Name",
+      "TYPE": "Art",
+      "FLICK_NUMBER": "Flicknummer",
+      "SIZE": "Größe",
+      "CROP_ROTATION": "Fruchfolge"
     }
   },
 

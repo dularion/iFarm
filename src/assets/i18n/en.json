@@ -46,8 +46,15 @@
       "S": "Surface"
     },
     "TYPES": {
-      "pasture": "Grassland",
-      "field": "Farmland"
+      "PASTURE": "Grassland",
+      "FIELD": "Farmland"
+    },
+    "FORM": {
+      "NAME": "Name",
+      "TYPE": "Type",
+      "FLICK_NUMBER": "Flick number",
+      "SIZE": "Size",
+      "CROP_ROTATION": "Crop rotation"
     }
   },
 
