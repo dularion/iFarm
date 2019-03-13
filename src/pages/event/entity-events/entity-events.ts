@@ -12,11 +12,13 @@ export class EntityEventsPage {
   entity;
   events = [];
   isLoading = true;
+  buttonLabel = "";
 
   constructor(public navCtrl: NavController,
               private eventProvider: EventProvider,
               public navParams: NavParams) {
     this.entity = navParams.data.entity;
+    this.buttonLabel = navParams.data.button;
     this.loadEvents();
   }
 

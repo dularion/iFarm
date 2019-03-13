@@ -5,8 +5,8 @@
     </button>
     <ion-title>{{ form.name }}</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="save()">
-        <ion-icon color="secondary" name="checkmark-circle"></ion-icon>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -46,4 +46,17 @@
     <hr>
 
   </form>
+
+  <ion-footer>
+    <button ion-button class="btns-width-50">
+      {{"AREAS.TITLE.S" | translate}}
+    </button>
+    <button ion-button color="light"
+            [disabled]="isNew"
+            [navPush]="entityPage"
+            [navParams]="entityPageParams"
+            class="btns-width-50">
+      {{"EVENTS.TITLE.P" | translate}}
+    </button>
+  </ion-footer>
 </ion-content>

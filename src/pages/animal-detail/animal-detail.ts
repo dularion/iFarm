@@ -40,7 +40,7 @@ export class AnimalDetailPage {
     this.existingDoc = navParams.get('item') || defaultValues;
     this.isNew = !this.existingDoc.id;
     this.entityPage = EntityEventsPage;
-    this.entityPageParams = {entity: this.existingDoc};
+    this.entityPageParams = {entity: this.existingDoc, button: 'ANIMAL'};
 
     this.form = this.createForm();
     this.initDotsMenuItems();
