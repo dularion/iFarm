@@ -28,7 +28,7 @@
       "BULL": "Bulls"
     },
     "FORM": {
-      "NUMBER": "Nr",
+      "NUMBER": "Number",
       "GENDER": "Gender",
       "F": "Female",
       "M": "Male",
@@ -36,7 +36,12 @@
       "RACE": "Race",
       "MOM": "Mother",
       "COUNT": "Number of calves"
-
+    },
+    "POPUP": {
+      "TITLE": "Are you sure?",
+      "MSG": "After creation, some values are not changeable, such as gender, race and date of birth.",
+      "REJECT": "Abort",
+      "RESOLVE": "Continue"
     }
   },
 

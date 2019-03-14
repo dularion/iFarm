@@ -36,7 +36,12 @@
       "RACE": "Rasse",
       "MOM": "Mutter",
       "COUNT": "Anzahl Kälber"
-
+    },
+    "POPUP": {
+      "TITLE": "Sind Sie Sicher?",
+      "MSG": "Nach der Erstellung, sind einige Werte nicht mehr änderbar, wie Geschlecht, die Rasse und das Geburtsdatum.",
+      "REJECT": "Abbrechen",
+      "RESOLVE": "Fortfahren"
     }
   },
 

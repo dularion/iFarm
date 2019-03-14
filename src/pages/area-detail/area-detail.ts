@@ -43,11 +43,12 @@ export class AreaDetailPage {
 
   createForm(){
     return this.fb.group({
-      name: [this.existingDoc.name, Validators.required],
-      nr: [this.existingDoc.nr, Validators.required],
-      type: [this.existingDoc.type, Validators.required],
-      size: this.existingDoc.size,
-      nextCrop: this.existingDoc.nextCrop
+      name: [this.existingDoc.name || '', Validators.required],
+      nr: [this.existingDoc.nr || '', Validators.required],
+      type: [this.existingDoc.type || '', Validators.required],
+      size: this.existingDoc.size || '',
+      nextCrop: this.existingDoc.nextCrop || '',
+      dateCreated:[this.existingDoc.dateCreated || new Date()]
     })
   }
 

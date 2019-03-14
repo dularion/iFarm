@@ -121,18 +121,25 @@ export class AnimalDetailPage {
 
   private showFirstTimeSaveDialog() {
     let promise = new Promise((resolve, reject) => {
+      let title, msg, rej, res;
+      this.translate.get('ANIMALS.POPUP').subscribe((resp)=>{
+        title = resp.TITLE;
+        msg = resp.MSG;
+        rej = resp.REJECT;
+        res = resp.RESOLVE;
+      });
       const confirm = this.alertCtrl.create({
-        title: 'Sind Sie Sicher?',
-        message: 'Nach der Erstellung, sind einige Werte nicht mehr änderbar, wie Geschlecht, die Rasse und das Geburtsdatum.',
+        title: title,
+        message: msg,
         buttons: [
           {
-            text: 'Abbrechen',
+            text: rej,
             handler: () => {
               reject();
             }
           },
           {
-            text: 'Fortfahren',
+            text: res,
             handler: () => {
               resolve();
             }
