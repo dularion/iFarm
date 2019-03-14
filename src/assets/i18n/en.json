@@ -7,8 +7,11 @@
       "S": "Vehicle"
     },
     "TYPES": {
+      "ALL": "All",
+      "TRACTOR": "Traktor",
+      "TRAILER": "Trailer",
       "tractor": "Traktor",
-      "trailer": "Pendant"
+      "trailer": "Trailer"
     },
     "FORM": {
       "LICENCE": "Licence",
