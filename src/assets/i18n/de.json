@@ -75,7 +75,8 @@
     "FORM": {
       "TITLE": "Title",
       "DATE": "Date",
-      "DESCRIPTION": "DESCRIPTION"
+      "DESCRIPTION": "DESCRIPTION",
+      "EVENT_FOR": "Veranstaltung für"
     },
     "NO_EVENTS": "Keine Ereignisse"
   },
