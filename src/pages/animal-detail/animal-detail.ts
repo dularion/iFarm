@@ -10,6 +10,7 @@ import {DotsMenuPage} from "../dots-menu/dots-menu";
 import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
 import {EventPage} from "../event/event";
 import {EntityEventsPage} from "../event/entity-events/entity-events";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'animal-detail',
@@ -30,6 +31,7 @@ export class AnimalDetailPage {
               public dotsMenuProvider: DotsMenuProvider,
               public animalProvider: AnimalProvider,
               private api: Api,
+              private translate: TranslateService,
               public popoverCtrl: PopoverController,
               public fb: FormBuilder,
               public alertCtrl: AlertController) {
@@ -81,10 +83,15 @@ export class AnimalDetailPage {
 
   save() {
     let _this = this;
+    let title, msg;
+    this.translate.get('AREAS.POPUP').subscribe((resp)=>{
+      title = resp.TITLE;
+      msg = resp.MSG;
+    });
     if (_this.form.status == 'INVALID') {
       let alert = this.alertCtrl.create({
-        title: 'Formular nicht vollständig',
-        subTitle: 'Bitte überprüfen Sie die Pflichtangaben (markiert mit *)',
+        title: title,
+        subTitle: msg,
         buttons: ['OK']
       });
       alert.present();
