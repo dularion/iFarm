@@ -26,7 +26,7 @@ export class PageProvider {
       { name: 'AREAS', component: AreaListPage, icon: 'ifarmicon-map' },
       { name: 'VEHICLES', component: VehicleListPage, icon: 'ifarmicon-tractor' },
       { name: 'SETTINGS', component: ListPage, icon: 'ifarmicon-cogs' },
-      { name: 'EVENTS', component: EventListPage, icon: 'checkbox-outline' }
+      { name: 'EVENTS', component: EventListPage, icon: 'ifarmicon-event' }
     ];
   }
 

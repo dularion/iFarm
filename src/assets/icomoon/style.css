@@ -40,3 +40,6 @@
 .ifarmicon-tractor:before {
   content: "\e901";
 }
+.ifarmicon-event:before {
+  content: "\e903";
+}
