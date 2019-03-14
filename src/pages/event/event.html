@@ -27,7 +27,7 @@
           </ion-thumbnail>
         </ion-col>
         <ion-col col-8>
-          <ion-item>
+          <ion-item [ngClass]="{'error-input': eventForm.get('title').invalid && eventForm.get('title').touched}">
             <ion-label floating [ngClass]="{'error-input': eventForm.get('title').invalid && eventForm.get('title').touched}">
               {{"EVENTS.FORM.TITLE" | translate}} *
             </ion-label>
@@ -40,7 +40,7 @@
       </ion-row>
       <ion-row>
         <ion-col col-12>
-          <ion-item>
+          <ion-item [ngClass]="{'error-input': eventForm.get('eventDate').invalid && eventForm.get('eventDate').touched}">
             <ion-label floating
                        [ngClass]="{'error-input': eventForm.get('eventDate').invalid && eventForm.get('eventDate').touched}">
               {{"EVENTS.FORM.DATE" | translate}} *

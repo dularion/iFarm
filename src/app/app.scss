@@ -15,18 +15,33 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-.ifarm{
+.ifarm {
 
-  ion-item{
+  ion-item {
     padding-left: 4px;
   }
 
-  .spinner-container{
+  .spinner-container {
     text-align: center;
   }
 
   .btns-width-50 {
     width: 48%;
   }
+
+
+  ion-item.error-input {
+    .item-inner {
+      border-bottom-color: $text-input-highlight-color-invalid;
+    }
+  }
+  .error-input {
+    color: $text-input-highlight-color-invalid;
+    border-bottom-color: $text-input-highlight-color-invalid;
+    .item-inner {
+      border-bottom-color: $text-input-highlight-color-invalid;
+    }
+  }
+
 }
 
