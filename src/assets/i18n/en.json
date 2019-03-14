@@ -55,6 +55,10 @@
       "FLICK_NUMBER": "Flick number",
       "SIZE": "Size",
       "CROP_ROTATION": "Crop rotation"
+    },
+    "POPUP": {
+      "TITLE": "Form not complete",
+      "MSG": "Please check the required information (marked with *)"
     }
   },
 

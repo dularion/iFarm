@@ -55,6 +55,10 @@
       "FLICK_NUMBER": "Flicknummer",
       "SIZE": "Größe",
       "CROP_ROTATION": "Fruchfolge"
+    },
+    "POPUP": {
+      "TITLE": "Formular nicht vollständig",
+      "MSG": "Bitte überprüfen Sie die Pflichtangaben (markiert mit *)"
     }
   },
 

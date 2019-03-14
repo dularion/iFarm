@@ -7,6 +7,7 @@ import {EventPage} from "../event/event";
 import {AnimalProvider} from "../../providers/animal/animal";
 import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
 import {EntityEventsPage} from "../event/entity-events/entity-events";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'area-detail',
@@ -24,6 +25,7 @@ export class AreaDetailPage {
               public navCtrl: NavController,
               private dotsMenuProvider: DotsMenuProvider,
               public fb: FormBuilder,
+              private translate: TranslateService,
               public popoverCtrl: PopoverController,
               public alertCtrl: AlertController,
               private api: Api) {
@@ -33,22 +35,31 @@ export class AreaDetailPage {
     this.entityPage = EntityEventsPage;
     this.entityPageParams = {entity: this.existingDoc, button: 'AREA'};
 
-    this.form = fb.group({
+    this.form = this.createForm();
+    this.initDotsMenuItems();
+  }
+
+  createForm(){
+    return this.fb.group({
       name: [this.existingDoc.name, Validators.required],
       nr: [this.existingDoc.nr, Validators.required],
       type: [this.existingDoc.type, Validators.required],
       size: this.existingDoc.size,
       nextCrop: this.existingDoc.nextCrop
-    });
-    this.initDotsMenuItems();
+    })
   }
 
   save() {
     let _this = this;
+    let title, msg;
+    this.translate.get('AREAS.POPUP').subscribe((resp)=>{
+      title = resp.TITLE;
+      msg = resp.MSG;
+    });
     if (_this.form.status == 'INVALID') {
       let alert = this.alertCtrl.create({
-        title: 'Formular nicht vollständig',
-        subTitle: 'Bitte überprüfen Sie die Pflichtangaben (markiert mit *)',
+        title: title,
+        subTitle: msg,
         buttons: ['OK']
       });
       alert.present();
