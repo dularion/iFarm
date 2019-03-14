@@ -85,7 +85,7 @@ export class AreaDetailPage {
         this.save();
       }
       if (item.name == this.dotsMenuProvider.CREATE_NEW_EVENT && !this.isNew) {
-        this.navCtrl.push(EventPage, {table: AnimalProvider.ANIMAL_TABLE_NAME, entry: this.existingDoc});
+        this.navCtrl.push(EventPage, {table: this.table, entry: this.existingDoc});
       }
     });
     popover.present({

@@ -161,7 +161,6 @@ export class EventPage {
 
     toast.onDidDismiss(() => {
       this.navCtrl.pop();
-      this.navCtrl.push(EventListPage);
     });
 
     toast.present();
