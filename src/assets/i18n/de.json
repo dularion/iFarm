@@ -9,6 +9,10 @@
     "TYPES": {
       "tractor": "Traktor",
       "trailer": "Anhänger"
+    },
+    "FORM": {
+      "LICENCE": "Nummernschild",
+      "CHECKUP": "Letzter TÜV"
     }
   },
 

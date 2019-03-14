@@ -1,9 +1,3 @@
-<!--
-  Generated template for the VehicleDetailPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -11,11 +5,11 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-title>{{form.licencePlate}}</ion-title>
+    <ion-title>{{ existingDoc.licencePlate || ('VEHICLES.TITLE.S' | translate)}}</ion-title>
 
     <ion-buttons end>
-      <button ion-button icon-only (click)="save()">
-        <ion-icon color="secondary" name="checkmark-circle"></ion-icon>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -31,25 +25,40 @@
       <ion-row>
         <ion-col col-4>
           <ion-thumbnail item-start>
-            <img src="assets/imgs/vehicle_image.png" (click)="changeImage()">
+            <img src="assets/imgs/vehicle_image.png">
           </ion-thumbnail>
         </ion-col>
         <ion-col col-8>
-          <ion-item>
-            <ion-label floating>Nummernschild</ion-label>
-            <ion-input type="text" formControlName="licencePlate"></ion-input>
+          <ion-item [ngClass]="{'error-input': form.get('licencePlate').invalid && form.get('licencePlate').touched}">
+            <ion-label floating [ngClass]="{'error-input': form.get('licencePlate').invalid && form.get('licencePlate').touched}">
+              {{'VEHICLES.FORM.LICENCE' | translate}}</ion-label>
+            <ion-input [ngClass]="{'error-input': form.get('licencePlate').invalid && form.get('licencePlate').touched}"
+              type="text" formControlName="licencePlate"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
     </ion-grid>
 
     <ion-item>
-      <ion-label floating>Letzter TÜV:</ion-label>
+      <ion-label floating>{{'VEHICLES.FORM.CHECKUP' | translate}}:</ion-label>
       <ion-datetime displayFormat="DD.MM.YYYY" pickerFormat="DD MM YYYY" formControlName="lastCheckup"></ion-datetime>
     </ion-item>
 
     <hr>
 
   </form>
+
+  <ion-footer>
+    <button ion-button class="btns-width-50">
+      {{"VEHICLES.TITLE.S" | translate}}
+    </button>
+    <button ion-button color="light"
+            [disabled]="isNew"
+            [navPush]="entityPage"
+            [navParams]="entityPageParams"
+            class="btns-width-50">
+      {{"EVENTS.TITLE.P" | translate}}
+    </button>
+  </ion-footer>
 
 </ion-content>

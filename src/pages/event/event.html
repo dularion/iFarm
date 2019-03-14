@@ -62,7 +62,7 @@
       </ion-row>
       <ion-row>
         <ion-col col-12>
-          <ion-label>{{"EVENTS.FORM.EVENT_FOR" | translate}}: {{eventEntity.name}}, {{table}}</ion-label>
+          <ion-label>{{"EVENTS.FORM.EVENT_FOR" | translate}}: {{eventEntity.name || eventEntity.licencePlate}}, {{table}}</ion-label>
         </ion-col>
       </ion-row>
     </ion-grid>

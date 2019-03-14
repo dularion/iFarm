@@ -4,7 +4,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Api} from '../../providers/api/api';
 import {DotsMenuPage} from "../dots-menu/dots-menu";
 import {EventPage} from "../event/event";
-import {AnimalProvider} from "../../providers/animal/animal";
 import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
 import {EntityEventsPage} from "../event/entity-events/entity-events";
 import {TranslateService} from "@ngx-translate/core";
@@ -38,7 +37,6 @@ export class AreaDetailPage {
 
     this.form = this.createForm();
     this.initDotsMenuItems();
-    console.log('this.isNew', this.isNew, this.existingDoc);
   }
 
   createForm(){
