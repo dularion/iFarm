@@ -20,6 +20,7 @@ export class AreaDetailPage {
   isNew;
   entityPageParams;
   entityPage;
+  table = 'areas';
 
   constructor(public navParams: NavParams,
               public navCtrl: NavController,
@@ -37,6 +38,7 @@ export class AreaDetailPage {
 
     this.form = this.createForm();
     this.initDotsMenuItems();
+    console.log('this.isNew', this.isNew, this.existingDoc);
   }
 
   createForm(){
@@ -93,15 +95,15 @@ export class AreaDetailPage {
 
 
   updateRecord() {
-    let animal = this.form.getRawValue();
-    animal.dateOfBirth = new Date(animal.dateOfBirth);
-    this.api.update(AnimalProvider.ANIMAL_TABLE_NAME, animal).then((resp) => {
+    let area = this.form.getRawValue();
+    area.id = this.existingDoc.id;
+    this.api.update(this.table, area).then((resp) => {
       this.navCtrl.pop();
     });
   }
 
   deleteRecord() {
-    this.api.delete(AnimalProvider.ANIMAL_TABLE_NAME, this.existingDoc).then((resp) => {
+    this.api.delete(this.table, this.existingDoc).then((resp) => {
       this.navCtrl.pop();
     });
   }
