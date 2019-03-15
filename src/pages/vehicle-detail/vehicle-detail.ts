@@ -7,6 +7,8 @@ import {DotsMenuPage} from "../dots-menu/dots-menu";
 import {EventPage} from "../event/event";
 import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
 import {EntityEventsPage} from "../event/entity-events/entity-events";
+import {NotificationsPage} from "../notifications/notifications";
+import {AnimalProvider} from "../../providers/animal/animal";
 
 
 @Component({
@@ -80,6 +82,9 @@ export class VehicleDetailPage {
       if (item.name == this.dotsMenuProvider.DELETE_RECORD) {
         this.deleteRecord();
       }
+      if (item.name == this.dotsMenuProvider.CREATE_NEW_NOTIFICATION) {
+        this.createNotification();
+      }
       if (item.name == this.dotsMenuProvider.SAVE && !this.isNew) {
         this.updateRecord();
       }
@@ -95,6 +100,9 @@ export class VehicleDetailPage {
     });
   }
 
+  createNotification(){
+    this.navCtrl.push(NotificationsPage,{table: this.table, entry: this.existingDoc});
+  }
 
   updateRecord() {
     let area = this.form.getRawValue();

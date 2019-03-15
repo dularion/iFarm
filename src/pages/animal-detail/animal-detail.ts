@@ -11,6 +11,7 @@ import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
 import {EventPage} from "../event/event";
 import {EntityEventsPage} from "../event/entity-events/entity-events";
 import {TranslateService} from "@ngx-translate/core";
+import {NotificationsPage} from "../notifications/notifications";
 
 @Component({
   selector: 'animal-detail',
@@ -166,6 +167,9 @@ export class AnimalDetailPage {
       if (item.name == this.dotsMenuProvider.DELETE_RECORD) {
         this.deleteRecord();
       }
+      if (item.name == this.dotsMenuProvider.CREATE_NEW_NOTIFICATION) {
+        this.createNotification();
+      }
       if (item.name == this.dotsMenuProvider.SAVE && !this.isNew) {
         this.updateRecord();
       }
@@ -181,6 +185,9 @@ export class AnimalDetailPage {
     });
   }
 
+  createNotification(){
+    this.navCtrl.push(NotificationsPage,{table: AnimalProvider.ANIMAL_TABLE_NAME, entry: this.existingDoc});
+  }
 
   updateRecord() {
     let animal = this.form.getRawValue();
