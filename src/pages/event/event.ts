@@ -122,16 +122,6 @@ export class EventPage {
     });
   }
 
-  validateDate(control: AbstractControl) {
-    let offsetMilisec = new Date().getTimezoneOffset() * 60000;
-    let timeWithOffset = new Date(control.value).getTime() + offsetMilisec;
-    let now = new Date().getTime();
-    if (timeWithOffset < now) {
-      return {invalidDate: true};
-    }
-    return null;
-  }
-
   initDotsMenuItems() {
     this.menu = [
       this.dotsMenuProvider.SAVE,

@@ -47,7 +47,13 @@
       <ion-label floating>{{'AREAS.FORM.CROP_ROTATION' | translate }}:</ion-label>
       <ion-input type="text" formControlName="nextCrop"></ion-input>
     </ion-item>
-
+    <ion-row>
+      <ion-col col-12>
+        <button ion-button full [disabled]="form.invalid" (click)="save()">
+          {{"DOTS_MENU.SAVE_RECORD" | translate}}
+        </button>
+      </ion-col>
+    </ion-row>
     <hr>
 
   </form>
