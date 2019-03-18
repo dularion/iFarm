@@ -17,25 +17,22 @@
 <ion-content>
 
   <div padding>
-    <ion-segment [(ngModel)]="type">
+    <ion-segment [(ngModel)]="type" (ionChange)="loadData()">
       <ion-segment-button value="">
-        Alle
+       {{'VEHICLES.TYPES.ALL' | translate}}
       </ion-segment-button>
-      <ion-segment-button value="pasture">
-        Anhänger
+      <ion-segment-button value="trailer">
+        {{'VEHICLES.TYPES.TRAILER' | translate}}
       </ion-segment-button>
-      <ion-segment-button value="field">
-        Traktoren
-      </ion-segment-button>
-      <ion-segment-button value="..">
-        ??
+      <ion-segment-button value="tractor">
+        {{'VEHICLES.TYPES.TRACTOR' | translate}}
       </ion-segment-button>
     </ion-segment>
   </div>
 
 
 
-  <div class="spinner-container" *ngIf="page.isLoading">
+  <div class="spinner-container" *ngIf="isLoading">
     <ion-spinner style="text-align: center;"></ion-spinner>
   </div>
 

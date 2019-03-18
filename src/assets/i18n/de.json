@@ -7,8 +7,14 @@
       "S": "Fahrzeug"
     },
     "TYPES": {
+      "TRACTOR": "Traktor",
+      "TRAILER": "Anhänger",
       "tractor": "Traktor",
       "trailer": "Anhänger"
+    },
+    "FORM": {
+      "LICENCE": "Nummernschild",
+      "CHECKUP": "Letzter TÜV"
     }
   },
 
@@ -36,7 +42,12 @@
       "RACE": "Rasse",
       "MOM": "Mutter",
       "COUNT": "Anzahl Kälber"
-
+    },
+    "POPUP": {
+      "TITLE": "Sind Sie Sicher?",
+      "MSG": "Nach der Erstellung, sind einige Werte nicht mehr änderbar, wie Geschlecht, die Rasse und das Geburtsdatum.",
+      "REJECT": "Abbrechen",
+      "RESOLVE": "Fortfahren"
     }
   },
 
@@ -46,8 +57,19 @@
       "S": "Fläche"
     },
     "TYPES": {
-      "pasture": "Grünland",
-      "field": "Ackerland"
+      "PASTURE": "Grünland",
+      "FIELD": "Ackerland"
+    },
+    "FORM": {
+      "NAME": "Name",
+      "TYPE": "Art",
+      "FLICK_NUMBER": "Flicknummer",
+      "SIZE": "Größe",
+      "CROP_ROTATION": "Fruchfolge"
+    },
+    "POPUP": {
+      "TITLE": "Formular nicht vollständig",
+      "MSG": "Bitte überprüfen Sie die Pflichtangaben (markiert mit *)"
     }
   },
 
@@ -55,6 +77,19 @@
     "TITLE": {
       "P": "Einstellungen"
     }
+  },
+
+  "EVENTS": {
+    "TITLE": {
+      "P": "Ereignisse"
+    },
+    "FORM": {
+      "TITLE": "Title",
+      "DATE": "Date",
+      "DESCRIPTION": "DESCRIPTION",
+      "EVENT_FOR": "Veranstaltung für"
+    },
+    "NO_EVENTS": "Keine Ereignisse"
   },
 
   "NAME": "Name",

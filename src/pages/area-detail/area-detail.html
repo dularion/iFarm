@@ -5,8 +5,8 @@
     </button>
     <ion-title>{{ form.name }}</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="save()">
-        <ion-icon color="secondary" name="checkmark-circle"></ion-icon>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -15,36 +15,53 @@
 <ion-content padding>
   <form [formGroup]="form">
 
-    <ion-item>
-      <ion-label floating>Name:</ion-label>
-      <ion-input type="text" formControlName="name"></ion-input>
+    <ion-item [ngClass]="{'error-input': form.get('name').invalid && form.get('name').touched}">
+      <ion-label floating [ngClass]="{'error-input': form.get('name').invalid && form.get('name').touched}">
+        {{'AREAS.FORM.NAME' | translate }}:</ion-label>
+      <ion-input type="text" formControlName="name"
+                 [ngClass]="{'error-input': form.get('name').invalid && form.get('name').touched}"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label floating>Flicknummer:</ion-label>
-      <ion-input type="text" formControlName="nr"></ion-input>
+    <ion-item [ngClass]="{'error-input': form.get('nr').invalid && form.get('nr').touched}">
+      <ion-label floating [ngClass]="{'error-input': form.get('nr').invalid && form.get('nr').touched}">
+        {{'AREAS.FORM.FLICK_NUMBER' | translate }}:</ion-label>
+      <ion-input [ngClass]="{'error-input': form.get('nr').invalid && form.get('nr').touched}"
+                 type="text" formControlName="nr"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label floating>Art</ion-label>
-      <ion-select formControlName="type">
-        <ion-option value="pasture">Grünland</ion-option>
-        <ion-option value="field">Ackerland</ion-option>
+    <ion-item [ngClass]="{'error-input': form.get('type').invalid && form.get('type').touched}">
+      <ion-label floating [ngClass]="{'error-input': form.get('type').invalid && form.get('type').touched}">
+        {{'AREAS.FORM.TYPE' | translate }}</ion-label>
+      <ion-select formControlName="type" [ngClass]="{'error-input': form.get('type').invalid && form.get('type').touched}">
+        <ion-option value="PASTURE">{{'AREAS.TYPES.PASTURE' | translate }}</ion-option>
+        <ion-option value="FIELD">{{'AREAS.TYPES.FIELD' | translate }}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
-      <ion-label floating>Größe:</ion-label>
+      <ion-label floating>{{'AREAS.FORM.SIZE' | translate }}:</ion-label>
       <ion-input type="text" formControlName="size"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label floating>Fruchfolge:</ion-label>
+      <ion-label floating>{{'AREAS.FORM.CROP_ROTATION' | translate }}:</ion-label>
       <ion-input type="text" formControlName="nextCrop"></ion-input>
     </ion-item>
 
     <hr>
 
-    <ifarm-events [item]="form"></ifarm-events>
   </form>
+
+  <ion-footer>
+    <button ion-button class="btns-width-50">
+      {{"AREAS.TITLE.S" | translate}}
+    </button>
+    <button ion-button color="light"
+            [disabled]="isNew"
+            [navPush]="entityPage"
+            [navParams]="entityPageParams"
+            class="btns-width-50">
+      {{"EVENTS.TITLE.P" | translate}}
+    </button>
+  </ion-footer>
 </ion-content>

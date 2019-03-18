@@ -7,8 +7,15 @@
       "S": "Vehicle"
     },
     "TYPES": {
+      "ALL": "All",
+      "TRACTOR": "Traktor",
+      "TRAILER": "Trailer",
       "tractor": "Traktor",
-      "trailer": "Pendant"
+      "trailer": "Trailer"
+    },
+    "FORM": {
+      "LICENCE": "Licence",
+      "CHECKUP": "Check up date"
     }
   },
 
@@ -28,7 +35,7 @@
       "BULL": "Bulls"
     },
     "FORM": {
-      "NUMBER": "Nr",
+      "NUMBER": "Number",
       "GENDER": "Gender",
       "F": "Female",
       "M": "Male",
@@ -36,7 +43,12 @@
       "RACE": "Race",
       "MOM": "Mother",
       "COUNT": "Number of calves"
-
+    },
+    "POPUP": {
+      "TITLE": "Are you sure?",
+      "MSG": "After creation, some values are not changeable, such as gender, race and date of birth.",
+      "REJECT": "Abort",
+      "RESOLVE": "Continue"
     }
   },
 
@@ -46,8 +58,19 @@
       "S": "Surface"
     },
     "TYPES": {
-      "pasture": "Grassland",
-      "field": "Farmland"
+      "PASTURE": "Grassland",
+      "FIELD": "Farmland"
+    },
+    "FORM": {
+      "NAME": "Name",
+      "TYPE": "Type",
+      "FLICK_NUMBER": "Flick number",
+      "SIZE": "Size",
+      "CROP_ROTATION": "Crop rotation"
+    },
+    "POPUP": {
+      "TITLE": "Form not complete",
+      "MSG": "Please check the required information (marked with *)"
     }
   },
 
@@ -55,6 +78,19 @@
     "TITLE": {
       "P": "Settings"
     }
+  },
+
+  "EVENTS": {
+    "TITLE": {
+      "P": "Events"
+    },
+    "FORM": {
+      "TITLE": "Title",
+      "DATE": "Date",
+      "DESCRIPTION": "Description",
+      "EVENT_FOR": "Event for"
+    },
+    "NO_EVENTS": "No events"
   },
 
   "NAME": "Name",

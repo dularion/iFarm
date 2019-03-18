@@ -8,6 +8,9 @@ import {DateProvider} from '../../providers/date/date';
 import _ from 'lodash';
 import {DotsMenuPage} from "../dots-menu/dots-menu";
 import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
+import {EventPage} from "../event/event";
+import {EntityEventsPage} from "../event/entity-events/entity-events";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'animal-detail',
@@ -19,6 +22,8 @@ export class AnimalDetailPage {
   existingDoc: any;
   isNew: boolean;
   menu;
+  entityPageParams;
+  entityPage;
 
   constructor(public modalCtrl: ModalController,
               public navParams: NavParams,
@@ -26,6 +31,7 @@ export class AnimalDetailPage {
               public dotsMenuProvider: DotsMenuProvider,
               public animalProvider: AnimalProvider,
               private api: Api,
+              private translate: TranslateService,
               public popoverCtrl: PopoverController,
               public fb: FormBuilder,
               public alertCtrl: AlertController) {
@@ -35,6 +41,8 @@ export class AnimalDetailPage {
     };
     this.existingDoc = navParams.get('item') || defaultValues;
     this.isNew = !this.existingDoc.id;
+    this.entityPage = EntityEventsPage;
+    this.entityPageParams = {entity: this.existingDoc, button: 'ANIMAL'};
 
     this.form = this.createForm();
     this.initDotsMenuItems();
@@ -49,7 +57,7 @@ export class AnimalDetailPage {
         value: DateProvider.monthsAgo(AnimalProvider.femaleAdulthoodThreshhold).toDate()
       }
     ];
-    this.api.query('animals', filter, 'dateOfBirth', 'desc').then(data => {
+    this.api.query(AnimalProvider.ANIMAL_TABLE_NAME, filter, 'dateOfBirth', 'desc').then(data => {
         this.adultFemales = data;
       }
     );
@@ -75,10 +83,15 @@ export class AnimalDetailPage {
 
   save() {
     let _this = this;
+    let title, msg;
+    this.translate.get('AREAS.POPUP').subscribe((resp)=>{
+      title = resp.TITLE;
+      msg = resp.MSG;
+    });
     if (_this.form.status == 'INVALID') {
       let alert = this.alertCtrl.create({
-        title: 'Formular nicht vollständig',
-        subTitle: 'Bitte überprüfen Sie die Pflichtangaben (markiert mit *)',
+        title: title,
+        subTitle: msg,
         buttons: ['OK']
       });
       alert.present();
@@ -101,25 +114,32 @@ export class AnimalDetailPage {
     formValues = _.pickBy(formValues, _.identity);  //remove all undefined values
     formValues.dateCreated = new Date();
 
-    this.api.post('animals', formValues, this.existingDoc.id).then(function () {
+    this.api.post(AnimalProvider.ANIMAL_TABLE_NAME, formValues, this.existingDoc.id).then(function () {
       _this.navCtrl.pop();
     });
   }
 
   private showFirstTimeSaveDialog() {
     let promise = new Promise((resolve, reject) => {
+      let title, msg, rej, res;
+      this.translate.get('ANIMALS.POPUP').subscribe((resp)=>{
+        title = resp.TITLE;
+        msg = resp.MSG;
+        rej = resp.REJECT;
+        res = resp.RESOLVE;
+      });
       const confirm = this.alertCtrl.create({
-        title: 'Sind Sie Sicher?',
-        message: 'Nach der Erstellung, sind einige Werte nicht mehr änderbar, wie Geschlecht, die Rasse und das Geburtsdatum.',
+        title: title,
+        message: msg,
         buttons: [
           {
-            text: 'Abbrechen',
+            text: rej,
             handler: () => {
               reject();
             }
           },
           {
-            text: 'Fortfahren',
+            text: res,
             handler: () => {
               resolve();
             }
@@ -149,6 +169,12 @@ export class AnimalDetailPage {
       if (item.name == this.dotsMenuProvider.SAVE && !this.isNew) {
         this.updateRecord();
       }
+      if (item.name == this.dotsMenuProvider.SAVE && this.isNew) {
+        this.save();
+      }
+      if (item.name == this.dotsMenuProvider.CREATE_NEW_EVENT && !this.isNew) {
+        this.navCtrl.push(EventPage,{table: AnimalProvider.ANIMAL_TABLE_NAME, entry: this.existingDoc});
+      }
     });
     popover.present({
       ev: myEvent
@@ -159,13 +185,13 @@ export class AnimalDetailPage {
   updateRecord() {
     let animal = this.form.getRawValue();
     animal.dateOfBirth = new Date(animal.dateOfBirth);
-    this.api.update('animals', animal).then((resp)=>{
+    this.api.update(AnimalProvider.ANIMAL_TABLE_NAME, animal).then((resp)=>{
       this.navCtrl.pop();
     });
   }
 
   deleteRecord() {
-    this.api.delete('animals', this.existingDoc).then((resp)=>{
+    this.api.delete(AnimalProvider.ANIMAL_TABLE_NAME, this.existingDoc).then((resp)=>{
       this.navCtrl.pop();
     });
   }

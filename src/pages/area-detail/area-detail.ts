@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
-import {AlertController, NavController, NavParams} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {AlertController, NavController, NavParams, PopoverController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Api} from '../../providers/api/api';
+import {DotsMenuPage} from "../dots-menu/dots-menu";
+import {EventPage} from "../event/event";
+import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
+import {EntityEventsPage} from "../event/entity-events/entity-events";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'area-detail',
@@ -10,33 +15,104 @@ import {Api} from '../../providers/api/api';
 export class AreaDetailPage {
   form: FormGroup;
   existingDoc: any;
+  menu;
+  isNew;
+  entityPageParams;
+  entityPage;
+  table = 'areas';
 
-  constructor(public navParams: NavParams, public navCtrl: NavController, public fb: FormBuilder,
-              public alertCtrl: AlertController, private api: Api) {
+  constructor(public navParams: NavParams,
+              public navCtrl: NavController,
+              private dotsMenuProvider: DotsMenuProvider,
+              public fb: FormBuilder,
+              private translate: TranslateService,
+              public popoverCtrl: PopoverController,
+              public alertCtrl: AlertController,
+              private api: Api) {
     this.existingDoc = navParams.get('item') || {};
+    this.isNew = !this.existingDoc.id;
 
-    this.form = fb.group({
-      name: [this.existingDoc.name, Validators.required],
-      nr: [this.existingDoc.nr, Validators.required],
-      type: [this.existingDoc.type, Validators.required],
-      size: this.existingDoc.size,
-      nextCrop: this.existingDoc.nextCrop
-    });
+    this.entityPage = EntityEventsPage;
+    this.entityPageParams = {entity: this.existingDoc, button: 'AREA'};
+
+    this.form = this.createForm();
+    this.initDotsMenuItems();
   }
 
-  save(){
+  createForm(){
+    return this.fb.group({
+      name: [this.existingDoc.name || '', Validators.required],
+      nr: [this.existingDoc.nr || '', Validators.required],
+      type: [this.existingDoc.type || '', Validators.required],
+      size: this.existingDoc.size || '',
+      nextCrop: this.existingDoc.nextCrop || '',
+      dateCreated:[this.existingDoc.dateCreated || new Date()]
+    })
+  }
+
+  save() {
     let _this = this;
-    if(_this.form.status == 'INVALID'){
+    let title, msg;
+    this.translate.get('AREAS.POPUP').subscribe((resp)=>{
+      title = resp.TITLE;
+      msg = resp.MSG;
+    });
+    if (_this.form.status == 'INVALID') {
       let alert = this.alertCtrl.create({
-        title: 'Formular nicht vollständig',
-        subTitle: 'Bitte überprüfen Sie die Pflichtangaben (markiert mit *)',
+        title: title,
+        subTitle: msg,
         buttons: ['OK']
       });
       alert.present();
       return;
     }
-    this.api.post('areas', this.form.getRawValue(), this.existingDoc.id).then(function(){
+    this.api.post('areas', this.form.getRawValue(), this.existingDoc.id).then(function () {
       _this.navCtrl.pop();
     });
+  }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(DotsMenuPage, this.menu);
+    popover.onDidDismiss((item) => {
+      if (item.name == this.dotsMenuProvider.DELETE_RECORD) {
+        this.deleteRecord();
+      }
+      if (item.name == this.dotsMenuProvider.SAVE && !this.isNew) {
+        this.updateRecord();
+      }
+      if (item.name == this.dotsMenuProvider.SAVE && this.isNew) {
+        this.save();
+      }
+      if (item.name == this.dotsMenuProvider.CREATE_NEW_EVENT && !this.isNew) {
+        this.navCtrl.push(EventPage, {table: this.table, entry: this.existingDoc});
+      }
+    });
+    popover.present({
+      ev: myEvent
+    });
+  }
+
+
+  updateRecord() {
+    let area = this.form.getRawValue();
+    area.id = this.existingDoc.id;
+    this.api.update(this.table, area).then((resp) => {
+      this.navCtrl.pop();
+    });
+  }
+
+  deleteRecord() {
+    this.api.delete(this.table, this.existingDoc).then((resp) => {
+      this.navCtrl.pop();
+    });
+  }
+
+  initDotsMenuItems() {
+    this.menu = [
+      this.dotsMenuProvider.SAVE,
+      this.dotsMenuProvider.CREATE_NEW_EVENT,
+      this.dotsMenuProvider.CREATE_NEW_NOTIFICATION,
+      this.dotsMenuProvider.DELETE_RECORD,
+    ];
   }
 }

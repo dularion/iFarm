@@ -14,8 +14,9 @@ export class AnimalProvider {
   static femaleAdulthoodThreshhold: Number = 15;  //months
   static maleAdulthoodThreshhold: Number = 6;     //months
 
-  static GENDER_FEMALE: String = 'female';
-  static GENDER_MALE: String = 'male';
+  static GENDER_FEMALE: string = 'female';
+  static GENDER_MALE: string = 'male';
+  static ANIMAL_TABLE_NAME: string = 'animals';
 
   constructor(public http: HttpClient) {
     console.log('Hello AnimalProvider Provider');
