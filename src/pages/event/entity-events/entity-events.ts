@@ -33,8 +33,8 @@ export class EntityEventsPage {
     })
   }
 
-  getTypeForImage(item){
-    return 'baby';
+  addEvent(){
+    this.navCtrl.push(EventPage, {table: this.buttonLabel.toLowerCase() + 's', entry: this.entity});
   }
 
   goToEventDetail(item) {
