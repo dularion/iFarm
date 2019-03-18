@@ -39,12 +39,9 @@
 
   <ion-list>
     <ion-item *ngFor="let item of events" (click)="goToEventDetail(item)">
-      <ion-thumbnail item-start>
-        <img src="assets/imgs/animal-{{getTypeForImage(item)}}_image.png">
-      </ion-thumbnail>
       <h2>{{item.title}}</h2>
       <p>{{ item.description }} </p>
-      <p>{{ item.eventDate | date:'dd.MM.yyyy HH:mm'}}</p>
+      <p>{{ item.eventDate | date:'dd.MM.yyyy HH:mm'}}, {{item.entityName || ''}}</p>
       <button ion-button clear item-end>View</button>
     </ion-item>
   </ion-list>

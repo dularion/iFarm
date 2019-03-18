@@ -16,17 +16,7 @@
   <form [formGroup]="eventForm">
     <ion-grid>
       <ion-row>
-        <ion-col col-4>
-          <ion-thumbnail item-start *ngIf="table">
-            <img [src]="getEventImage()">
-          </ion-thumbnail>
-          <ion-thumbnail item-start *ngIf="!table">
-            <div class="no-img-container">
-              NONE
-            </div>
-          </ion-thumbnail>
-        </ion-col>
-        <ion-col col-8>
+        <ion-col col-12>
           <ion-item [ngClass]="{'error-input': eventForm.get('title').invalid && eventForm.get('title').touched}">
             <ion-label floating [ngClass]="{'error-input': eventForm.get('title').invalid && eventForm.get('title').touched}">
               {{"EVENTS.FORM.TITLE" | translate}} *
@@ -47,7 +37,7 @@
             </ion-label>
             <ion-datetime displayFormat="YYYY-MM-DD HH:mm"
                           [ngClass]="{'error-input': eventForm.get('eventDate').invalid && eventForm.get('eventDate').touched}"
-                          max="2030-12-31" [min]="getToday()"
+                          max="2030-12-31"
                           formControlName="eventDate"></ion-datetime>
           </ion-item>
         </ion-col>
@@ -58,6 +48,13 @@
             <ion-label floating>{{"EVENTS.FORM.DESCRIPTION" | translate}}</ion-label>
             <ion-textarea rows="6" formControlName="description"></ion-textarea>
           </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <button ion-button full [disabled]="eventForm.invalid">
+            {{"DOTS_MENU.SAVE_RECORD" | translate}}
+          </button>
         </ion-col>
       </ion-row>
       <ion-row>

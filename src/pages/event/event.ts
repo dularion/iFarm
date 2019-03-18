@@ -39,9 +39,6 @@ export class EventPage {
               public fb: FormBuilder,) {
 
     this.isNew = !this.navParams.data.entry.entryId;
-    // if (this.isNew) {
-    //   this.presentAlert();
-    // }
     if (this.navParams.data.entry) {
       this.eventEntity = this.navParams.data.entry;
     }
@@ -71,6 +68,9 @@ export class EventPage {
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(DotsMenuPage, this.menu);
     popover.onDidDismiss((item) => {
+      if(!item.name){
+        return;
+      }
       if (item.name == this.dotsMenuProvider.DELETE_RECORD) {
         this.deleteRecord();
       }
@@ -115,7 +115,7 @@ export class EventPage {
       dateCreated: new FormControl(this.eventEntity.dateCreated || new Date(), [Validators.required]),
       entryId: new FormControl(this.eventEntity.id, [Validators.required]),
       title: new FormControl(this.eventEntity.title || '', [Validators.required, Validators.minLength(5)]),
-      eventDate: new FormControl(this.eventEntity.eventDate || new Date(), [Validators.required, this.validateDate]),
+      eventDate: new FormControl(this.eventEntity.eventDate || new Date(), [Validators.required]),
       description: new FormControl(this.eventEntity.description || ''),
       table: new FormControl(this.eventEntity.table || this.table, [Validators.required])
     });
@@ -136,20 +136,6 @@ export class EventPage {
       this.dotsMenuProvider.SAVE,
       this.dotsMenuProvider.DELETE_RECORD,
     ];
-  }
-
-  getEventImage() {
-    if (this.table == AnimalProvider.ANIMAL_TABLE_NAME) {
-      return "assets/imgs/animal-" + this.animalProvider.getTypeForImage(this.eventEntity) + "_image.png";
-    } else if (this.table == 'areas') {
-
-    } else if (this.table == 'vehicles') {
-
-    }
-  }
-
-  getToday() {
-    return moment().format('YYYY-MM-DD');
   }
 
   presentToast() {

@@ -18,17 +18,11 @@ export class EventListPage {
    this.loadData();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EventListPage');
-  }
+  ionViewDidLoad() {  }
 
 
   goToEventDetail(item) {
     this.navCtrl.push(EventPage, {table: item.table, entry: item})
-  }
-
-  getTypeForImage() {
-    return 'baby';
   }
 
   loadData() {
