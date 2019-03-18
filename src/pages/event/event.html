@@ -52,7 +52,7 @@
       </ion-row>
       <ion-row>
         <ion-col col-12>
-          <button ion-button full [disabled]="eventForm.invalid">
+          <button ion-button full [disabled]="eventForm.invalid" (click)="saveRecord()">
             {{"DOTS_MENU.SAVE_RECORD" | translate}}
           </button>
         </ion-col>

@@ -29,11 +29,11 @@
           </ion-thumbnail>
         </ion-col>
         <ion-col col-8>
-          <ion-item [ngClass]="{'error-input': form.get('licencePlate').invalid && form.get('licencePlate').touched}">
-            <ion-label floating [ngClass]="{'error-input': form.get('licencePlate').invalid && form.get('licencePlate').touched}">
+          <ion-item [ngClass]="{'error-input': form.get('name').invalid && form.get('name').touched}">
+            <ion-label floating [ngClass]="{'error-input': form.get('name').invalid && form.get('name').touched}">
               {{'VEHICLES.FORM.LICENCE' | translate}}</ion-label>
-            <ion-input [ngClass]="{'error-input': form.get('licencePlate').invalid && form.get('licencePlate').touched}"
-              type="text" formControlName="licencePlate"></ion-input>
+            <ion-input [ngClass]="{'error-input': form.get('name').invalid && form.get('name').touched}"
+              type="text" formControlName="name"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -41,9 +41,21 @@
 
     <ion-item>
       <ion-label floating>{{'VEHICLES.FORM.CHECKUP' | translate}}:</ion-label>
-      <ion-datetime displayFormat="DD.MM.YYYY" pickerFormat="DD MM YYYY" formControlName="lastCheckup"></ion-datetime>
+      <ion-datetime displayFormat="DD.MM.YYYY" pickerFormat="DD MM YYYY" formControlName="lastCheckup" max="2040-12-31"></ion-datetime>
     </ion-item>
-
+    <ion-item>
+      <ion-label floating>{{'VEHICLES.FORM.TYPE' | translate}}:</ion-label>
+      <ion-select formControlName="type">
+        <ion-option *ngFor="let type of types" [value]="type">{{ 'VEHICLES.TYPES.' + type | translate}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-row>
+      <ion-col col-12>
+        <button ion-button full [disabled]="form.invalid" (click)="save()">
+          {{"DOTS_MENU.SAVE_RECORD" | translate}}
+        </button>
+      </ion-col>
+    </ion-row>
     <hr>
 
   </form>

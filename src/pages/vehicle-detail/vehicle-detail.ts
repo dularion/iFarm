@@ -23,6 +23,7 @@ export class VehicleDetailPage {
   entityPage;
   isNew;
   menu;
+  types = ['TRACTOR', 'TRAILER'];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -49,8 +50,9 @@ export class VehicleDetailPage {
 
   createForm(){
     return this.fb.group({
-      licencePlate: [this.existingDoc.licencePlate, Validators.required],
-      lastCheckup: this.existingDoc.lastCheckup
+      name: [this.existingDoc.name || '', Validators.required],
+      lastCheckup: this.existingDoc.lastCheckup || '',
+      type: this.existingDoc.type || 'TRACTOR'
     });
   }
 

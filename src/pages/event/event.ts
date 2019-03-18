@@ -38,7 +38,7 @@ export class EventPage {
               public popoverCtrl: PopoverController,
               public fb: FormBuilder,) {
 
-    this.isNew = !this.navParams.data.entry.entryId;
+    this.isNew = !this.navParams.data.entry.entityId;
     if (this.navParams.data.entry) {
       this.eventEntity = this.navParams.data.entry;
     }
@@ -113,11 +113,12 @@ export class EventPage {
   createForm() {
     return this.fb.group({
       dateCreated: new FormControl(this.eventEntity.dateCreated || new Date(), [Validators.required]),
-      entryId: new FormControl(this.eventEntity.id, [Validators.required]),
+      entityId: new FormControl(this.eventEntity.id, [Validators.required]),
       title: new FormControl(this.eventEntity.title || '', [Validators.required, Validators.minLength(5)]),
       eventDate: new FormControl(this.eventEntity.eventDate || new Date(), [Validators.required]),
       description: new FormControl(this.eventEntity.description || ''),
-      table: new FormControl(this.eventEntity.table || this.table, [Validators.required])
+      table: new FormControl(this.eventEntity.table || this.table, [Validators.required]),
+      entityName: new FormControl(this.eventEntity.name || '', [Validators.required])
     });
   }
 

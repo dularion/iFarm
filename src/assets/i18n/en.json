@@ -15,7 +15,8 @@
     },
     "FORM": {
       "LICENCE": "Licence",
-      "CHECKUP": "Check up date"
+      "CHECKUP": "Check up date",
+      "TYPE": "Type"
     }
   },
 
