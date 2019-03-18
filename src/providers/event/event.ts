@@ -14,10 +14,10 @@ export class EventProvider {
 
   getAllRecords(type:string = ''){
     if (!type){
-       return this.api.query(EventProvider.EVENT_TABLE_NAME);
+       return this.api.query(EventProvider.EVENT_TABLE_NAME, [], 'eventDate', 'desc');
     } else {
       return this.api.query(EventProvider.EVENT_TABLE_NAME,
-        [{fieldPath: 'table', opStr: '==', value: type}], 'dateCreated', 'desc');
+        [{fieldPath: 'table', opStr: '==', value: type}], 'eventDate', 'desc');
     }
   }
 
@@ -31,6 +31,6 @@ export class EventProvider {
 
   getEventsByEntity(id){
     return this.api.query(EventProvider.EVENT_TABLE_NAME,
-      [{fieldPath: 'entryId', opStr: '==', value: id}], 'dateCreated', 'desc');
+      [{fieldPath: 'entryId', opStr: '==', value: id}], 'eventDate', 'desc');
   }
 }
