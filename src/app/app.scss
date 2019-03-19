@@ -35,12 +35,22 @@
       border-bottom-color: $text-input-highlight-color-invalid;
     }
   }
+
   .error-input {
     color: $text-input-highlight-color-invalid;
     border-bottom-color: $text-input-highlight-color-invalid;
+
     .item-inner {
       border-bottom-color: $text-input-highlight-color-invalid;
     }
+  }
+
+  .error-msg {
+    border: none;
+    text-overflow: unset;
+    white-space: unset;
+    margin: 0;
+    text-align: center;
   }
 
 }

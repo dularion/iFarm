@@ -96,6 +96,7 @@
 
   "NAME": "Name",
   "PASSWORD": "Passwort",
+  "PASSWORD_REPEAT": "Wiederholen",
   "EMAIL": "Email",
   "LOGIN": "Anmelden",
   "SIGN_OUT": "Anmelden",

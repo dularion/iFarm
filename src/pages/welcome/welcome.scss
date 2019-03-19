@@ -43,4 +43,17 @@ page-welcome {
       background-color: rgb(220, 220, 220);
     }
   }
+
+  .or-label {
+    width: 100%;
+    text-align: center;
+    margin: 0 0 0 0;
+  }
+
+  .register-label {
+    color: map-get($colors, primary);
+    width: 100%;
+    text-align: center;
+    margin: 5px 0 0 0;
+  }
 }

@@ -135,7 +135,6 @@ export class MyErrorHandler implements ErrorHandler {
     StorageProvider,
     DotsMenuProvider,
     EventProvider,
-    UserProvider,
     UsersProvider
   ]
 })

@@ -6,22 +6,61 @@
       {{ 'WELCOME_INTRO' | translate }}
     </div>
   </div>
-  <div padding>
-    <form (submit)="doLogin()">
+  <div padding *ngIf="isLoginFormVisible">
+    <form [formGroup]="loginForm">
       <ion-list>
+        <p *ngIf="errorMessage" class="error-input error-msg">{{errorMessage}}</p>
 
         <ion-item>
           <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
-          <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+          <ion-input type="email" formControlName="email" name="email"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
-          <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+          <ion-input type="password" formControlName="password" name="password"></ion-input>
         </ion-item>
 
         <div padding>
-          <button ion-button color="primary" block>{{ 'LOGIN_BUTTON' | translate }}</button>
+          <button ion-button color="primary" block
+                  [disabled]="loginForm.invalid"
+                  (click)="doLogin()">{{ 'LOGIN_BUTTON' | translate }}</button>
+
+          <ion-label class="or-label">or</ion-label>
+          <ion-label class="register-label"
+                     (click)="toggleLogin()">{{ 'SIGNUP_BUTTON' | translate }}</ion-label>
+        </div>
+
+      </ion-list>
+    </form>
+  </div>
+  <div padding *ngIf="!isLoginFormVisible">
+    <form [formGroup]="registerForm">
+      <ion-list>
+        <p *ngIf="errorMessage" class="error-input error-msg">{{errorMessage}}</p>
+        <ion-item [ngClass]="{'error-input': isInvalidRegistrationField('email')}">
+          <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
+          <ion-input type="email" formControlName="email" name="email"></ion-input>
+        </ion-item>
+
+        <ion-item [ngClass]="{'error-input': isInvalidRegistrationField('password')}">
+          <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
+          <ion-input type="password" formControlName="password" name="password"></ion-input>
+        </ion-item>
+
+        <ion-item
+          [ngClass]="{'error-input': registerForm.hasError('notSame') && isInvalidRegistrationField('repeatPassword')}">
+          <ion-label fixed>{{ 'PASSWORD_REPEAT' | translate }}</ion-label>
+          <ion-input type="password" formControlName="repeatPassword" name="repeatPassword"></ion-input>
+        </ion-item>
+
+        <div padding>
+          <button ion-button color="primary" block
+                  [disabled]="registerForm.invalid"
+                  (click)="registerNewUser()">{{ 'SIGNUP_BUTTON' | translate }}</button>
+          <ion-label class="or-label">or</ion-label>
+          <ion-label class="register-label"
+                     (click)="toggleLogin()">{{ 'LOGIN_BUTTON' | translate }}</ion-label>
         </div>
 
       </ion-list>
