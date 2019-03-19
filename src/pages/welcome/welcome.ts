@@ -5,6 +5,7 @@ import {HomePage} from '../home/home';
 import {TranslateService} from '@ngx-translate/core';
 import {User} from '../../providers/providers';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {UsersProvider} from "../../providers/user/users";
 
 @IonicPage()
 @Component({
@@ -30,6 +31,7 @@ export class WelcomePage {
 
   constructor(public navCtrl: NavController,
               public user: User,
+              private usersProvider: UsersProvider,
               private fb: FormBuilder,
               public toastCtrl: ToastController,
               public translateService: TranslateService) {
@@ -98,7 +100,12 @@ export class WelcomePage {
       delete user.repeatPassword;
       firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then((resp) => {
         console.log("ARGS", resp);
-        this.navCtrl.setRoot(HomePage);
+        this.usersProvider.saveNewUser(user.email).then((e) => {
+          console.log('NEW USER ADDED', e);
+          this.navCtrl.setRoot(HomePage);
+        }).catch((err)=>{
+          console.log('ddddd', err);
+        });
       }).catch((error) => {
         this.errorCode = error.code;
         this.errorMessage = error.message;

@@ -1,21 +1,20 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {Api} from "../api/api";
 
-/*
-  Generated class for the UsersProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class UsersProvider {
 
-  constructor() {
+  userTable = 'users';
+  constructor(private api: Api) {
     console.log('Hello UsersProvider Provider');
   }
 
 
   getMyFamilyUsers() {
     return [];
+  }
+
+  saveNewUser(email){
+    return this.api.post(this.userTable, {email:email, dateCreated: new Date()});
   }
 }
