@@ -99,12 +99,9 @@ export class WelcomePage {
       let user = this.registerForm.value;
       delete user.repeatPassword;
       firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then((resp) => {
-        console.log("ARGS", resp);
         this.usersProvider.saveNewUser(user.email).then((e) => {
-          console.log('NEW USER ADDED', e);
           this.navCtrl.setRoot(HomePage);
         }).catch((err)=>{
-          console.log('ddddd', err);
         });
       }).catch((error) => {
         this.errorCode = error.code;
