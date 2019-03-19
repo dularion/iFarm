@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {UsersProvider} from "../../providers/user/users";
 
 
 @Component({
@@ -9,7 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class NotificationsPage {
   entity;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  teamUsers;
+  currentUser;
+  isLoading = true;
+
+  constructor(public navCtrl: NavController,
+              private usersProvider: UsersProvider,
+              public navParams: NavParams) {
+    this.currentUser = usersProvider.getCurrentUserFromUsers();
+    this.teamUsers = usersProvider.getMyFamilyUsers();
+    console.log('in notificPAGE', this.currentUser,this.teamUsers);
   }
 
   ionViewDidLoad() {

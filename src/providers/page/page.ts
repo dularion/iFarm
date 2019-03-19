@@ -5,7 +5,7 @@ import {AreaListPage} from '../../pages/area-list/area-list';
 import {VehicleListPage} from '../../pages/vehicle-list/vehicle-list';
 import {ListPage} from '../../pages/list/list';
 import {EventListPage} from "../../pages/event/event-list/event-list";
-import {EventPage} from "../../pages/event/event";
+import {NotificationsPage} from "../../pages/notifications/notifications";
 
 /*
   Generated class for the PageProvider provider.
@@ -22,6 +22,7 @@ export class PageProvider {
 
   getPages (): Array<{component: any, icon: string, name: string}> {
     return [
+      { name: 'NOTIFICATIONS', component: NotificationsPage, icon: 'ifarmicon-cow'},
       { name: 'ANIMALS', component: AnimalListPage, icon: 'ifarmicon-cow'},
       { name: 'AREAS', component: AreaListPage, icon: 'ifarmicon-map' },
       { name: 'VEHICLES', component: VehicleListPage, icon: 'ifarmicon-tractor' },

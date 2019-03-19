@@ -14,5 +14,7 @@
 
 
 <ion-content padding>
-
+  <div class="spinner-container" *ngIf="isLoading">
+    <ion-spinner style="text-align: center;"></ion-spinner>
+  </div>
 </ion-content>

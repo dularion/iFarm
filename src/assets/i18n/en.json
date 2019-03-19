@@ -161,5 +161,11 @@
    "CREATE_NEW_EVENT": "Add event",
    "CREATE_NEW_NOTIFICATION": "Add notification",
    "DELETE_RECORD": "Delete"
+  },
+  "NOTIFICATIONS": {
+  "TITLE": {
+    "S": "Notification",
+    "P": "Notifications"
   }
+}
 }

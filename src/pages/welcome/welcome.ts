@@ -69,6 +69,7 @@ export class WelcomePage {
     let vm = this;
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
+        vm.usersProvider.setupCurrentUser();
         console.log('%c user', 'color: deeppink; font-weight: bold; text-shadow: 0 0 5px deeppink;', user);
         vm.navCtrl.setRoot(HomePage);
         // User is signed in.
