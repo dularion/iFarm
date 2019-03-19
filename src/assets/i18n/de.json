@@ -166,6 +166,9 @@
     "TITLE": {
       "S": "Notification",
       "P": "Notifications"
+    },
+    "FORM": {
+      "CREATE": "Erstellen"
     }
   }
 }

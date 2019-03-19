@@ -17,4 +17,46 @@
   <div class="spinner-container" *ngIf="isLoading">
     <ion-spinner style="text-align: center;"></ion-spinner>
   </div>
+
+
+  <form [formGroup]="form">
+    <ion-list>
+      <p *ngIf="errorMessage" class="error-input error-msg">{{errorMessage}}</p>
+      <ion-item [ngClass]="{'error-input': isInvalidFormField('title')}">
+        <ion-label fixed>{{ 'EVENTS.FORM.TITLE' | translate }}</ion-label>
+        <ion-input type="text" formControlName="title"></ion-input>
+      </ion-item>
+
+      <ion-item [ngClass]="{'error-input': isInvalidFormField('date')}">
+        <ion-label floating>
+          {{"EVENTS.FORM.DATE" | translate}} *
+        </ion-label>
+        <ion-datetime displayFormat="YYYY-MM-DD HH:mm"
+                      [ngClass]="{'error-input': isInvalidFormField('date')}"
+                      max="2040-12-31"
+                      formControlName="date"></ion-datetime>
+      </ion-item>
+
+      <ion-item [ngClass]="{'error-input': isInvalidFormField('description')}">
+        <ion-label floating>{{"EVENTS.FORM.DESCRIPTION" | translate}}</ion-label>
+        <ion-textarea rows="3" formControlName="description"></ion-textarea>
+      </ion-item>
+
+
+      <div padding>
+        <button ion-button color="primary" block
+                [disabled]="form.invalid"
+                (click)="createNotification()">{{ 'NOTIFICATIONS.FORM.CREATE' | translate }}
+        </button>
+      </div>
+
+    </ion-list>
+  </form>
+
+
+  <ion-item *ngFor="let user of teamUsers">
+    <ion-label>{{user.email}}</ion-label>
+    <ion-checkbox [(ngModel)]="user.checked"></ion-checkbox>
+  </ion-item>
+  
 </ion-content>
