@@ -37,6 +37,7 @@ import { EventProvider } from '../providers/event/event';
 import {EntityEventsPage} from "../pages/event/entity-events/entity-events";
 import {NotificationsPage} from "../pages/notifications/notifications";
 import { UsersProvider } from '../providers/user/users';
+import { NotificationProvider } from '../providers/notification/notification';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -135,7 +136,8 @@ export class MyErrorHandler implements ErrorHandler {
     StorageProvider,
     DotsMenuProvider,
     EventProvider,
-    UsersProvider
+    UsersProvider,
+    NotificationProvider
   ]
 })
 export class AppModule {}

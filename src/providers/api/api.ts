@@ -18,6 +18,8 @@ export class Api {
 
   constructor(public http: HttpClient) {
     this.db = firebase.firestore();
+    const settings = {timestampsInSnapshots: true};
+    this.db.settings(settings);
   }
 
   get(endpoint: string, params?: any, reqOpts?: any) {
