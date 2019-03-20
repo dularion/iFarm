@@ -42,21 +42,20 @@
         <ion-textarea rows="3" formControlName="description"></ion-textarea>
       </ion-item>
 
-
-      <div padding>
-        <button ion-button color="primary" block
-                [disabled]="form.invalid"
-                (click)="createNotification()">{{ 'NOTIFICATIONS.FORM.CREATE' | translate }}
-        </button>
-      </div>
-
     </ion-list>
   </form>
 
 
   <ion-item *ngFor="let user of teamUsers">
     <ion-label>{{user.email}}</ion-label>
-    <ion-checkbox [(ngModel)]="user.checked"></ion-checkbox>
+    <ion-checkbox [(ngModel)]="user.checked" [disabled]="user.disabled"></ion-checkbox>
   </ion-item>
-  
+
+
+  <button ion-button color="primary" block
+          [disabled]="false"
+          (click)="createNotification()">{{ 'NOTIFICATIONS.FORM.CREATE' | translate }}
+  </button>
+
+
 </ion-content>

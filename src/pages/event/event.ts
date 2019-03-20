@@ -3,8 +3,7 @@ import {IonicPage, NavController, NavParams, PopoverController, ToastController}
 import {DotsMenuPage} from "../dots-menu/dots-menu";
 import {DotsMenuProvider} from "../../providers/dots-menu/dots-menu";
 import {AnimalProvider} from "../../providers/animal/animal";
-import moment from 'moment';
-import {AbstractControl, FormBuilder, FormControl, Validators} from "@angular/forms";
+import { FormBuilder, FormControl, Validators} from "@angular/forms";
 import {AlertController} from "ionic-angular";
 import {EventListPage} from "./event-list/event-list";
 import {EventProvider} from "../../providers/event/event";
