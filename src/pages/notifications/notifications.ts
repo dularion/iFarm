@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angula
 import {UsersProvider} from "../../providers/user/users";
 import {AbstractControl, FormBuilder, FormControl, Validators} from "@angular/forms";
 import {NotificationProvider} from "../../providers/notification/notification";
+import {LocalNotifications} from "@ionic-native/local-notifications/ngx";
 
 
 @Component({
@@ -21,6 +22,7 @@ export class NotificationsPage {
   constructor(public navCtrl: NavController,
               private notificationProvider: NotificationProvider,
               private toastCtrl: ToastController,
+              private localNotifications: LocalNotifications,
               private usersProvider: UsersProvider,
               private fb: FormBuilder,
               public navParams: NavParams) {
@@ -73,12 +75,8 @@ export class NotificationsPage {
       }
     );
     let vm = this;
-    // this.notificationProvider.saveNotification(record).then(function () {
-    //   vm.presentToast();
-    // });
-    this.notificationProvider.getUsersNotifications(this.currentUser).then(snapshot => {
-
-      console.log('U NOTI', snapshot.docs);
+    this.notificationProvider.saveNotification(record).then(function () {
+      vm.presentToast();
     });
   }
 
