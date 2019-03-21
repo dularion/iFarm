@@ -38,6 +38,7 @@ import {EntityEventsPage} from "../pages/event/entity-events/entity-events";
 import {NotificationsPage} from "../pages/notifications/notifications";
 import { UsersProvider } from '../providers/user/users';
 import { NotificationProvider } from '../providers/notification/notification';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -137,7 +138,8 @@ export class MyErrorHandler implements ErrorHandler {
     DotsMenuProvider,
     EventProvider,
     UsersProvider,
-    NotificationProvider
+    NotificationProvider,
+    LocalNotifications
   ]
 })
 export class AppModule {}
