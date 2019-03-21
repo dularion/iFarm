@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Api} from "../api/api";
 import * as firebase from 'firebase';
+import {NotificationProvider} from "../notification/notification";
 
 @Injectable()
 export class UsersProvider {
@@ -9,7 +10,8 @@ export class UsersProvider {
   authUser; //from firestore authentication
   currentUser; // from users table
   teamUsers;
-  constructor(private api: Api) {
+  constructor(private api: Api,
+              private notificationProvider: NotificationProvider) {
   }
 
 
@@ -34,6 +36,7 @@ export class UsersProvider {
       if(this.currentUser && this.currentUser.teamId){
         this.api.query(this.userTable,[{fieldPath: 'teamId', opStr: '==', value: this.currentUser.teamId}]).then((users)=>{
           this.teamUsers = users;
+          this.setupNotifications();
         });
       }
     });
@@ -41,5 +44,9 @@ export class UsersProvider {
 
   saveNewUser(email){
     return this.api.post(this.userTable, {email:email, dateCreated: new Date()});
+  }
+
+  setupNotifications() {
+    this.notificationProvider.setupNotificationsForUser(this.currentUser);
   }
 }
