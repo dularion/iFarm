@@ -96,7 +96,7 @@ export class WelcomePage {
 
   setupNotificationsForUser(user){
     console.log('start look for notifications HA');
-    // let notifArr = [];
+    let notifArr = [];
     let vm = this;
     this.presentToast();
     this.getUsersNotifications(user).then(function(querySnapshot) {
@@ -104,18 +104,20 @@ export class WelcomePage {
       querySnapshot.forEach(function(doc) {
         let data = doc.data();
         console.log(doc.id, " => ", data);
-        vm.localNotifications.schedule({
+        console.log("TIME", new Date(new Date(data.date.seconds)));
+        notifArr.push({
           id: doc.id,
           title: data.title,
           text: data.description,
-          trigger: {at: new Date(new Date(data.date).getTime())},
+          trigger: {at: new Date(new Date(data.date.seconds).getTime())},
           sound: true ? 'file://sound.mp3': 'file://beep.caf'
         });
         console.log('create noti');
       });
+      console.log('---------------notifArr', notifArr);
+      vm.localNotifications.clearAll();
+      vm.localNotifications.schedule(notifArr);
     });
-    // console.log('notifArr', notifArr);
-    // this.localNotifications.schedule(notifArr);
     console.log('all seems fine');
 
   }
