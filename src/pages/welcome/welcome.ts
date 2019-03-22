@@ -76,10 +76,9 @@ export class WelcomePage {
     let vm = this;
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        vm.usersProvider.setupCurrentUser();
+        vm.usersProvider.setupCurrentUser(vm);
         console.log('%c user', 'color: deeppink; font-weight: bold; text-shadow: 0 0 5px deeppink;', user);
         vm.navCtrl.setRoot(HomePage);
-        vm.setupNotificationsForUser(user);
         // User is signed in.
       } else {
         // No user is signed in.
@@ -90,29 +89,33 @@ export class WelcomePage {
 
   getUsersNotifications(user){
     let col = this.db.collection(this.notificationTable);
-    let query = col.where('usersToNotify', 'array-contains', user.id);
+    console.log('getUsersNotifications', user);
+    let query = col.where('usersToNotify', 'array-contains', user.id+'');
     return query.get();
   }
 
   setupNotificationsForUser(user){
-    console.log('start look for notifications');
-    let notifArr = [];
+    console.log('start look for notifications HA');
+    // let notifArr = [];
+    let vm = this;
     this.presentToast();
     this.getUsersNotifications(user).then(function(querySnapshot) {
+      console.log("qyerysbap---", querySnapshot);
       querySnapshot.forEach(function(doc) {
         let data = doc.data();
         console.log(doc.id, " => ", data);
-        notifArr.push({
+        vm.localNotifications.schedule({
           id: doc.id,
           title: data.title,
           text: data.description,
           trigger: {at: new Date(new Date(data.date).getTime())},
           sound: true ? 'file://sound.mp3': 'file://beep.caf'
         });
+        console.log('create noti');
       });
     });
-    console.log('notifArr', notifArr);
-    this.localNotifications.schedule(notifArr);
+    // console.log('notifArr', notifArr);
+    // this.localNotifications.schedule(notifArr);
     console.log('all seems fine');
 
   }

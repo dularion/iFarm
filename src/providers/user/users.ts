@@ -29,13 +29,16 @@ export class UsersProvider {
     }
   }
 
-  setupCurrentUser(){
+  setupCurrentUser(vm){
     this.authUser = firebase.auth().currentUser;
     this.api.query(this.userTable,[{fieldPath: 'email', opStr: '==', value: this.authUser.email}]).then((resp) => {
       this.currentUser = resp[0];
       if(this.currentUser && this.currentUser.teamId){
         this.api.query(this.userTable,[{fieldPath: 'teamId', opStr: '==', value: this.currentUser.teamId}]).then((users)=>{
           this.teamUsers = users;
+          if (vm){
+            vm.setupNotificationsForUser(this.currentUser);
+          }
         });
       }
     });
