@@ -36,7 +36,6 @@ export class UsersProvider {
       if(this.currentUser && this.currentUser.teamId){
         this.api.query(this.userTable,[{fieldPath: 'teamId', opStr: '==', value: this.currentUser.teamId}]).then((users)=>{
           this.teamUsers = users;
-          this.setupNotifications();
         });
       }
     });
@@ -46,7 +45,4 @@ export class UsersProvider {
     return this.api.post(this.userTable, {email:email, dateCreated: new Date()});
   }
 
-  setupNotifications() {
-    this.notificationProvider.setupNotificationsForUser(this.currentUser);
-  }
 }

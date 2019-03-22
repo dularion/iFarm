@@ -6,6 +6,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {User} from '../../providers/providers';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UsersProvider} from "../../providers/user/users";
+import {LocalNotifications} from "@ionic-native/local-notifications/ngx";
 
 @IonicPage()
 @Component({
@@ -26,6 +27,9 @@ export class WelcomePage {
   minPswLength = 6;
   errorCode;
   errorMessage;
+  notificationTable = 'notifications';
+  db;
+
   // Our translated text strings
   private loginErrorString: string;
 
@@ -33,7 +37,8 @@ export class WelcomePage {
               public user: User,
               private usersProvider: UsersProvider,
               private fb: FormBuilder,
-              public toastCtrl: ToastController,
+              private localNotifications: LocalNotifications,
+              private toastCtrl: ToastController,
               public translateService: TranslateService) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
@@ -41,6 +46,8 @@ export class WelcomePage {
     });
 
     this.loginForm = this.createLoginForm();
+    this.db = firebase.firestore();
+
   }
 
   createLoginForm() {
@@ -72,12 +79,59 @@ export class WelcomePage {
         vm.usersProvider.setupCurrentUser();
         console.log('%c user', 'color: deeppink; font-weight: bold; text-shadow: 0 0 5px deeppink;', user);
         vm.navCtrl.setRoot(HomePage);
+        vm.setupNotificationsForUser(user);
         // User is signed in.
       } else {
         // No user is signed in.
       }
     });
   }
+
+
+  getUsersNotifications(user){
+    let col = this.db.collection(this.notificationTable);
+    let query = col.where('usersToNotify', 'array-contains', user.id);
+    return query.get();
+  }
+
+  setupNotificationsForUser(user){
+    console.log('start look for notifications');
+    let notifArr = [];
+    this.presentToast();
+    this.getUsersNotifications(user).then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        let data = doc.data();
+        console.log(doc.id, " => ", data);
+        notifArr.push({
+          id: doc.id,
+          title: data.title,
+          text: data.description,
+          trigger: {at: new Date(new Date(data.date).getTime())},
+          sound: true ? 'file://sound.mp3': 'file://beep.caf'
+        });
+      });
+    });
+    console.log('notifArr', notifArr);
+    this.localNotifications.schedule(notifArr);
+    console.log('all seems fine');
+
+  }
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'GO for notification',
+      duration: 2000,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+
+    });
+
+    toast.present();
+  }
+
+
+
 
   doLogin() {
     this.errorCode = '';
