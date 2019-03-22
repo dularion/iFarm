@@ -3,7 +3,6 @@ import { NavController, NavParams, ToastController} from 'ionic-angular';
 import {UsersProvider} from "../../providers/user/users";
 import {AbstractControl, FormBuilder, FormControl, Validators} from "@angular/forms";
 import {NotificationProvider} from "../../providers/notification/notification";
-import {LocalNotifications} from "@ionic-native/local-notifications/ngx";
 
 
 @Component({
@@ -23,7 +22,6 @@ export class NotificationsPage {
               private notificationProvider: NotificationProvider,
               private toastCtrl: ToastController,
               private usersProvider: UsersProvider,
-              private localNotifications: LocalNotifications,
               private fb: FormBuilder,
               public navParams: NavParams) {
     this.currentUser = usersProvider.getCurrentUserFromUsers();
@@ -92,14 +90,5 @@ export class NotificationsPage {
     });
 
     toast.present();
-  }
-
-  sendNotification(){
-    this.localNotifications.schedule({
-      text: 'Delayed ILocalNotification',
-      trigger: {at: new Date(new Date().getTime() + 3600)},
-      led: 'FF0000',
-      sound: null
-    });
   }
 }

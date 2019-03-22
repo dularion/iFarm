@@ -6,7 +6,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {User} from '../../providers/providers';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UsersProvider} from "../../providers/user/users";
-import {LocalNotifications} from "@ionic-native/local-notifications/ngx";
+import {LocalNotifications} from "@ionic-native/local-notifications";
 
 @IonicPage()
 @Component({

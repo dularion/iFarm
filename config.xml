@@ -3,7 +3,7 @@
     <name>iFarm</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.56.1:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -95,6 +95,5 @@
         <variable name="MAX_STORE" value="2" />
         <variable name="MIN_BACKGROUND_DURATION" value="30" />
     </plugin>
-    <allow-navigation href="http://192.168.56.1:8100" sessionid="54344cfe" />
     <engine name="android" spec="7.0.0" />
 </widget>
