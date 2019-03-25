@@ -3,6 +3,7 @@ import { NavController, NavParams, ToastController} from 'ionic-angular';
 import {UsersProvider} from "../../providers/user/users";
 import {AbstractControl, FormBuilder, FormControl, Validators} from "@angular/forms";
 import {NotificationProvider} from "../../providers/notification/notification";
+import {LocalNotifications} from "@ionic-native/local-notifications";
 
 
 @Component({
@@ -21,6 +22,7 @@ export class NotificationsPage {
   constructor(public navCtrl: NavController,
               private notificationProvider: NotificationProvider,
               private toastCtrl: ToastController,
+              private localNotifications: LocalNotifications,
               private usersProvider: UsersProvider,
               private fb: FormBuilder,
               public navParams: NavParams) {
@@ -45,7 +47,7 @@ export class NotificationsPage {
     return this.fb.group({
       title: new FormControl('', [Validators.required]),
       description: new FormControl('', []),
-      date: new FormControl(new Date(), [Validators.required, this.validateDate]),
+      date: new FormControl(new Date(), [Validators.required]),
       usersToNotify: new FormControl([]),
     });
   }
@@ -66,6 +68,8 @@ export class NotificationsPage {
 
   createNotification() {
     let record = this.form.value;
+    record.date = new Date(record.date).getTime();
+    // console.log('record', record);
     this.teamUsers.forEach(u => {
         if (u.checked) {
           record.usersToNotify.push(u.id);
@@ -90,5 +94,17 @@ export class NotificationsPage {
     });
 
     toast.present();
+  }
+
+
+  getNoti(){
+    this.localNotifications.schedule({
+      text: 'Delayed ILocalNotification',
+      trigger: {at: new Date(new Date().getTime() + 3600)},
+      led: 'FF0000',
+      title: 'data.title',
+      // sound: null
+    });
+    console.log('crasted noti btn');
   }
 }

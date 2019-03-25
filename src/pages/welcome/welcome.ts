@@ -103,20 +103,22 @@ export class WelcomePage {
       console.log("qyerysbap---", querySnapshot);
       querySnapshot.forEach(function(doc) {
         let data = doc.data();
-        console.log(doc.id, " => ", data);
-        console.log("TIME", new Date(new Date(data.date.seconds)));
-        notifArr.push({
+        // let offsetMilisec = Math.abs(new Date().getTimezoneOffset() * 60000);
+        let offsetMilisec = 0;
+        console.log("1TIME", new Date(data.date), 'vse', data.title);
+        console.log("2TIME", new Date());
+        vm.localNotifications.schedule({
           id: doc.id,
           title: data.title,
           text: data.description,
-          trigger: {at: new Date(new Date(data.date.seconds).getTime())},
-          sound: true ? 'file://sound.mp3': 'file://beep.caf'
+          trigger: {at: new Date(data.date)},
         });
         console.log('create noti');
       });
       console.log('---------------notifArr', notifArr);
-      vm.localNotifications.clearAll();
-      vm.localNotifications.schedule(notifArr);
+      // vm.localNotifications.clearAll();
+      // vm.localNotifications.schedule(notifArr);
+      console.log("----------------------------------");
     });
     console.log('all seems fine');
 
