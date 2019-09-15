@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{'EVENTS.TITLE.P' | translate}}</ion-title>
+
+    <!--<ion-buttons end>-->
+      <!--<button ion-button icon-only (click)="addNewItem()">-->
+        <!--<ion-icon name="add-circle"></ion-icon>-->
+      <!--</button>-->
+    <!--</ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <div padding>
+    <ion-segment [(ngModel)]="segmentSelection" (ionChange)="loadData()">
+      <ion-segment-button value="">
+        {{'ANIMALS.MENU.ALL' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="animals">
+        {{'ANIMALS.TITLE.P' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="areas">
+        {{'AREAS.TITLE.P' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="vehicles">
+        {{'VEHICLES.TITLE.P' | translate}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div class="spinner-container" *ngIf="isLoading">
+    <ion-spinner style="text-align: center;"></ion-spinner>
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let item of events" (click)="goToEventDetail(item)">
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/animal-{{getTypeForImage(item)}}_image.png">
+      </ion-thumbnail>
+      <h2>{{item.title}}</h2>
+      <p>{{ item.description }} </p>
+      <p>{{ item.eventDate | date:'dd.MM.yyyy HH:mm'}}</p>
+      <button ion-button clear item-end>View</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

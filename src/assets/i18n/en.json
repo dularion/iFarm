@@ -57,6 +57,18 @@
     }
   },
 
+  "EVENTS": {
+    "TITLE": {
+      "P": "Events"
+    },
+    "FORM": {
+      "TITLE": "Title",
+      "DATE": "Date",
+      "DESCRIPTION": "Description"
+    },
+    "NO_EVENTS": "No events"
+  },
+
   "NAME": "Name",
   "PASSWORD": "Password",
   "EMAIL": "Email",

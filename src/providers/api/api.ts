@@ -71,7 +71,7 @@ export class Api {
     });
   }
 
-  post(collection: string, body: any, id: string) {
+  post(collection: string, body: any, id: string = '') {
     _.forEach(body, function (value, key) {
       if(DateProvider.isKeyValuePairDateString(key, value)){
         body[key] = DateProvider.convertDateTimeToDate(value);
